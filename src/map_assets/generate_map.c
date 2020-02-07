@@ -10,8 +10,8 @@
 
 static void assert_height_value(int *value, const int x, const int y)
 {
-    if ((x % 3 || y % 2) && (rand() % (1 - 3) + 1) == 2)
-        *value = rand() % (1 - 3) + 1;
+    if ((rand() % (1 - 30) + 1) == 2)
+        *value = rand() % (1 - 10) + 1;
     else
         *value = 0;
 }
