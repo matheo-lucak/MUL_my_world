@@ -67,7 +67,7 @@ void draw_2d_map(sfRenderWindow *window, map_settings_t presets,
 sfVector2f **create_2d_map(map_settings_t presets, int **map_3d);
 
 //Returns a sfVertexArray containing two points linked by a line.
-sfVertexArray *create_line (sfVector2f *point1, sfVector2f *point2);
+sfVertexArray *create_line (sfVector2f *p1, sfVector2f *p2, sfVector2f *p3, sfColor color);
 
 
 

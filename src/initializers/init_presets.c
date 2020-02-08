@@ -11,8 +11,8 @@ map_settings_t init_presets(void)
 {
     map_settings_t presets;
 
-    presets.map_height = 64;
-    presets.map_width = 64;
+    presets.map_height = 16;
+    presets.map_width = 16;
     presets.angle_x = 45;
     presets.angle_y = 35;
     return (presets);
