@@ -10,13 +10,28 @@
 static void draw_line(sfVector2f *point1, sfVector2f *point2,
                         sfVector2f *point3, sfRenderWindow *window)
 {
+    static sfTexture *texture = NULL;
+    static sfShader *shader = NULL;
+    static sfRenderStates rd;
     sfVertexArray *vertex_lims = NULL;
+    sfFloatRect bounds;
 
-    vertex_lims = create_line(point1, point2, point3, sfWhite);
-    sfVertexArray_setPrimitiveType(vertex_lims, sfTriangles);
-    sfRenderWindow_drawVertexArray(window, vertex_lims, NULL);
+    if (!texture || !shader) {
+        texture = sfTexture_createFromFile("rock.png", NULL);
+        shader = sfShader_createFromFile("shader2.vert", NULL, "shader.frag");
+        sfShader_setTextureUniform(shader, "tex", texture);
+        sfShader_setVec2Uniform(shader, "scale", (sfGlslVec2){0.01, 0.01});
+        rd.shader = shader;
+        rd.blendMode = sfBlendAlpha;
+        rd.transform = sfTransform_Identity; 
+        rd.texture = texture;
+    }
     vertex_lims = create_line(point1, point2, point3, sfBlack);
-    sfVertexArray_setPrimitiveType(vertex_lims, sfLineStrip);
+    bounds = sfVertexArray_getBounds(vertex_lims);
+    printf("%f %f %f %f\n", bounds.left, bounds.top, bounds.left + bounds.width, bounds.top - bounds.height);
+    sfVertexArray_setPrimitiveType(vertex_lims, sfTriangles);
+    sfRenderWindow_drawVertexArray(window, vertex_lims, &rd);
+    sfVertexArray_setPrimitiveType(vertex_lims, sfLinesStrip);
     sfRenderWindow_drawVertexArray(window, vertex_lims, NULL);
     if (vertex_lims)
         sfVertexArray_destroy(vertex_lims);

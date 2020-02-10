@@ -32,7 +32,8 @@ sfVector2f **create_2d_map(map_settings_t presets, int **map_3d)
         return (NULL);
     while (y < presets.map_height) {
         for (x = 0; x < presets.map_width; x += 1)
-            map_2d[y][x] = project_iso_point(x, y, map_3d[y][x],
+            map_2d[y][x] = project_iso_point((sfVector3f){x, y, map_3d[y][x]},
+                        (sfVector2f){presets.map_width, presets.map_height},
                         (sfVector2i){presets.angle_x, presets.angle_y});
         y += 1;
     }

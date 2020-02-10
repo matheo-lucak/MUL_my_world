@@ -45,18 +45,22 @@ map_t init_world_map(void);
 map_settings_t init_presets(void);
 
 
-//
+//Convert degrees to radians
 float my_radians(int nb);
-
 
 //Generates the map.
 int **generate_map(const unsigned int map_height,
                     const unsigned int map_width);
+
+
 //Controls the camera point of view.
 void control_window_view(sfRenderWindow *window, sfView *view);
 
+//Controls the map rotation.
+void control_map_view(map_t *world_map);
+
 //Converts a 3D point into a sfVector2f.
-sfVector2f project_iso_point(const int x, const int y, const int z,
+sfVector2f project_iso_point(const sfVector3f pos_3d, sfVector2f map_size,
                             sfVector2i angles);
 
 //Draws the sfVector2f array onto the window.
@@ -73,8 +77,10 @@ sfVertexArray *create_line (sfVector2f *p1, sfVector2f *p2, sfVector2f *p3, sfCo
 
 //
 void free_win_sets(win_settings_t *win_sets);
+
 //
 void free_world_map(map_t *world_map);
+
 //Frees allocated memory for the int array map.
 void free_array(void **array, const unsigned int size);
 
