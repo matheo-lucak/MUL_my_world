@@ -21,7 +21,6 @@ void my_world(void)
         control_camera_view(terraformer.map_settings, win_settings);
         control_angle_view(&(terraformer.map_settings));
         sfRenderWindow_display(win_settings.window);
-        break;
     }
     free_game_structures(&win_settings, &terraformer, &my_map);
 }

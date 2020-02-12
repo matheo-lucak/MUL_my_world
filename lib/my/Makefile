@@ -86,6 +86,8 @@ clean:
 fclean:			clean
 				$(RM) $(NAME)
 				$(RM) $(OBJ)
+				$(RM) ./../../include/$(NAME_MY_H)
+				$(RM) ./$(NAME_MY_H)
 				$(RM) ../$(NAME)
 
 re:				fclean all
