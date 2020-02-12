@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2019
-** MUL_my_world_boostrap_2019
+** MUL_my_world_2019
 ** File description:
-** my_world_bootstrap.h
+** my_world.h
 */
 
 #ifndef MY_WORLD_H_
@@ -12,20 +12,61 @@
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 
-typedef struct map_settings_s {
-    unsigned int map_width;
-    unsigned int map_height;
+//An enum of each possible material a square can be.
+
+typedef enum square_matter_e {
+    GRASS,
+    STONE,
+    GRAVEL,
+    SAND,
+    WATER,
+    SNOW
+} square_matter_t;
+
+
+
+//Settings that are helpful for the map rendering and angles of sight.
+//
+//Can be altered by the player.
+
+typedef struct presets_s {
+    unsigned int map_x;
+    unsigned int map_y;
     int angle_x;
     int angle_y;
-} map_settings_t;
+    sfVector2i rotation_speed;
+    sfVector2i movement_speed;
+} presets_t;
 
-typedef struct map_s {
-    map_settings_t presets;
-    int **not_edited;
-    int **edited;
-    sfVector2f **map_2d;
-    sfVertexArray ***lines;
-} map_t;
+
+
+//A square of the map node -> when linked together -> squares of the map
+//linked list.
+
+typedef struct map_linked_list_s {
+    sfVertexArray *shape_drawer;
+    sfRenderStates rstate;
+    square_matter_t matter_state;
+    struct map_linked_list_s *next;
+    struct map_linked_list_s *prev;
+} map_linked_list_t;
+
+
+
+
+//The alterer of coordinates of the points in the map.
+
+typedef struct map_formatter_s {
+    presets_t map_settings;
+    float **map_3d;
+    sfShader **shaders;
+    sfTexture **textures;
+} map_formatter_t;
+
+
+
+
+//The window tool box.
 
 typedef struct win_settings_s {
     sfRenderWindow *window;
@@ -33,55 +74,113 @@ typedef struct win_settings_s {
     sfView *view;
 } win_settings_t;
 
-//Main instance of the game.
-int my_world(void);
+
+/*
+** *********
+** | Usage |
+** *********
+*/
+
+//Prints the usage of my_world onto the stdout.
+void usage(void);
 
 
-//Initializes the window.
-win_settings_t init_window(void);
+/*
+**                             ****************
+**                             | Initializers |
+**                             ****************
+*/
+
+//Initializes an array to every different sfShader's.
 //
-map_t init_world_map(void);
-//Initializes the map presets.
-map_settings_t init_presets(void);
-
-
-//Convert degrees to radians
-float my_radians(int nb);
-
-//Generates the map.
-int **generate_map(const unsigned int map_height,
-                    const unsigned int map_width);
-
-
-//Controls the camera point of view.
-void control_window_view(sfRenderWindow *window, sfView *view);
-
-//Controls the map rotation.
-void control_map_view(map_t *world_map);
-
-//Converts a 3D point into a sfVector2f.
-sfVector2f project_iso_point(const sfVector3f pos_3d, sfVector2f map_size,
-                            sfVector2i angles);
-
-//Draws the sfVector2f array onto the window.
-void draw_2d_map(sfRenderWindow *window, map_settings_t presets,
-                sfVector2f **map_2d);
-
-//Creates an array of sfVector2f containing 2D positions of the vertices of the map.
-sfVector2f **create_2d_map(map_settings_t presets, int **map_3d);
-
-//Returns a sfVertexArray containing two points linked by a line.
-sfVertexArray *create_line (sfVector2f *p1, sfVector2f *p2, sfVector2f *p3, sfColor color);
-
-
-
+//The array is NULL-terminated.
 //
-void free_win_sets(win_settings_t *win_sets);
+//If an error occurs -> returns NULL.
+sfShader **init_shaders(void);
 
+//Initializes an array to every different sfTexture's.
 //
-void free_world_map(map_t *world_map);
+//The array is NULL-terminated.
+//
+//If an error occurs -> returns NULL.
+sfTexture **init_textures(void);
 
-//Frees allocated memory for the int array map.
-void free_array(void **array, const unsigned int size);
+//Initializes the win_settings structure.
+//
+//Returns sfTrue (1) if mallocs work.
+//Returns sfFalse (0) otherwise.
+const sfBool init_win_settings(win_settings_t *win_settings);
+
+//Initializes the terraformer structure.
+//
+//Returns sfTrue (1) if mallocs work.
+//Returns sfFalse (0) otherwise.
+const sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
+
+//Initializes the win_settings struct, terraformer struct and my_map linked_list.
+//
+//Returns sfTrue (1) if mallocs work.
+//Returns sfFalse (0) otherwise.
+const sfBool init_game_structures(win_settings_t *win_settings,
+                                map_formatter_t *terraformer,
+                                map_linked_list_t **my_map);
+
+/*
+** ******************
+** | Main game loop |
+** ******************
+*/
+
+//Checks if a window should stay opened or not.
+//
+//Returns sfTrue (1) if it should.
+//Returns sfFalse (0) otherwise.
+const sfBool should_stay_opened(sfRenderWindow *window);
+
+
+/*
+**                            *******************
+**                            | Map Linked List |
+**                            *******************
+*/
+
+//Allocates each map_linked_list_t node and links nodes in the list.
+void create_map_list(map_linked_list_t **head,
+                    const sfVector2i map_limits,
+                    const sfTexture **textures,
+                    const sfShader **shaders);
+
+/*
+** ************
+** | Free'ers |
+** ************
+*/
+
+//Free's allocated memory for a NULL-terminated texture array.
+//If the pointer points to NULL, nothing happens.
+void free_textures_array(sfTexture ***textures);
+
+//Free's allocated memory for a NULL-terminated shader array.
+//If the pointer points to NULL, nothing happens.
+void free_shaders_array(sfShader ***shaders);
+
+//Free's allocated memory for win_settings.
+void free_win_settings(win_settings_t *win_settings);
+
+//Free's allocated memory for terraformer.
+//If the pointer points to NULL, nothing happens.
+void free_terraformer(map_formatter_t *terraformer);
+
+//Frees allocated memory for a map_linked_list_t.
+//
+//Fully checks if memory can be free'd to avoid double free's or corruption.
+void free_map_list(map_linked_list_t **head);
+
+//Free's allocated memory for win_settings, terraformer and my_map.
+//If (the) pointer(s) point(s) to NULL, nothing happens with these/this one(s).
+void free_game_structures(win_settings_t *win_settings,
+                        map_formatter_t *terraformer,
+                        map_linked_list_t **my_map);
+
 
 #endif /* MY_WORLD_H_ */

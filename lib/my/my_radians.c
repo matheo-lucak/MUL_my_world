@@ -7,7 +7,7 @@
 
 #include <math.h>
 
-float my_radians(int nb)
+float my_radians(const int degrees)
 {
-    return ((nb * M_PI) / 180);
+    return ((degrees * M_PI) / 180);
 }

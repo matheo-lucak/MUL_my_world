@@ -2,14 +2,20 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** main of the my_world
+** main.c
 */
 
+#include "my.h"
 #include "my_world.h"
 
 int main(int ac, char **av, char **env)
 {
-    if (ac != 1)
+    if (ac != 1) {
+        usage();
+        if (ac == 2 && my_strcmp(av[1], "-h", 0))
+            return (0);
         return (84);
-    return (my_world());
+    }
+    my_world();
+    return (0);
 }
