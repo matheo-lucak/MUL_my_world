@@ -5,92 +5,78 @@
 ## rtfm
 ##
 
-CC			=	gcc
+MAIN				=	src/main.c
 
-SRC			=	src/main.c					\
-				src/event_edit_game.c		\
-				src/event_inf_game.c		\
-				src/event_inf_game2.c		\
-				src/event_menu_game.c		\
-				src/free_all.c				\
-				src/game_start.c			\
-				src/game.c					\
-				src/init_button.c			\
-				src/init_edit_obj.c			\
-				src/init_env_background.c	\
-				src/init_env_frontground.c	\
-				src/init_gobj_comp.c		\
-				src/init_gobj_comp2.c		\
-				src/init_gobj_param.c		\
-				src/init_gobj.c				\
-				src/init_hud.c				\
-				src/init_hud2.c				\
-				src/init_map.c				\
-				src/init_map2.c				\
-				src/init_obj.c				\
-				src/init_player.c			\
-				src/init_player2.c			\
-				src/init_prop.c				\
-				src/init_prop2.c			\
-				src/manage_edit_obj.c		\
-				src/manage_edit_obj2.c		\
-				src/manage_entity_damage.c	\
-				src/manage_entity_gravity.c	\
-				src/manage_entity_jump.c	\
-				src/manage_entity.c			\
-				src/manage_hud.c			\
-				src/manage_lose.c			\
-				src/manage_obj.c			\
-				src/manage_obj2.c			\
-				src/manage_score.c			\
-				src/manage_win.c			\
-				src/save_map.c				\
-				src/save_map_name.c			\
-				src/tool_comp.c				\
-				src/tool.c
+SRC					=	src/free_resources/free_game_structures.c			\
+						src/free_resources/free_map_list.c					\
+						src/free_resources/free_shaders_array.c				\
+						src/free_resources/free_transformer.c				\
+						src/free_resources/free_textures_array.c			\
+						src/free_resources/free_win_settings.c				\
+						src/initializers/init_game_structures.c				\
+						src/initializers/init_win_settings.c				\
+						src/initializers/init_terraformer.c					\
+						src/initializers/init_textures.c					\
+						src/initializers/init_shaders.c						\
+						src/inputs_handling/control_view.c					\
+						src/inputs_handling/mouse_input.c					\
+						src/map_generation/generate_map.c					\
+						src/map_generation/get_hash.c						\
+						src/map_generation/perlin_noise.c					\
+						src/map_list/create_map_list.c						\
+						src/window_checkers/should_stay_opened.c			\
+						src/my_world.c										\
+						src/usage.c
 
-OBJ			=	$(SRC:.c=.o)
+OBJ					=	$(SRC:.c=.o) $(MAIN:.c=.o)
 
-NAME		=	my_runner
+NAME 				=	my_world
 
-CPPFLAGS	=	-I./include/
+override CFLAGS		+=	-W -Wall -Wextra
 
-LDFLAGS		=	-L./lib
+override CPPFLAGS	+=	-I./include/
 
-LDLIBS		=	-lmy -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system -lm
+override LDFLAGS	+=	-L./lib/
 
-LIB			=	./lib/libmy.a
+override LDLIBS		+= 	-lmy -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system -lm
 
-ASSET		=	music/		\
-				sound/		\
-				sprite/		\
-				font/		\
+LIB 				= lib/libmy.a
 
+ASSETS				= assets
 
-$(NAME):	 $(LIB) $(OBJ) $(ASSET)
-				$(CC) $(OBJ) -o $(NAME) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+all:				$(NAME)
 
-all:	$(NAME)
-
-debug:	clean $(LIB) $(OBJ)
-				rm -f $(NAME)
-				$(CC) $(SRC) -o $(NAME) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS) -W -Wall -Wextra -g
+$(NAME):			$(LIB) $(OBJ)
+					$(LINK.o) -o $@ $(OBJ) $(LDFLAGS) $(LDLIBS)
 
 $(LIB):
-				make -C ./lib/my/
+					$(MAKE) -C lib/my
 
-$(ASSET):
-				tar -xzf asset.tar.gz
+$(ASSETS):
+					tar -xzf asset.tar.gz
+
+debug:				CPPFLAGS += -g
+debug:				$(LIB)
+					$(CC) -o $@ $(SRC) $(MAIN) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+
+tests_run:			LDLIBS += -lcriterion --coverage
+tests_run:			CFLAGS += --coverage
+tests_run:			$(LIB)
+					$(CC) -o $@ $(SRC) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+					./$@
+					mv *.gc* tests/
+					$(RM) $@
 
 clean:
-				rm -f $(OBJ)
-				make clean -C ./lib/my/
+					$(RM) $(OBJ)
+					$(MAKE) -C lib/my clean
 
-fclean: clean
-				rm -f $(NAME)
-				make fclean -C ./lib/my
-				rm -r $(ASSET)
+fclean:				clean
+					$(RM) $(NAME)
+					$(RM) $(ASSET)
+					$(MAKE) -C lib/my fclean
 
-re:	fclean all
+re:			 		fclean all
 
-.PHONY:	$(NAME) all clean fclean
+.NOTPARALLEL:
+.PHONY:				debug all clean fclean re tests_run
