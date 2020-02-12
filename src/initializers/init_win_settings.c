@@ -7,7 +7,7 @@
 
 #include "my_world.h"
 
-const sfBool init_win_settings(win_settings_t *win_settings)
+sfBool init_win_settings(win_settings_t *win_settings)
 {
     sfFloatRect rect = (sfFloatRect){0, 0, 1920, 1080};
 
@@ -20,10 +20,10 @@ const sfBool init_win_settings(win_settings_t *win_settings)
     sfRenderWindow_setFramerateLimit(win_settings->window, 60);
     sfRenderWindow_setMouseCursorVisible(win_settings->window, sfTrue);
     win_settings->view = sfView_createFromRect(rect);
-    sfView_setCenter(win_settings->view, (sfVector2f){0, 0});
     if (!win_settings->view) {
-        free_map_list(win_settings);
+        free_win_settings(win_settings);
         return (sfFalse);
     }
+    sfView_setCenter(win_settings->view, (sfVector2f){0, 0});
     return (sfTrue);
 }

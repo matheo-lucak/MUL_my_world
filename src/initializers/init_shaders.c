@@ -5,6 +5,7 @@
 ** init_shaders.c
 */
 
+#include <stdlib.h>
 #include "my_world.h"
 
 sfShader **init_shaders(void)

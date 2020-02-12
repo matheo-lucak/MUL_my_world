@@ -5,10 +5,14 @@
 ** get hash from file
 */
 
+#include <stdlib.h>
+#include <fcntl.h>
+#include "my.h"
+
 int *get_hash(void)
 {
-    int fd = open("map_assets/map_hash", O_RDONLY);
-    char *stock = get_next_line(fd, 256);
+    int fd = open("assets/config/hash", O_RDONLY);
+    char *stock = get_next_line(fd);
     char **parsed_nb = NULL;
     int *hash = malloc(sizeof(int) * 256);
     int i = 0;
@@ -19,7 +23,7 @@ int *get_hash(void)
     if (!parsed_nb)
         return (NULL);
     while (parsed_nb[i]) {
-        hash[i] = my_get_nb(parsed_nb[i]);
+        hash[i] = my_getnbr(parsed_nb[i]);
         free(parsed_nb[i]);
         i++;
     }

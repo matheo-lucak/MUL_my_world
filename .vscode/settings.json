@@ -2,6 +2,8 @@
     "files.associations": {
         "my_world.h": "c",
         "map_generation.h": "c",
-        "input_handling.h": "c"
+        "input_handling.h": "c",
+        "vector2.h": "c",
+        "my.h": "c"
     }
 }

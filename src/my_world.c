@@ -20,8 +20,8 @@ void my_world(void)
         sfRenderWindow_clear(win_settings.window, sfBlack);
         control_camera_view(terraformer.map_settings, win_settings);
         control_angle_view(&(terraformer.map_settings));
-        draw_2d_map(win_sets.window, world_map.presets, world_map.map_2d);
-        sfRenderWindow_display(win_sets.window);
+        sfRenderWindow_display(win_settings.window);
+        break;
     }
     free_game_structures(&win_settings, &terraformer, &my_map);
 }

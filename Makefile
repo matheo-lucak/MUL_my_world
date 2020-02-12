@@ -10,7 +10,7 @@ MAIN				=	src/main.c
 SRC					=	src/free_resources/free_game_structures.c			\
 						src/free_resources/free_map_list.c					\
 						src/free_resources/free_shaders_array.c				\
-						src/free_resources/free_transformer.c				\
+						src/free_resources/free_terraformer.c				\
 						src/free_resources/free_textures_array.c			\
 						src/free_resources/free_win_settings.c				\
 						src/initializers/init_game_structures.c				\
@@ -50,7 +50,7 @@ $(NAME):			$(LIB) $(OBJ)
 					$(LINK.o) -o $@ $(OBJ) $(LDFLAGS) $(LDLIBS)
 
 $(LIB):
-					$(MAKE) -C lib/my
+					$(MAKE) -C ./lib/my
 
 $(ASSETS):
 					tar -xzf asset.tar.gz
@@ -73,6 +73,7 @@ clean:
 
 fclean:				clean
 					$(RM) $(NAME)
+					$(RM) $(OBJ)
 					$(RM) $(ASSET)
 					$(MAKE) -C lib/my fclean
 

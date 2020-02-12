@@ -7,7 +7,7 @@
 
 #include "my_world.h"
 
-const sfBool should_stay_opened(sfRenderWindow *window)
+sfBool should_stay_opened(sfRenderWindow *window)
 {
     static sfEvent event;
 

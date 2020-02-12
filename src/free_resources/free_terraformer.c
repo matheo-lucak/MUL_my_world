@@ -11,6 +11,6 @@ void free_terraformer(map_formatter_t *terraformer)
 {
     if (!terraformer)
         return;
-    free_textures_array(&(terraformer->textures));
-    free_shaders_array(&(terraformer->shaders));
+    free_textures_array(terraformer->textures);
+    free_shaders_array(terraformer->shaders);
 }

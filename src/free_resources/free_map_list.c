@@ -12,10 +12,6 @@ static void free_map_node(map_linked_list_t **node)
 {
     if (!(*node))
         return;
-    if ((*node)->rstate.texture)
-        sfTexture_destroy((*node)->rstate.texture);
-    if ((*node)->rstate.shader)
-        sfShader_destroy((*node)->rstate.shader);
     if ((*node)->shape_drawer)
         sfVertexArray_destroy((*node)->shape_drawer);
     if (*node)

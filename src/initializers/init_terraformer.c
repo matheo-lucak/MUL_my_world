@@ -8,14 +8,14 @@
 #include "my_world.h"
 #include "map_generation.h"
 
-const sfBool init_terraformer(map_formatter_t *terraformer, size_t seed)
+sfBool init_terraformer(map_formatter_t *terraformer, size_t seed)
 {
     terraformer->textures = init_textures();
     if (!(terraformer->textures))
         return (sfFalse);
     terraformer->shaders = init_shaders();
     if (!(terraformer->shaders)) {
-        free_textures_array(&(terraformer->textures));
+        free_textures_array(terraformer->textures);
         return (sfFalse);
     }
     terraformer->map_settings.map_x = 64;

@@ -41,10 +41,9 @@ static void control_camera_rescale(win_settings_t win_settings,
     }
 }
 
-const sfBool control_camera_view(presets_t map_settings,
-                                win_settings_t win_settings)
+sfBool control_camera_view(presets_t map_settings,
+                             win_settings_t win_settings)
 {
-    sfVector2i mv_speed = map_settings.movement_speed;
     sfBool changed = sfFalse;
 
     control_camera_translate(win_settings, map_settings, &changed);
@@ -53,7 +52,7 @@ const sfBool control_camera_view(presets_t map_settings,
     return (changed);
 }
 
-const sfBool control_angle_view(presets_t *map_settings)
+sfBool control_angle_view(presets_t *map_settings)
 {
     sfBool changed = sfFalse;
 

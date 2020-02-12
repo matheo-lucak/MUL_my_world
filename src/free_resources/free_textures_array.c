@@ -5,19 +5,20 @@
 ** free_textures_array.c
 */
 
+#include <stdlib.h>
 #include "my_world.h"
 
-void free_textures_array(sfTexture ***textures)
+void free_textures_array(sfTexture **textures)
 {
     int index = 0;
 
-    if (!(*textures))
+    if (!textures)
         return;
     while (textures[index]) {
-        if ((*textures)[index])
-            sfTexture_destroy((*textures)[index]);
+        if (textures[index])
+            sfTexture_destroy(textures[index]);
         index += 1;
     }
-    if (*textures)
-        free(*textures);
+    if (textures)
+        free(textures);
 }

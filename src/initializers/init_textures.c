@@ -7,13 +7,14 @@
 
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 #include "my.h"
 #include "my_world.h"
 
 static int get_first_nb(const int fd)
 {
-    char *first_line = get_next_line(fd, 32);
+    char *first_line = get_next_line(fd);
     int nb = 0;
 
     nb = my_getnbr(first_line);
@@ -45,7 +46,7 @@ sfTexture **init_textures(void)
     if (!check_textures_error(fd, nb_textures, &textures))
         return (NULL);
     while (index < nb_textures) {
-        line = get_next_line(fd, 32);
+        line = get_next_line(fd);
         textures[index] = sfTexture_createFromFile(line, NULL);
         if (line)
             free(line);

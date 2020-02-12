@@ -109,19 +109,19 @@ sfTexture **init_textures(void);
 //
 //Returns sfTrue (1) if mallocs work.
 //Returns sfFalse (0) otherwise.
-const sfBool init_win_settings(win_settings_t *win_settings);
+sfBool init_win_settings(win_settings_t *win_settings);
 
 //Initializes the terraformer structure.
 //
 //Returns sfTrue (1) if mallocs work.
 //Returns sfFalse (0) otherwise.
-const sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
+sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
 
 //Initializes the win_settings struct, terraformer struct and my_map linked_list.
 //
 //Returns sfTrue (1) if mallocs work.
 //Returns sfFalse (0) otherwise.
-const sfBool init_game_structures(win_settings_t *win_settings,
+sfBool init_game_structures(win_settings_t *win_settings,
                                 map_formatter_t *terraformer,
                                 map_linked_list_t **my_map);
 
@@ -135,7 +135,10 @@ const sfBool init_game_structures(win_settings_t *win_settings,
 //
 //Returns sfTrue (1) if it should.
 //Returns sfFalse (0) otherwise.
-const sfBool should_stay_opened(sfRenderWindow *window);
+sfBool should_stay_opened(sfRenderWindow *window);
+
+//Main instance of the my_world edit game.
+void my_world(void);
 
 
 /*
@@ -158,11 +161,11 @@ void create_map_list(map_linked_list_t **head,
 
 //Free's allocated memory for a NULL-terminated texture array.
 //If the pointer points to NULL, nothing happens.
-void free_textures_array(sfTexture ***textures);
+void free_textures_array(sfTexture **textures);
 
 //Free's allocated memory for a NULL-terminated shader array.
 //If the pointer points to NULL, nothing happens.
-void free_shaders_array(sfShader ***shaders);
+void free_shaders_array(sfShader **shaders);
 
 //Free's allocated memory for win_settings.
 void free_win_settings(win_settings_t *win_settings);

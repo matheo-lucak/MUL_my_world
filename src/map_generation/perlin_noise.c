@@ -5,10 +5,10 @@
 ** perlin noise generation
 */
 
-#include <stddef.h>
+#include <stdlib.h>
 #include "map_generation.h"
 
-int noise2(int x, int y, size_t seed, int do_free)
+int noise2(const int x, const int y, const size_t seed, const int do_free)
 {
     static int *hash = NULL;
     int tmp = 0;
@@ -24,21 +24,21 @@ int noise2(int x, int y, size_t seed, int do_free)
         return (0);
     }
     tmp = hash[(y + seed) % 256];
-    return hash[(tmp + x) % 256];
+    return (hash[(tmp + x) % 256]);
 }
 
-float lin_inter(float x, float y, float s)
+static float lin_inter(const float x, const float y, const float s)
 {
-    return (x + s * (y-x));
+    return (x + s * (y - x));
 }
 
-float smooth_inter(float x, float y, float s)
+static float smooth_inter(const float x, const float y, const float s)
 {
     
-    return (lin_inter(x, y, s * s * (3-2*s)));
+    return (lin_inter(x, y, s * s * (3 - 2 * s)));
 }
 
-float noise2d(float x, float y, size_t seed)
+static float noise2d(const float x, const float y, const size_t seed)
 {
     int x_int = x;
     int y_int = y;
@@ -54,7 +54,8 @@ float noise2d(float x, float y, size_t seed)
     return (smooth_inter(low, high, y_frac));
 }
 
-float perlin2d(sfVector2f pos, float freq, int depth, size_t seed)
+float perlin2d(const sfVector2f pos, const float freq,
+                const int depth, const size_t seed)
 {
     float xa = pos.x * freq;
     float ya = pos.y * freq;

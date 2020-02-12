@@ -28,7 +28,7 @@ int my_getnbr(const char *str)
     if (!str)
         return (0);
     neg = get_sign(str, &index);
-    if (my_strcmp(&str[index], "2147483647", 0) > 0)
+    if (my_strcmp("2147483647", &str[index], 0) > 0)
         return (0);
     while (str[index] && str[index] >= '0' && str[index] <= '9') {
         if (index > 0)
