@@ -11,7 +11,6 @@
 
 #include "my_world.h"
 
-
 //Returns the mouse coordinates relative to:
 //
 //  -Window size

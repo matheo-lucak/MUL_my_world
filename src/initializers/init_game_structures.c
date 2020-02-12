@@ -20,7 +20,8 @@ const sfBool init_game_structures(win_settings_t *win_settings,
         free_game_structures(win_settings, terraformer, my_map);
         return (sfFalse);
     }
-    create_map_list(my_map, map_limits, terraformer->textures, terraformer->shaders);
+    create_map_list(my_map, map_limits,
+                    terraformer->textures, terraformer->shaders);
     if (!my_map) {
         free_game_structures(win_settings, terraformer, my_map);
         return (sfFalse);
