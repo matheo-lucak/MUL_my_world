@@ -14,14 +14,14 @@
 
 //An enum of each possible material a square can be.
 
-typedef enum square_matter_e {
+typedef enum tile_matter_e {
     GRASS,
     STONE,
     GRAVEL,
     SAND,
     WATER,
     SNOW
-} square_matter_t;
+} tile_matter_t;
 
 
 
@@ -46,11 +46,20 @@ typedef struct presets_s {
 typedef struct map_linked_list_s {
     sfVertexArray *shape_drawer;
     sfRenderStates rstate;
-    square_matter_t matter_state;
+    tile_matter_t matter_state;
     struct map_linked_list_s *next;
     struct map_linked_list_s *prev;
 } map_linked_list_t;
 
+
+
+//A tile of the map
+
+typedef struct tile_s {
+    sfVertexArray *shape_drawer;
+    sfRenderStates rstate;
+    tile_matter_t matter_state;
+} tile_t;
 
 
 
@@ -59,6 +68,8 @@ typedef struct map_linked_list_s {
 typedef struct map_formatter_s {
     presets_t map_settings;
     float **map_3d;
+    sfVector2f **map_2d;
+    sfVertexArray ***v_map_2d;
     sfShader **shaders;
     sfTexture **textures;
 } map_formatter_t;
@@ -174,7 +185,7 @@ void free_win_settings(win_settings_t *win_settings);
 //If the pointer points to NULL, nothing happens.
 void free_terraformer(map_formatter_t *terraformer);
 
-//Frees allocated memory for a map_linked_list_t.
+//Free's allocated memory for a map_linked_list_t.
 //
 //Fully checks if memory can be free'd to avoid double free's or corruption.
 void free_map_list(map_linked_list_t **head);

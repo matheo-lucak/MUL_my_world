@@ -7,6 +7,7 @@
 
 #include "my_world.h"
 #include "input_handling.h"
+#include "map_update.h"
 
 void my_world(void)
 {
@@ -18,8 +19,9 @@ void my_world(void)
         return;
     while (should_stay_opened(win_settings.window)) {
         sfRenderWindow_clear(win_settings.window, sfBlack);
-        control_camera_view(terraformer.map_settings, win_settings);
-        control_angle_view(&(terraformer.map_settings));
+        if (control_camera_view(terraformer.map_settings, win_settings) ||
+            control_angle_view(&(terraformer.map_settings)))
+            update_map_2d(&terraformer);
         sfRenderWindow_display(win_settings.window);
     }
     free_game_structures(&win_settings, &terraformer, &my_map);
