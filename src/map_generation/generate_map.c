@@ -8,22 +8,21 @@
 #include <stdlib.h>
 #include "map_generation.h"
 
-float **generate_map(const int map_height,
-                    const int map_width,
+float **generate_map(const sfVector2i map_size,
                     const size_t seed)
 {
     float **map = NULL;
     int x = 0;
     int y = 0;
 
-    map = malloc(sizeof(float *) * map_height);
+    map = malloc(sizeof(float *) * map_size.y);
     if (!map)
         return (NULL);
-    while (y < map_height) {
-        map[y] = malloc(sizeof(float) * map_width);
+    while (y < map_size.y) {
+        map[y] = malloc(sizeof(float) * map_size.x);
         if (!(map[y]))
             return (NULL);
-        for (x = 0; x < map_width; x += 1)
+        for (x = 0; x < map_size.x; x += 1)
             map[y][x] = perlin2d((sfVector2f){x, y}, 0.05, 10, seed);
         y += 1;
     }

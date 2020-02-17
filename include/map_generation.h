@@ -24,8 +24,7 @@ int noise2(const int x, const int y, const size_t seed,
             const int do_free);
 
 //Generate float 3d map with perlin noise
-float **generate_map(const int map_height,
-                    const int map_width,
+float **generate_map(const sfVector2i map_size,
                     const size_t seed);
 
 #endif /* MAP_GEN_H_ */
