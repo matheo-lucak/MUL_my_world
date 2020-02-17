@@ -12,8 +12,8 @@ static void free_map_node(map_linked_list_t **node)
 {
     if (!(*node))
         return;
-    if ((*node)->shape_drawer)
-        sfVertexArray_destroy((*node)->shape_drawer);
+    if ((*node)->tile->shape_drawer)
+        sfVertexArray_destroy((*node)->tile->shape_drawer);
     if (*node)
         free(*node);
 }

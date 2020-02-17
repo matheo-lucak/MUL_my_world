@@ -14,16 +14,20 @@ SRC					=	src/free_resources/free_game_structures.c			\
 						src/free_resources/free_textures_array.c			\
 						src/free_resources/free_win_settings.c				\
 						src/initializers/init_game_structures.c				\
-						src/initializers/init_win_settings.c				\
+						src/initializers/init_map_2d.c						\
+						src/initializers/init_shaders.c						\
 						src/initializers/init_terraformer.c					\
 						src/initializers/init_textures.c					\
-						src/initializers/init_shaders.c						\
+						src/initializers/init_win_settings.c				\
 						src/inputs_handling/control_view.c					\
 						src/inputs_handling/mouse_input.c					\
 						src/map_generation/generate_map.c					\
 						src/map_generation/get_hash.c						\
 						src/map_generation/perlin_noise.c					\
 						src/map_list/create_map_list.c						\
+						src/map_update/draw_tile_map_2d.c					\
+						src/map_update/map_update.c							\
+						src/math_process/project_iso_point.c				\
 						src/window_checkers/should_stay_opened.c			\
 						src/my_world.c										\
 						src/usage.c

@@ -123,8 +123,8 @@ sfVector2f **init_map_2d(const sfVector2i map_size);
 //Initializes a 2D array of tiles to be displayed.
 //Returns the allocated array if success.
 //Returns NULL if an error occures.
-tile_t **init_tile_map_2d(const sfVector2i map_size,
-                        const sfTexture **textures, const sfShaders **shaders);
+tile_t **init_tile_map_2d(const sfVector2i map_size, sfTexture **textures,
+                                                        sfShader **shaders);
 
 //Initializes the win_settings structure.
 //
@@ -157,6 +157,9 @@ sfBool init_game_structures(win_settings_t *win_settings,
 //Returns sfTrue (1) if it should.
 //Returns sfFalse (0) otherwise.
 sfBool should_stay_opened(sfRenderWindow *window);
+
+//Draws tile map 2D in RenderWindow
+void draw_tile_map_2d(sfRenderWindow *window, map_formatter_t *terraformer);
 
 //Main instance of the my_world edit game.
 void my_world(void);

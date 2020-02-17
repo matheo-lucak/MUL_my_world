@@ -4,6 +4,11 @@
         "map_generation.h": "c",
         "input_handling.h": "c",
         "vector2.h": "c",
-        "my.h": "c"
+        "my.h": "c",
+        "map_update.h": "c",
+        "system.h": "c",
+        "graphics.h": "c",
+        "vector3.h": "c",
+        "math.h": "c"
     }
 }

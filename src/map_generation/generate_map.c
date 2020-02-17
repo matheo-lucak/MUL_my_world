@@ -22,8 +22,11 @@ float **generate_map(const sfVector2i map_size,
         map[y] = malloc(sizeof(float) * map_size.x);
         if (!(map[y]))
             return (NULL);
-        for (x = 0; x < map_size.x; x += 1)
-            map[y][x] = perlin2d((sfVector2f){x, y}, 0.05, 10, seed);
+        for (x = 0; x < map_size.x; x += 1) {
+            map[y][x] = perlin_2d((sfVector2f){x, y}, 0.05, 10, seed) * 10;
+            printf("%f", map[y][x]);
+        }
+        printf("\n");
         y += 1;
     }
     noise2(0, 0, 0, 1);

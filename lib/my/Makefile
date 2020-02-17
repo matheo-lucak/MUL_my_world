@@ -40,12 +40,13 @@ SRC				=	./my_putchar.c						\
 					./my_strcat.c						\
 					./my_str_to_word_array.c			\
 					./find_char_in_str.c				\
-					./get_next_line.c					\
-					./my_radians.c
+					./get_next_line.c
 
 SRCMATHEMATICAL	=	./mathematical/my_radians.c
 
-SRCGRAPHICAL	=	./graphical/conv_vec2f_vec2i.c
+SRCGRAPHICAL	=	./graphical/conv_vec2f_vec2i.c		\
+					./graphical/conv_vec2i_vec2f.c
+					
 
 SRCMYPRINTF		=	./my_printf/my_printf.c				\
 					./my_printf/flag_checkers.c			\
@@ -84,7 +85,7 @@ NAME_MYPRINTF_H	=	my_printf.h
 all:			$(NAME)
 
 $(NAME):		$(OBJ)
-				$(AR) $(ARFLAGS) $(NAME) $(OBJ) -lm -lcsfml-system
+				$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 				cp $(NAME) ../
 				cp ./include/$(NAME_MY_H) ./../../include/
 				cp ./include/$(NAME_MY_GRAPHICAL_H) ./../../include/

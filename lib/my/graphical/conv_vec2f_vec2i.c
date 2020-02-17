@@ -5,7 +5,7 @@
 ** conv_vec2f_vec2i.c
 */
 
-#include <SFML/System.h>
+#include <SFML/System/Vector2.h>
 
 sfVector2i conv_vec2f_vec2i(const sfVector2f float_vector_2d)
 {

@@ -20,8 +20,11 @@ void my_world(void)
     while (should_stay_opened(win_settings.window)) {
         sfRenderWindow_clear(win_settings.window, sfBlack);
         if (control_camera_view(terraformer.map_settings, win_settings) ||
-            control_angle_view(&(terraformer.map_settings)))
+            control_angle_view(&(terraformer.map_settings))) {
             update_map_2d(&terraformer);
+            update_tile_map_2d(&terraformer);
+            }
+        draw_tile_map_2d(win_settings.window, &terraformer);
         sfRenderWindow_display(win_settings.window);
     }
     free_game_structures(&win_settings, &terraformer, &my_map);

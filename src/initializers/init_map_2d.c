@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "my_world.h"
 
-tile_t create_new_tile(const sfTexture **textures, const sfShader **shaders)
+tile_t create_new_tile(sfTexture **textures, sfShader **shaders)
 {
     tile_t new_tile;
 
@@ -25,9 +25,8 @@ tile_t create_new_tile(const sfTexture **textures, const sfShader **shaders)
     return (new_tile);
 }
 
-tile_t **init_tile_map_2d(const sfVector2i map_size,
-                        const sfTexture **textures,
-                        const sfShader **shaders)
+tile_t **init_tile_map_2d(const sfVector2i map_size, sfTexture **textures,
+                                                        sfShader **shaders)
 {
     tile_t **map_2d = malloc(sizeof(tile_t *) * (map_size.y));
     sfVector2i pos = (sfVector2i){0, 0}; 
@@ -43,7 +42,6 @@ tile_t **init_tile_map_2d(const sfVector2i map_size,
             if (!(map_2d[pos.y][pos.x].shape_drawer))
                 return (NULL);
         }
-        map_2d[pos.y][pos.x] = NULL;
         pos.y += 1;
     }
     map_2d[pos.y] = NULL;
