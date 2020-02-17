@@ -15,7 +15,7 @@
 int *get_hash(void);
 
 //Returns a random smooth number generated with hash and seed.
-float perlin2d(const sfVector2f pos, const float freq,
+float perlin_2d(const sfVector2f pos, const float freq,
                 const int depth, const size_t seed);
 
 //Sub function of perlin2d.

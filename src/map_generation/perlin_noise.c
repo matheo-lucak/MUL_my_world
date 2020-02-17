@@ -38,7 +38,7 @@ static float smooth_inter(const float x, const float y, const float s)
     return (lin_inter(x, y, s * s * (3 - 2 * s)));
 }
 
-static float noise2d(const float x, const float y, const size_t seed)
+static float noise_2d(const float x, const float y, const size_t seed)
 {
     int x_int = x;
     int y_int = y;
@@ -54,23 +54,23 @@ static float noise2d(const float x, const float y, const size_t seed)
     return (smooth_inter(low, high, y_frac));
 }
 
-float perlin2d(const sfVector2f pos, const float freq,
+float perlin_2d(const sfVector2f pos, const float freq,
                 const int depth, const size_t seed)
 {
     float xa = pos.x * freq;
     float ya = pos.y * freq;
-    float amp = 1.0;
+    float amplitude = 1.0;
     float fin = 0;
-    float div = 0.0;
-    int i = 0;
+    float diviser = 0.0;
+    int index = 0;
 
-    while (i < depth) {
-        div += 256 * amp;
-        fin += noise2d(xa, ya, seed) * amp;
-        amp /= 2;
+    while (index < depth) {
+        diviser += 256 * amplitude;
+        fin += noise_2d(xa, ya, seed) * amplitude;
+        amplitude /= 2;
         xa *= 2;
         ya *= 2;
-        i++;
+        index += 1;
     }
-    return (fin / div);
+    return (fin / diviser);
 }

@@ -76,9 +76,9 @@ typedef struct win_settings_s {
 
 
 /*
-** *********
-** | Usage |
-** *********
+**                                 *********
+**                                 | Usage |
+**                                 *********
 */
 
 //Prints the usage of my_world onto the stdout.
@@ -122,13 +122,13 @@ sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
 //Returns sfTrue (1) if mallocs work.
 //Returns sfFalse (0) otherwise.
 sfBool init_game_structures(win_settings_t *win_settings,
-                                map_formatter_t *terraformer,
-                                map_linked_list_t **my_map);
+                            map_formatter_t *terraformer,
+                            map_linked_list_t **my_map);
 
 /*
-** ******************
-** | Main game loop |
-** ******************
+**                                  ******************
+**                                  | Main game loop |
+**                                  ******************
 */
 
 //Checks if a window should stay opened or not.
@@ -142,9 +142,9 @@ void my_world(void);
 
 
 /*
-**                            *******************
-**                            | Map Linked List |
-**                            *******************
+**                                 *******************
+**                                 | Map Linked List |
+**                                 *******************
 */
 
 //Allocates each map_linked_list_t node and links nodes in the list.
@@ -154,9 +154,9 @@ void create_map_list(map_linked_list_t **head,
                     const sfShader **shaders);
 
 /*
-** ************
-** | Free'ers |
-** ************
+**                                    ************
+**                                    | Free'ers |
+**                                    ************
 */
 
 //Free's allocated memory for a NULL-terminated texture array.
