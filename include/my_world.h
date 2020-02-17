@@ -30,10 +30,8 @@ typedef enum tile_matter_e {
 //Can be altered by the player.
 
 typedef struct presets_s {
-    unsigned int map_x;
-    unsigned int map_y;
-    int angle_x;
-    int angle_y;
+    sfVector2i coords;
+    sfVector2i angles;
     sfVector2i rotation_speed;
     sfVector2i movement_speed;
 } presets_t;
@@ -41,15 +39,6 @@ typedef struct presets_s {
 
 
 //A square of the map node -> when linked together -> squares of the map
-//linked list.
-
-typedef struct map_linked_list_s {
-    sfVertexArray *shape_drawer;
-    sfRenderStates rstate;
-    tile_matter_t matter_state;
-    struct map_linked_list_s *next;
-    struct map_linked_list_s *prev;
-} map_linked_list_t;
 
 
 
@@ -60,6 +49,16 @@ typedef struct tile_s {
     sfRenderStates rstate;
     tile_matter_t matter_state;
 } tile_t;
+
+
+
+//linked list.
+
+typedef struct map_linked_list_s {
+    tile_t *tile;
+    struct map_linked_list_s *next;
+    struct map_linked_list_s *prev;
+} map_linked_list_t;
 
 
 
