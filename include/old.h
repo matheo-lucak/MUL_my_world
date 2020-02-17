@@ -107,10 +107,6 @@ void control_window_view(sfRenderWindow *window, sfView *view);
 //Controls the map rotation.
 void control_map_view(map_t *world_map);
 
-//Converts a 3D point into a sfVector2f.
-sfVector2f project_iso_point(const sfVector3f pos_3d, sfVector2f map_size,
-                            sfVector2i angles);
-
 //Draws the sfVector2f array onto the window.
 void draw_2d_map(sfRenderWindow *window, map_settings_t presets,
                 sfVector2f **map_2d);

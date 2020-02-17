@@ -26,6 +26,7 @@ static void set_array(char ***res, char **array, char *str)
         }
     }
     (*res)[index] = my_strdup(str);
+    (*res)[index + 1] = NULL;
 }
 
 char **my_append_to_array(char **array, char *str, const int freer)

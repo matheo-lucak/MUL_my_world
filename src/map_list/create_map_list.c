@@ -20,11 +20,11 @@ static void add_map_node(map_linked_list_t **head,
     node = malloc(sizeof(map_linked_list_t));
     if (!node)
         return;
-    node->shape_drawer = NULL;
-    node->rstate.blendMode = sfBlendAlpha;
-    node->rstate.transform = sfTransform_Identity;
-    node->rstate.texture = textures[0];
-    node->rstate.shader = shaders[0];
+    node->tile->shape_drawer = NULL; 
+    node->tile->rstate.blendMode = sfBlendAlpha;
+    node->tile->rstate.transform = sfTransform_Identity;
+    node->tile->rstate.texture = textures[0];
+    node->tile->rstate.shader = shaders[0];
     for (tmp = *head; tmp->next; tmp = tmp->next);
     tmp = node;
     tmp->next = (*head);
@@ -41,11 +41,11 @@ static void add_first_map_node(map_linked_list_t **head,
 
     if (!node)
         return;
-    node->shape_drawer = NULL; 
-    node->rstate.blendMode = sfBlendAlpha;
-    node->rstate.transform = sfTransform_Identity;
-    node->rstate.texture = textures[0];
-    node->rstate.shader = shaders[0];
+    node->tile->shape_drawer = NULL; 
+    node->tile->rstate.blendMode = sfBlendAlpha;
+    node->tile->rstate.transform = sfTransform_Identity;
+    node->tile->rstate.texture = textures[0];
+    node->tile->rstate.shader = shaders[0];
     node->next = node;
     node->prev = node;
     (*head) = node;

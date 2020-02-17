@@ -19,8 +19,8 @@ sfBool init_game_structures(win_settings_t *win_settings,
         free_game_structures(win_settings, terraformer, my_map);
         return (sfFalse);
     }
-    map_limits = (sfVector2i){terraformer->map_settings.map_x,
-                                terraformer->map_settings.map_y};
+    map_limits = (sfVector2i){terraformer->map_settings.size.x,
+                                terraformer->map_settings.size.y};
     create_map_list(my_map, map_limits,
                     (const sfTexture **)terraformer->textures,
                     (const sfShader **)terraformer->shaders);

@@ -8,7 +8,7 @@
 #include <math.h>
 #include "map_update.h"
 
-sfVector2f project_iso_point(const sfVector3f pos_3d, sfVector2f map_size,
+sfVector2f project_iso_point(const sfVector3f pos_3d, sfVector2i map_size,
                             sfVector2i angles)
 {
     sfVector2f pos_2d;

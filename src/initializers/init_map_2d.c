@@ -8,26 +8,62 @@
 #include <stdlib.h>
 #include "my_world.h"
 
-sfVertexArray ***init_map_2d(const int width, const int height)
+tile_t create_new_tile(const sfTexture **textures, const sfShader **shaders)
 {
-    sfVertexArray ***map_2d = malloc(sizeof(sfVertexArray **) * (height));
-    int x = 0;
+    tile_t new_tile;
+
+    new_tile.matter_state = GRASS;
+    new_tile.rstate.blendMode = sfBlendAdd;
+    new_tile.rstate.transform = sfTransform_Identity;
+    if (!(textures) || !(textures[0]) || !(shaders) || !(shaders[0])) {
+        new_tile.shape_drawer = NULL;
+        return (new_tile);
+    }
+    new_tile.rstate.texture = textures[0];
+    new_tile.rstate.shader = shaders[0];
+    new_tile.shape_drawer = sfVertexArray_create();
+    return (new_tile);
+}
+
+tile_t **init_tile_map_2d(const sfVector2i map_size,
+                        const sfTexture **textures,
+                        const sfShader **shaders)
+{
+    tile_t **map_2d = malloc(sizeof(tile_t *) * (map_size.y));
+    sfVector2i pos = (sfVector2i){0, 0}; 
+
+    if (!map_2d)
+        return (NULL);
+    while (pos.y < map_size.y - 1) {
+        map_2d[pos.y] = malloc(sizeof(tile_t) * (map_size.x));
+        if (!(map_2d[pos.y]))
+            return (NULL);
+        for (pos.x = 0; pos.x < map_size.x - 1; pos.x += 1) {
+            map_2d[pos.y][pos.x] = create_new_tile(textures, shaders);
+            if (!(map_2d[pos.y][pos.x].shape_drawer))
+                return (NULL);
+        }
+        map_2d[pos.y][pos.x] = NULL;
+        pos.y += 1;
+    }
+    map_2d[pos.y] = NULL;
+    return (map_2d);
+}
+
+sfVector2f **init_map_2d(const sfVector2i map_size)
+{
+    sfVector2f **map_2d = malloc(sizeof(sfVector2f *) * map_size.y);
     int y = 0;
 
     if (!map_2d)
         return (NULL);
-    while (y < height - 1) {
-        map_2d[y] = malloc(sizeof(sfVertexArray *) * (width));
-        if (!map_2d[y])
+    while (y < map_size.y) {
+        map_2d[y] = malloc(sizeof(sfVector2f) * map_size.y);
+        if (!(map_2d[y])) {
+            free(map_2d);
             return (NULL);
-        do {
-            map_2d[y][x] = sfVertexArray_create();
-            x += 1;
-        } while (map_2d[y][x] && x < width - 1);
-        map_2d[y][x] = NULL;
-        x = 0;
+        }
         y += 1;
     }
-    map_2d[y] = NULL;
     return (map_2d);
 }

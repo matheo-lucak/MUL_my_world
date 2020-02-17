@@ -23,16 +23,16 @@ static int get_first_nb(const int fd)
     return (nb);
 }
 
-static unsigned int check_textures_error(const int fd,
+static sfBool check_textures_error(const int fd,
                                         const int nb_textures,
                                         sfTexture ***textures)
 {
     if (fd == -1 || nb_textures <= 0)
-        return (0);
+        return (sfFalse);
     *textures = malloc(sizeof(sfTexture *) * (nb_textures + 1));
     if (!(*textures))
-        return (0);
-    return (1);
+        return (sfFalse);
+    return (sfTrue);
 }
 
 sfTexture **init_textures(void)

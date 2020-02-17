@@ -30,7 +30,7 @@ typedef enum tile_matter_e {
 //Can be altered by the player.
 
 typedef struct presets_s {
-    sfVector2i coords;
+    sfVector2i size;
     sfVector2i angles;
     sfVector2i rotation_speed;
     sfVector2i movement_speed;
@@ -68,7 +68,7 @@ typedef struct map_formatter_s {
     presets_t map_settings;
     float **map_3d;
     sfVector2f **map_2d;
-    sfVertexArray ***v_map_2d;
+    tile_t **tile_map_2d;
     sfShader **shaders;
     sfTexture **textures;
 } map_formatter_t;
@@ -114,6 +114,17 @@ sfShader **init_shaders(void);
 //
 //If an error occurs -> returns NULL.
 sfTexture **init_textures(void);
+
+//Initializes a 2D array to stock map3D projection's values.
+//Returns the allocated array if success.
+//Returns NULL if an error occures.
+sfVector2f **init_map_2d(const sfVector2i map_size);
+
+//Initializes a 2D array of tiles to be displayed.
+//Returns the allocated array if success.
+//Returns NULL if an error occures.
+tile_t **init_tile_map_2d(const sfVector2i map_size,
+                        const sfTexture **textures, const sfShaders **shaders);
 
 //Initializes the win_settings structure.
 //
