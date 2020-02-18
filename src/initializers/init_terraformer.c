@@ -20,7 +20,7 @@ sfBool init_terraformer(map_formatter_t *terraformer, size_t seed)
         free_textures_array(terraformer->textures);
         return (sfFalse);
     }
-    terraformer->map_settings.size = (sfVector2i) {64, 64};
+    terraformer->map_settings.size = (sfVector2i) {128, 128};
     terraformer->map_settings.angles = (sfVector2i) {45, 35};
     terraformer->map_settings.movement_speed = (sfVector2i){10, 10};
     terraformer->map_settings.rotation_speed = (sfVector2i){1, 1};
