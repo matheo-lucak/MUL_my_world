@@ -20,7 +20,7 @@ static void add_map_node(map_linked_list_t **head,
     node = malloc(sizeof(map_linked_list_t));
     if (!node)
         return;
-    node->tile->shape_drawer = NULL; 
+    node->tile->shape_drawer = NULL;
     node->tile->rstate.blendMode = sfBlendAlpha;
     node->tile->rstate.transform = sfTransform_Identity;
     node->tile->rstate.texture = textures[0];
@@ -41,7 +41,7 @@ static void add_first_map_node(map_linked_list_t **head,
 
     if (!node)
         return;
-    node->tile->shape_drawer = NULL; 
+    node->tile->shape_drawer = NULL;
     node->tile->rstate.blendMode = sfBlendAlpha;
     node->tile->rstate.transform = sfTransform_Identity;
     node->tile->rstate.texture = textures[0];

@@ -24,7 +24,8 @@ int my_putstr(const char *str);
 //Gets an int from a string.
 //
 //Returns 0 if the contained int is > MAX_INT or < MIN_INT
-//Returns 0 if the string is NULL or nothing as such as a number has been found into the string
+//Returns 0 if the string is NULL
+//Returns nothing as such as a number has been found into the string
 //before finding a none number character
 int my_getnbr(const char *str);
 
@@ -46,7 +47,8 @@ int my_isnum(const char c);
 //Returns 0 otherwise.
 int my_isalphanum(const char c);
 
-//Checks whether a string only contains digits or alphabetical letters as char's.
+//Checks whether a string only contains digits or
+//alphabetical letters as char's.
 //
 //Returns 1 if it is.
 //Returns 0 otherwise.
@@ -62,8 +64,10 @@ int my_str_is_alphanum(const char *str);
 //%x -> prints an int (base 16 -> abcdef in lowercases).
 //%X -> prints an int (base 16 -> abcdef in uppercases).
 //%s -> prints a string.
-//%S -> prints a string (non-printable's are printed in a \000 form with 000 the octal value in the ascii table of the char).
-//%p -> prints the address of a pointer in this form: "0x0..." with 0... being the lowercased hexa form of the address.
+//%S -> prints a string (non-printable's are printed in a \000
+//form with 000 the octal value in the ascii table of the char).
+//%p -> prints the address of a pointer in this form:
+//"0x0..." with 0... being the lowercased hexa form of the address.
 //
 //%ld -> prints a long int (base 10).
 //%li -> prints a long int (base 10).
@@ -85,12 +89,16 @@ int my_str_is_alphanum(const char *str);
 //%#d -> prints an int (base 10).
 //%#i -> prints an int (base 10).
 //%#u -> prints an int (base 10).
-//%#o -> prints an int (base 8) -> If the octal number isn't 0, prints a 0 before it.
-//%#x -> prints an int (base 16 -> abcdef in lowercases) -> Prints 0x before it.
-//%#X -> prints an int (base 16 -> abcdef in uppercases) -> Prints 0x before it.
+//%#o -> prints an int (base 8) -> If the octal number isn't 0
+//Prints a 0 before it.
+//%#x -> prints an int (base 16 -> abcdef in lowercases) ->
+//Prints 0x before it.
+//%#X -> prints an int (base 16 -> abcdef in uppercases) ->
+//Prints 0x before it.
 int my_printf(char const *input, ...);
 
-//Gets a line from a file, gets the next one at each function call, without the \n at the end.
+//Gets a line from a file, gets the next one at each function call
+//without the \n at the end.
 //
 //Returns NULL if:
 //- fd = -1.

@@ -44,44 +44,44 @@ override LDFLAGS	+=	-L./lib/
 
 override LDLIBS		+= 	-lmy -lcsfml-graphics -lcsfml-window -lcsfml-audio -lcsfml-system -lm
 
-LIB 				= lib/libmy.a
+LIB 				=	lib/libmy.a
 
-ASSETS				= assets
+ASSETS				=	assets
 
-all:				$(NAME)
+all:					$(NAME)
 
-$(NAME):			$(LIB) $(OBJ) $(ASSETS)
-					$(LINK.o) -o $@ $(OBJ) $(LDFLAGS) $(LDLIBS)
+$(NAME):				$(LIB) $(OBJ) $(ASSETS)
+						$(LINK.o) -o $@ $(OBJ) $(LDFLAGS) $(LDLIBS)
 
 $(LIB):
-					$(MAKE) -C ./lib/my
+						$(MAKE) -C ./lib/my
 
 $(ASSETS):
-					tar -xzf assets.tar.gz
+						tar -xzf assets.tar.gz
 
-debug:				CPPFLAGS += -g
-debug:				$(LIB)
-					$(CC) -o $@ $(SRC) $(MAIN) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+debug:					CPPFLAGS += -g
+debug:					$(LIB)
+						$(CC) -o $@ $(SRC) $(MAIN) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
-tests_run:			LDLIBS += -lcriterion --coverage
-tests_run:			CFLAGS += --coverage
-tests_run:			$(LIB)
-					$(CC) -o $@ $(SRC) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
-					./$@
-					mv *.gc* tests/
-					$(RM) $@
+tests_run:				LDLIBS += -lcriterion --coverage
+tests_run:				CFLAGS += --coverage
+tests_run:				$(LIB)
+						$(CC) -o $@ $(SRC) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+						./$@
+						mv *.gc* tests/
+						$(RM) $@
 
 clean:
-					$(RM) $(OBJ)
-					$(MAKE) -C lib/my clean
+						$(RM) $(OBJ)
+						$(MAKE) -C lib/my clean
 
-fclean:				clean
-					$(RM) $(NAME)
-					$(RM) $(OBJ)
-					$(RM) -r $(ASSETS)
-					$(MAKE) -C lib/my fclean
+fclean:					clean
+						$(RM) $(NAME)
+						$(RM) $(OBJ)
+						$(RM) -r $(ASSETS)
+						$(MAKE) -C lib/my fclean
 
-re:			 		fclean all
+re:			 			fclean all
 
 .NOTPARALLEL:
-.PHONY:				debug all clean fclean re tests_run
+.PHONY:					debug all clean fclean re tests_run

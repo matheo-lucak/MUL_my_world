@@ -138,7 +138,8 @@ sfBool init_win_settings(win_settings_t *win_settings);
 //Returns sfFalse (0) otherwise.
 sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
 
-//Initializes the win_settings struct, terraformer struct and my_map linked_list.
+//Initializes the win_settings struct
+//terraformer struct and my_map linked_list.
 //
 //Returns sfTrue (1) if mallocs work.
 //Returns sfFalse (0) otherwise.

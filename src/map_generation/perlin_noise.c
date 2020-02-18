@@ -34,7 +34,6 @@ static float lin_inter(const float x, const float y, const float s)
 
 static float smooth_inter(const float x, const float y, const float s)
 {
-    
     return (lin_inter(x, y, s * s * (3 - 2 * s)));
 }
 

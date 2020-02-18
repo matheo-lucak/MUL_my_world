@@ -32,7 +32,7 @@ static char **get_parsed_nbrs(const int fd, int *hash)
         free_hash_resources(fd, hash);
         return (NULL);
     }
-    parsed_nbrs = my_str_to_word_array(stock, " ,/", 1);
+    parsed_nbrs = my_str_to_word_array(stock, ", /", 1);
     if (!parsed_nbrs) {
         free_hash_resources(fd, hash);
         return (NULL);

@@ -33,7 +33,6 @@ void update_tile(tile_t *tile, map_formatter_t *terraformer,
         tile->rstate.texture = terraformer->textures[tile->matter_state];
     if (terraformer->shaders && terraformer->shaders[0]) {
         tile->rstate.shader = terraformer->shaders[0];
-        
     }
     fill_vertex(terraformer->map_2d[pos.y][pos.x], tile->shape_drawer, (sfVector2f){0, 0});
     fill_vertex(terraformer->map_2d[pos.y][pos.x + 1], tile->shape_drawer, (sfVector2f){0, 1});

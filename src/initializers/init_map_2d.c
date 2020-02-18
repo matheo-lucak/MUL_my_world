@@ -29,7 +29,7 @@ tile_t **init_tile_map_2d(const sfVector2i map_size, sfTexture **textures,
                                                         sfShader **shaders)
 {
     tile_t **map_2d = malloc(sizeof(tile_t *) * (map_size.y));
-    sfVector2i pos = (sfVector2i){0, 0}; 
+    sfVector2i pos = (sfVector2i){0, 0};
 
     if (!map_2d)
         return (NULL);

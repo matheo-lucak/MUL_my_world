@@ -46,7 +46,7 @@ SRCMATHEMATICAL	=	./mathematical/my_radians.c
 
 SRCGRAPHICAL	=	./graphical/conv_vec2f_vec2i.c		\
 					./graphical/conv_vec2i_vec2f.c
-					
+
 
 SRCMYPRINTF		=	./my_printf/my_printf.c				\
 					./my_printf/flag_checkers.c			\
