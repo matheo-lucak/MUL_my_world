@@ -11,25 +11,34 @@
 
 void fill_vertex(sfVector2f point, sfVertexArray *shape_drawer, sfVector2f tex_anchor)
 {
-    sfVector2f point_resized = (sfVector2f) {point.x, point.y};
+    sfVector2f point_resized = (sfVector2f) {point.x * 10, point.y * 10};
     sfVertex voxel = {.position = point_resized, .color = sfRed, .texCoords = tex_anchor};
 
     sfVertexArray_append(shape_drawer, voxel);
 }
-void update_tile(tile_t *tile, sfTexture **textures, sfVector2f **map_2d, sfVector2i pos)
+void update_tile(tile_t *tile, map_formatter_t *terraformer,
+                                            sfVector2i pos)
 {
     if (!tile)
         return ;
-    tile->matter_state = pos.x % 2 + pos.y % 2;
+    if (terraformer->map_3d[pos.y][pos.x] > 25 && terraformer->map_3d[pos.y][pos.x] < 40) {
+        tile->matter_state = STONE;
+    } else if (terraformer->map_3d[pos.y][pos.x] > 40) {
+        tile->matter_state = SNOW;
+    } else {
+        tile->matter_state = GRASS;
+    }
     sfVertexArray_clear(tile->shape_drawer);
-    if (textures && textures[tile->matter_state])
-        tile->rstate.texture = textures[tile->matter_state];
-    fill_vertex(map_2d[pos.y][pos.x], tile->shape_drawer, (sfVector2f){0, 0});
-    fill_vertex(map_2d[pos.y][pos.x + 1], tile->shape_drawer, (sfVector2f){0, 1});
-    fill_vertex(map_2d[pos.y + 1][pos.x + 1], tile->shape_drawer, (sfVector2f){1, 1});
-    fill_vertex(map_2d[pos.y + 1][pos.x], tile->shape_drawer, (sfVector2f){1, 0});
-    sfShader_setTextureUniform(tile->rstate.shader, "tex", tile->rstate.texture);
-    sfShader_setVec2Uniform(tile->rstate.shader, "scale", (sfGlslVec2){1, 1});
+    if (terraformer->textures && terraformer->textures[tile->matter_state])
+        tile->rstate.texture = terraformer->textures[tile->matter_state];
+    if (terraformer->shaders && terraformer->shaders[0]) {
+        tile->rstate.shader = terraformer->shaders[0];
+        
+    }
+    fill_vertex(terraformer->map_2d[pos.y][pos.x], tile->shape_drawer, (sfVector2f){0, 0});
+    fill_vertex(terraformer->map_2d[pos.y][pos.x + 1], tile->shape_drawer, (sfVector2f){0, 1});
+    fill_vertex(terraformer->map_2d[pos.y + 1][pos.x + 1], tile->shape_drawer, (sfVector2f){1, 1});
+    fill_vertex(terraformer->map_2d[pos.y + 1][pos.x], tile->shape_drawer, (sfVector2f){1, 0});
     sfVertexArray_setPrimitiveType(tile->shape_drawer, sfQuads);
 }
 
@@ -42,8 +51,8 @@ void update_tile_map_2d(map_formatter_t *terraformer)
         return;
     while (y < terraformer->map_settings.size.y - 1) {
         for (x = 0; x < terraformer->map_settings.size.x - 1; x += 1) {
-            update_tile(&(terraformer->tile_map_2d[y][x]),terraformer->textures,
-                        terraformer->map_2d, (sfVector2i){x, y});
+            update_tile(&(terraformer->tile_map_2d[y][x]), terraformer,
+                                                    (sfVector2i){x, y});
         }
         y += 1;
     }

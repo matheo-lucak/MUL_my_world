@@ -13,7 +13,7 @@ tile_t create_new_tile(sfTexture **textures, sfShader **shaders)
     tile_t new_tile;
 
     new_tile.matter_state = GRASS;
-    new_tile.rstate.blendMode = sfBlendAdd;
+    new_tile.rstate.blendMode = sfBlendAlpha;
     new_tile.rstate.transform = sfTransform_Identity;
     if (!(textures) || !(textures[0]) || !(shaders) || !(shaders[0])) {
         new_tile.shape_drawer = NULL;

@@ -50,14 +50,14 @@ ASSETS				= assets
 
 all:				$(NAME)
 
-$(NAME):			$(LIB) $(OBJ)
+$(NAME):			$(LIB) $(OBJ) $(ASSETS)
 					$(LINK.o) -o $@ $(OBJ) $(LDFLAGS) $(LDLIBS)
 
 $(LIB):
 					$(MAKE) -C ./lib/my
 
 $(ASSETS):
-					tar -xzf asset.tar.gz
+					tar -xzf assets.tar.gz
 
 debug:				CPPFLAGS += -g
 debug:				$(LIB)
@@ -78,7 +78,7 @@ clean:
 fclean:				clean
 					$(RM) $(NAME)
 					$(RM) $(OBJ)
-					$(RM) $(ASSET)
+					$(RM) -r $(ASSETS)
 					$(MAKE) -C lib/my fclean
 
 re:			 		fclean all

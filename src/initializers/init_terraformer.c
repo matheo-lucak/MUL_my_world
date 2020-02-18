@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include "my_world.h"
+#include "map_update.h"
 #include "map_generation.h"
 
 sfBool init_terraformer(map_formatter_t *terraformer, size_t seed)
@@ -30,5 +31,7 @@ sfBool init_terraformer(map_formatter_t *terraformer, size_t seed)
     if (!(terraformer->map_3d) || !(terraformer->map_2d) ||
         !(terraformer->tile_map_2d))
         return (sfFalse);
+    update_map_2d(terraformer);
+    update_tile_map_2d(terraformer);
     return (sfTrue);
 }

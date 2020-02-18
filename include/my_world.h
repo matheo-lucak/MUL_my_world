@@ -19,8 +19,8 @@ typedef enum tile_matter_e {
     STONE,
     GRAVEL,
     SAND,
-    WATER,
-    SNOW
+    SNOW,
+    WATER
 } tile_matter_t;
 
 
@@ -143,8 +143,7 @@ sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
 //Returns sfTrue (1) if mallocs work.
 //Returns sfFalse (0) otherwise.
 sfBool init_game_structures(win_settings_t *win_settings,
-                            map_formatter_t *terraformer,
-                            map_linked_list_t **my_map);
+                            map_formatter_t *terraformer);
 
 /*
 **                                  ******************
