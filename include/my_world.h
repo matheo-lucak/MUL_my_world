@@ -75,13 +75,19 @@ typedef struct map_formatter_s {
 
 
 
-
+typedef struct mouse_tool_s
+{
+    sfVector2f pos;
+    sfVector2f click_pos;
+    sfBool hold;
+} mouse_tool_t;
 //The window tool box.
 
 typedef struct win_settings_s {
     sfRenderWindow *window;
     sfVideoMode video_mode;
     sfView *view;
+    mouse_tool_t mouse_tool;
 } win_settings_t;
 
 
@@ -159,7 +165,12 @@ sfBool init_game_structures(win_settings_t *win_settings,
 sfBool should_stay_opened(sfRenderWindow *window);
 
 //Draws tile map 2D in RenderWindow
-void draw_tile_map_2d(sfRenderWindow *window, map_formatter_t *terraformer);
+void draw_tile_map_2d(win_settings_t win_settings,
+                        map_formatter_t *terraformer);
+
+//Draws one circle in RenderWindow
+void draw_circle(win_settings_t win_settings, map_formatter_t *terraformer,
+                    sfVector2i pos);
 
 //Main instance of the my_world edit game.
 void my_world(void);
@@ -182,6 +193,10 @@ void create_map_list(map_linked_list_t **head,
 **                                    | Free'ers |
 **                                    ************
 */
+
+//Free's allocated memory from an arry sized.
+//If the pointer points to NULL, nothing happens.
+void free_array(void **array, const int size);
 
 //Free's allocated memory for a NULL-terminated texture array.
 //If the pointer points to NULL, nothing happens.

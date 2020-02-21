@@ -11,19 +11,22 @@ static void control_camera_translate(win_settings_t win_settings,
                                     presets_t map_settings, sfBool *changed)
 {
     sfVector2i mv_speed = map_settings.movement_speed;
+    sfVector2f coeff = sfView_getSize(win_settings.view);
 
+    coeff.x /= 2000;
+    coeff.y /= 2000;
     if (sfKeyboard_isKeyPressed(sfKeyRight)) {
-        sfView_move(win_settings.view, (sfVector2f){mv_speed.x, 0});
+        sfView_move(win_settings.view, (sfVector2f){mv_speed.x * coeff.x, 0});
         *changed = sfTrue;
     } else if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
-        sfView_move(win_settings.view, (sfVector2f){mv_speed.x * -1, 0});
+        sfView_move(win_settings.view, (sfVector2f){mv_speed.x * -1 * coeff.x, 0});
         *changed = sfTrue;
     }
     if (sfKeyboard_isKeyPressed(sfKeyUp)) {
-        sfView_move(win_settings.view, (sfVector2f){0, mv_speed.y * -1});
+        sfView_move(win_settings.view, (sfVector2f){0, mv_speed.y * -1 * coeff.y});
         *changed = sfTrue;
     } else if (sfKeyboard_isKeyPressed(sfKeyDown)) {
-        sfView_move(win_settings.view, (sfVector2f){0, mv_speed.y});
+        sfView_move(win_settings.view, (sfVector2f){0, mv_speed.y * coeff.y});
         *changed = sfTrue;
     }
 }

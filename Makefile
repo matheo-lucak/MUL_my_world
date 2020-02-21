@@ -7,7 +7,8 @@
 
 MAIN				=	src/main.c
 
-SRC					=	src/free_resources/free_game_structures.c			\
+SRC					=	src/free_resources/free_array.c						\
+						src/free_resources/free_game_structures.c			\
 						src/free_resources/free_map_list.c					\
 						src/free_resources/free_shaders_array.c				\
 						src/free_resources/free_terraformer.c				\
@@ -25,6 +26,7 @@ SRC					=	src/free_resources/free_game_structures.c			\
 						src/map_generation/get_hash.c						\
 						src/map_generation/perlin_noise.c					\
 						src/map_list/create_map_list.c						\
+						src/map_update/draw_circles.c						\
 						src/map_update/draw_tile_map_2d.c					\
 						src/map_update/map_update.c							\
 						src/math_process/project_iso_point.c				\

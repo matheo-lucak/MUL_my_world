@@ -26,4 +26,7 @@ sfBool control_camera_view(presets_t map_settings, win_settings_t win_settings);
 //By default centered at map center.
 sfBool control_angle_view(presets_t *map_settings);
 
+//Updates mouse properties
+void update_mouse_tool(win_settings_t *win_settings);
+
 #endif /* INPUT_HANDLING_H_ */
