@@ -24,7 +24,7 @@ float **generate_map(const sfVector2i map_size,
         if (!(map[y]))
             return (NULL);
         for (x = 0; x < map_size.x; x += 1) {
-            map[y][x] = exp(perlin_2d((sfVector2f){x, y}, 0.03, 10, seed) * 5);
+            map[y][x] = exp(perlin_2d((sfVector2f){x, y}, 0.05, 5, seed) * 5);
         }
         y += 1;
     }

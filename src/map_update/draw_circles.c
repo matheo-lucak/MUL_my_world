@@ -19,6 +19,26 @@ static sfBool circle_contains_point(sfCircleShape *circle, sfVector2f point)
     return (sfFalse);
 }
 
+static void approximate_float(float *point, int min, int max)
+{
+    if (*point >= 0) {
+        if ((int)(*point * 100) % 100 >= max) {
+            *point += (float)(100 - (int)(*point * 100) % 100) / 100;
+        } else if ((int)(*point * 100) % 100 <= min) {
+            *point -= (float)((int)(*point * 100) % 100) / 100;
+        }
+        return ;
+    }
+    if (*point < 0) {
+        if (-1 *((int)(*point * 100) % 100) >= max) {
+            *point -= (float)(100 + (int)(*point * 100) % 100) / 100;
+        } else if (-1 *((int)(*point * 100) % 100) <= min) {
+            *point += (float)((int)(*point * -100) % 100) / 100;
+        }
+        return;
+    }
+}
+
 static void check_circle_selected(win_settings_t win_settings,
                                 map_formatter_t *terraformer,
                                 sfCircleShape *circle, sfVector2i pos)
@@ -34,11 +54,11 @@ static void check_circle_selected(win_settings_t win_settings,
         point_selected = 1;
         old_z = terraformer->map_3d[pos.y][pos.x];
         sfCircleShape_setFillColor(circle, sfRed);
-        printf("%f && %f \n", win_settings.mouse_tool.pos.y, win_settings.mouse_tool.pos.y);
     }
     if (point_selected && pos.x == saved_pos.x && pos.y == saved_pos.y) {
         sfCircleShape_setFillColor(circle, sfGreen);
         terraformer->map_3d[saved_pos.y][saved_pos.x] = win_settings.mouse_tool.click_pos.y - win_settings.mouse_tool.pos.y + old_z;
+        approximate_float(&(terraformer->map_3d[saved_pos.y][saved_pos.x]), 20, 80);
     }
     if (!win_settings.mouse_tool.hold)
         point_selected = 0;
@@ -52,7 +72,7 @@ void draw_circle(win_settings_t win_settings, map_formatter_t *terraformer,
     if (!circle) {
         circle = sfCircleShape_create();
         sfCircleShape_setRadius(circle, 0.1);
-        sfCircleShape_setOrigin(circle, (sfVector2f){0.05, 0.05});
+        sfCircleShape_setOrigin(circle, (sfVector2f){0.1, 0.1});
     }
     sfCircleShape_setPosition(circle, terraformer->map_2d[pos.y][pos.x]);
     check_circle_selected(win_settings, terraformer, circle, pos);

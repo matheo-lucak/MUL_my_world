@@ -12,6 +12,9 @@
 void draw_vertex(sfRenderWindow *window, map_formatter_t *terraformer,
                                                         int y, int x)
 {
+    if (terraformer->map_settings.size.x -1 == x ||
+        terraformer->map_settings.size.y -1 == y)
+        return ;
     sfShader_setTextureUniform((sfShader *)
             (terraformer->tile_map_2d[y][x].rstate.shader), "tex",
             (sfTexture *)(terraformer->tile_map_2d[y][x].rstate.texture));
@@ -29,8 +32,8 @@ void draw_tile_map_2d(win_settings_t win_settings,
     int x = 0;
     int y = 0;
 
-    while (y < terraformer->map_settings.size.y - 1) {
-        for (x = 0; x < terraformer->map_settings.size.x - 1; x += 1) {
+    while (y < terraformer->map_settings.size.y) {
+        for (x = 0; x < terraformer->map_settings.size.x; x += 1) {
             draw_vertex(win_settings.window, terraformer, y, x);
             draw_circle(win_settings, terraformer, (sfVector2i){x, y});
         }
