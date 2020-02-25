@@ -30,6 +30,7 @@ SRC					=	src/free_resources/free_array.c						\
 						src/map_update/draw_tile_map_2d.c					\
 						src/map_update/map_update.c							\
 						src/math_process/project_iso_point.c				\
+						src/math_process/magnet_number.c					\
 						src/window_checkers/should_stay_opened.c			\
 						src/my_world.c										\
 						src/usage.c

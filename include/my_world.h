@@ -172,6 +172,13 @@ void draw_tile_map_2d(win_settings_t win_settings,
 void draw_circle(win_settings_t win_settings, map_formatter_t *terraformer,
                     sfVector2i pos);
 
+
+//Magnet a number to a lenght if it's close enough:
+//magnet: magnetize the number
+//offset: range of the number to be magnetised
+//acc: accuracy, use at least 100
+void magnet_number(float *nb, float offset, int acc, float magnet);
+
 //Main instance of the my_world edit game.
 void my_world(void);
 

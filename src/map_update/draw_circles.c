@@ -19,26 +19,6 @@ static sfBool circle_contains_point(sfCircleShape *circle, sfVector2f point)
     return (sfFalse);
 }
 
-static void approximate_float(float *point, int min, int max)
-{
-    if (*point >= 0) {
-        if ((int)(*point * 100) % 100 >= max) {
-            *point += (float)(100 - (int)(*point * 100) % 100) / 100;
-        } else if ((int)(*point * 100) % 100 <= min) {
-            *point -= (float)((int)(*point * 100) % 100) / 100;
-        }
-        return ;
-    }
-    if (*point < 0) {
-        if (-1 *((int)(*point * 100) % 100) >= max) {
-            *point -= (float)(100 + (int)(*point * 100) % 100) / 100;
-        } else if (-1 *((int)(*point * 100) % 100) <= min) {
-            *point += (float)((int)(*point * -100) % 100) / 100;
-        }
-        return;
-    }
-}
-
 static void check_circle_selected(win_settings_t win_settings,
                                 map_formatter_t *terraformer,
                                 sfCircleShape *circle, sfVector2i pos)
@@ -58,7 +38,7 @@ static void check_circle_selected(win_settings_t win_settings,
     if (point_selected && pos.x == saved_pos.x && pos.y == saved_pos.y) {
         sfCircleShape_setFillColor(circle, sfGreen);
         terraformer->map_3d[saved_pos.y][saved_pos.x] = win_settings.mouse_tool.click_pos.y - win_settings.mouse_tool.pos.y + old_z;
-        approximate_float(&(terraformer->map_3d[saved_pos.y][saved_pos.x]), 20, 80);
+        magnet_number(&(terraformer->map_3d[saved_pos.y][saved_pos.x]), 0.2, 100, 1);
     }
     if (!win_settings.mouse_tool.hold)
         point_selected = 0;
