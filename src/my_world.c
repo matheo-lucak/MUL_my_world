@@ -34,11 +34,11 @@ void my_world(void)
         return;
     while (should_stay_opened(win_settings.window)) {
         sfRenderWindow_clear(win_settings.window, sfBlack);
+        //win_settings.window_size = sfRenderWindow_getSize(win_settings.window);
         update_mouse_tool(&win_settings);
-        sfText_setPosition(resources_fps.fps_drawer, sfView_getCenter(win_settings.view));
-        control_camera_view(terraformer.map_settings, win_settings);
-        if (control_angle_view(&(terraformer.map_settings))
-            || win_settings.mouse_tool.hold) {
+        control_camera_view(terraformer.map_settings, win_settings, &resources_fps);
+        if (control_angle_view(&(terraformer.map_settings)) || win_settings.mouse_tool.hold) {
+            win_settings.window_center = sfView_getCenter(win_settings.view);
             update_map_2d(&terraformer);
             update_tile_map_2d(&terraformer);
         }

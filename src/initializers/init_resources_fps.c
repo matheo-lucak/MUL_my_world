@@ -29,7 +29,6 @@ sfBool init_resources_fps(fps_assets_t *resources_fps)
     if (!resources_fps->fps_font)
         return (exit_init_resources_fps(resources_fps));
     sfText_setFont(resources_fps->fps_drawer, resources_fps->fps_font);
-    sfText_setPosition(resources_fps->fps_drawer, (sfVector2f){960, 540});
     sfText_setString(resources_fps->fps_drawer, resources_fps->my_fps);
     resources_fps->old_fps = 0;
     resources_fps->cur_fps = 0;

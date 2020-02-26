@@ -97,6 +97,8 @@ typedef struct mouse_tool_s {
 typedef struct win_settings_s {
     sfRenderWindow *window;
     sfVideoMode video_mode;
+    sfVector2f window_size;
+    sfVector2f window_center;
     sfView *view;
     mouse_tool_t mouse_tool;
 } win_settings_t;

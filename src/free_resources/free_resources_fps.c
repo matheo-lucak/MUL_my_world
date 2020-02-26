@@ -14,6 +14,8 @@ void free_resources_fps(fps_assets_t *resources_fps)
         sfClock_destroy(resources_fps->clock);
     if (resources_fps->fps_drawer)
         sfText_destroy(resources_fps->fps_drawer);
+    if (resources_fps->fps_font)
+        sfFont_destroy(resources_fps->fps_font);
     if (resources_fps->my_fps)
         free(resources_fps->my_fps);
 }

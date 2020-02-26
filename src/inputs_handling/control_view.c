@@ -32,25 +32,28 @@ static void control_camera_translate(win_settings_t win_settings,
 }
 
 static void control_camera_rescale(win_settings_t win_settings,
+                                    fps_assets_t *resources_fps,
                                     sfBool *changed)
 {
     if (sfKeyboard_isKeyPressed(sfKeyA)) {
         sfView_zoom(win_settings.view, 1.02);
+        sfText_scale(resources_fps->fps_drawer, (sfVector2f){1.02, 1.02});
         *changed = sfTrue;
     }
     if (sfKeyboard_isKeyPressed(sfKeyE)) {
         sfView_zoom(win_settings.view, 0.98);
+        sfText_scale(resources_fps->fps_drawer, (sfVector2f){0.98, 0.98});
         *changed = sfTrue;
     }
 }
 
-sfBool control_camera_view(presets_t map_settings,
-                            win_settings_t win_settings)
+sfBool control_camera_view(presets_t map_settings, win_settings_t win_settings,
+                            fps_assets_t *resources_fps)
 {
     sfBool changed = sfFalse;
 
     control_camera_translate(win_settings, map_settings, &changed);
-    control_camera_rescale(win_settings, &changed);
+    control_camera_rescale(win_settings, resources_fps, &changed);
     sfRenderWindow_setView(win_settings.window, win_settings.view);
     return (changed);
 }
