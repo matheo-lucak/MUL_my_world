@@ -75,15 +75,25 @@ typedef struct map_formatter_s {
 } map_formatter_t;
 
 
+typedef struct fps_assets_s {
+    sfText *fps_drawer;
+    sfClock *clock;
+    sfFont *fps_font;
+    char *my_fps;
+    sfTime time;
+    unsigned int old_fps;
+    unsigned int cur_fps;
+} fps_assets_t;
 
-typedef struct mouse_tool_s
-{
+
+typedef struct mouse_tool_s {
     sfVector2f pos;
     sfVector2f click_pos;
     sfBool hold;
 } mouse_tool_t;
-//The window tool box.
 
+
+//The window tool box.
 typedef struct win_settings_s {
     sfRenderWindow *window;
     sfVideoMode video_mode;
@@ -151,7 +161,10 @@ sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
 //Returns sfTrue (1) if mallocs work.
 //Returns sfFalse (0) otherwise.
 sfBool init_game_structures(win_settings_t *win_settings,
-                            map_formatter_t *terraformer);
+                            map_formatter_t *terraformer,
+                            fps_assets_t *resources_fps);
+
+sfBool init_resources_fps(fps_assets_t *resources_fps);
 
 /*
 **                                  ******************
@@ -230,7 +243,10 @@ void free_map_list(map_linked_list_t **head);
 //If (the) pointer(s) point(s) to NULL, nothing happens with these/this one(s).
 void free_game_structures(win_settings_t *win_settings,
                         map_formatter_t *terraformer,
-                        map_linked_list_t **my_map);
+                        fps_assets_t *resources_fps);
+
+
+void free_resources_fps(fps_assets_t *resources_fps);
 
 
 #endif /* MY_WORLD_H_ */

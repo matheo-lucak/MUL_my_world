@@ -8,11 +8,14 @@
 #include "my_world.h"
 
 sfBool init_game_structures(win_settings_t *win_settings,
-                            map_formatter_t *terraformer)
+                            map_formatter_t *terraformer,
+                            fps_assets_t *resources_fps)
 {
     if (!init_win_settings(win_settings))
         return (sfFalse);
     if (!init_terraformer(terraformer, 1))
+        return (sfFalse);
+    if (!init_resources_fps(resources_fps))
         return (sfFalse);
     return (sfTrue);
 }

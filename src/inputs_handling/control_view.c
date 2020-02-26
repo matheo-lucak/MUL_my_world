@@ -62,14 +62,16 @@ sfBool control_angle_view(presets_t *map_settings)
     if (sfKeyboard_isKeyPressed(sfKeyS)) {
         map_settings->angles.y -= map_settings->rotation_speed.y;
         changed = sfTrue;
-    } else if (sfKeyboard_isKeyPressed(sfKeyZ)) {
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyZ)) {
         map_settings->angles.y += map_settings->rotation_speed.y;
         changed = sfTrue;
     }
     if (sfKeyboard_isKeyPressed(sfKeyQ)) {
         map_settings->angles.x -= map_settings->rotation_speed.x;
         changed = sfTrue;
-    } else if (sfKeyboard_isKeyPressed(sfKeyD)) {
+    }
+    if (sfKeyboard_isKeyPressed(sfKeyD)) {
         map_settings->angles.x += map_settings->rotation_speed.x;
         changed = sfTrue;
     }
