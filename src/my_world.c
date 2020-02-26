@@ -49,6 +49,6 @@ void my_world(void)
         draw_tile_map_2d(&win_settings, &terraformer);
         sfRenderWindow_display(win_settings.window);
         print_fps();
-    }   
+    }
     free_game_structures(&win_settings, &terraformer, &my_map);
 }
