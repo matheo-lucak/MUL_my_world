@@ -160,6 +160,10 @@ void my_put_nbr_llu(unsigned long long int nb, const char *base);
 //Example: the size of '2' is 1, the size of '2134" is 4.
 int my_int_size(int nb);
 
+//Returns an allocated char* filled with the ascii representation of
+//the given number as parameter
+char *my_int_to_str(int nb);
+
 //Gets the size of a string.
 //
 //Returns -1 if string is NULL.

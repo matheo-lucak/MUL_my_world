@@ -20,10 +20,10 @@ void draw_vertex(win_settings_t win_settings, map_formatter_t *terraformer,
     hit_box = sfVertexArray_getBounds(terraformer->tile_map_2d[y][x].shape_drawer);
     if (sfFloatRect_contains(&hit_box, win_settings.mouse_tool.pos.x, win_settings.mouse_tool.pos.y) && win_settings.mouse_tool.hold) {
         terraformer->tile_map_2d[y][x].rstate.texture = terraformer->textures[3];
+        sfShader_setTextureUniform((sfShader *)
+            (terraformer->tile_map_2d[y][x].rstate.shader), "tex",
+            (sfTexture *)(terraformer->tile_map_2d[y][x].rstate.texture));
     }
-    sfShader_setTextureUniform((sfShader *)
-        (terraformer->tile_map_2d[y][x].rstate.shader), "tex",
-        (sfTexture *)(terraformer->tile_map_2d[y][x].rstate.texture));
     sfShader_setVec2Uniform((sfShader *)
         (terraformer->tile_map_2d[y][x].rstate.shader),"scale",
         (sfGlslVec2){1, 1});
