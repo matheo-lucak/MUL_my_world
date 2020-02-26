@@ -11,7 +11,7 @@
 char **my_arrdup(const char * const *template)
 {
     char **dup = NULL;
-    int size = my_arrlen((char **)template);
+    int size = my_arrlen((void **)template);
     int index = 0;
 
     if (size == -1)

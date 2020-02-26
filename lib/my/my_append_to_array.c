@@ -32,7 +32,7 @@ static void set_array(char ***res, char **array, char *str)
 char **my_append_to_array(char **array, char *str, const int freer)
 {
     char **res = NULL;
-    int size = my_arrlen(array);
+    int size = my_arrlen((void **)array);
 
     if (!str)
         return (my_arrdup((char const * const *)array));

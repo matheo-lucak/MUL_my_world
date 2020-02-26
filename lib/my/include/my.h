@@ -172,7 +172,7 @@ int my_strlen(const char *str);
 //Gets the size of an array.
 //
 //Returns 0 if array is NULL.
-int my_arrlen(char **array);
+int my_arrlen(void **array);
 
 int my_strnlen(const char *str, const int n);
 int my_strlen_char(const char *str, const char c);

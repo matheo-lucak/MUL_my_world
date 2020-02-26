@@ -12,6 +12,9 @@
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 
+#define vec2f(x, y) (sfVector2f){x, y}
+#define vec2i(x, y) (sfVector2i){x, y}
+
 //An enum of each possible material a square can be.
 
 typedef enum tile_matter_e {
@@ -108,12 +111,12 @@ void usage(void);
 **                             ****************
 */
 
-//Initializes an array to every different sfShader's.
+//Initializes a Shaders array matching with the amount of textures..
 //
 //The array is NULL-terminated.
 //
 //If an error occurs -> returns NULL.
-sfShader **init_shaders(void);
+sfShader **init_shaders(sfTexture **textures);
 
 //Initializes an array to every different sfTexture's.
 //
@@ -166,7 +169,7 @@ sfBool init_game_structures(win_settings_t *win_settings,
 sfBool should_stay_opened(sfRenderWindow *window);
 
 //Draws tile map 2D in RenderWindow
-void draw_tile_map_2d(win_settings_t win_settings,
+void draw_tile_map_2d(win_settings_t *win_settings,
                         map_formatter_t *terraformer);
 
 //Draws one circle in RenderWindow
