@@ -9,6 +9,7 @@
 
 #define MY_H_
 
+#include <stddef.h>
 //Puts a char onto the stdout.
 //
 //Returns 0 if it has been written.
@@ -185,6 +186,7 @@ char *my_strdup_char(const char *template, const char c);
 char *my_strdup_cmpstr(const char *template, const char cmp[]);
 int my_strcmp(const char *first, const char *second, const int splitter);
 int my_strncmp(const char *first, char const *second, const unsigned int n);
+void *my_memcpy(void *dest, const void *src, size_t n);
 
 char *my_strcat(const char *core, const char *to_append);
 char **my_str_to_word_array(char *sentence, const char splitter[],

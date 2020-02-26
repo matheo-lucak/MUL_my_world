@@ -12,7 +12,7 @@ sfBool init_game_structures(win_settings_t *win_settings,
 {
     if (!init_win_settings(win_settings))
         return (sfFalse);
-    if (!init_terraformer(terraformer, 2000))
+    if (!init_terraformer(terraformer, 1))
         return (sfFalse);
     return (sfTrue);
 }

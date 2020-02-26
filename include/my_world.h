@@ -46,6 +46,7 @@ typedef struct presets_s {
 
 typedef struct tile_s {
     sfVertexArray *shape_drawer;
+    sfShader *shader;
     sfRenderStates rstate;
     tile_matter_t matter_state;
 } tile_t;

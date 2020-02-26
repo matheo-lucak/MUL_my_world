@@ -37,6 +37,7 @@ SRC				=	./my_putchar.c						\
 					./my_strndup.c						\
 					./my_strdup_char.c					\
 					./my_strdup_cmpstr.c				\
+					./my_memcpy.c						\
 					./my_strcat.c						\
 					./my_str_to_word_array.c			\
 					./find_char_in_str.c				\

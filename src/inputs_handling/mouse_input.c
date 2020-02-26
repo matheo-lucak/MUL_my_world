@@ -5,6 +5,7 @@
 ** Mouse input handling
 */
 
+#include <SFML/Window.h>
 #include "my_world.h"
 
 sfVector2f get_relative_mouse_pos(win_settings_t win_settings)
