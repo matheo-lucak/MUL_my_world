@@ -48,7 +48,7 @@ static sfBool init_map_settings(map_formatter_t *terraformer)
 {
     if (!terraformer)
         return (sfFalse);
-    terraformer->map_settings.size = (sfVector2i) {32, 32};
+    terraformer->map_settings.size = (sfVector2i) {64, 64};
     terraformer->map_settings.angles = (sfVector2i) {45, 35};
     terraformer->map_settings.movement_speed = (sfVector2i){10, 10};
     terraformer->map_settings.rotation_speed = (sfVector2i){1, 1};

@@ -12,7 +12,7 @@ char *my_strcpy(char *dest, char const *src)
     int len = my_strlen(src);
     int i = 0;
 
-    while (i < len && dest[i]) {
+    while (i < len && src[i]) {
         dest[i] = src[i];
         i++;
     }

@@ -25,6 +25,14 @@ static void update_window_anchor(win_settings_t *win_settings)
                     win_settings->view);
 }
 
+static void update_window_scale(win_settings_t *win_settings)
+{
+    sfVector2f view_size = sfView_getSize(win_settings->view);
+
+    win_settings->scale.x = view_size.x / win_settings->size.x;
+    win_settings->scale.y = view_size.y / win_settings->size.y;
+}
+
 void udpate_window_settings(win_settings_t *win_settings)
 {
     sfVector2u size_u;
@@ -33,6 +41,7 @@ void udpate_window_settings(win_settings_t *win_settings)
         return ;
     size_u = sfRenderWindow_getSize(win_settings->window);
     win_settings->size = (sfVector2f) {size_u.x, size_u.y};
+    update_window_scale(win_settings);
     update_window_anchor(win_settings);
     update_mouse_tool(win_settings);
 }

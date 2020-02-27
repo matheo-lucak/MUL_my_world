@@ -82,10 +82,6 @@ typedef struct fps_assets_s {
     sfText *fps_drawer;
     sfClock *clock;
     sfFont *fps_font;
-    char *my_fps;
-    sfTime time;
-    unsigned int old_fps;
-    unsigned int cur_fps;
 } fps_assets_t;
 
 
@@ -110,6 +106,7 @@ typedef struct win_settings_s {
     sfView *view;
     anchor_t anchor;
     sfVector2f size;
+    sfVector2f scale;
     sfVideoMode video_mode;
     sfEvent event;
     mouse_tool_t mouse_tool;
