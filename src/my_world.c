@@ -7,8 +7,6 @@
 
 #include "my.h"
 #include "my_world.h"
-#include "input_handling.h"
-#include "map_update.h"
 
 static void print_fps(sfRenderWindow *window, fps_assets_t *resources_fps)
 {

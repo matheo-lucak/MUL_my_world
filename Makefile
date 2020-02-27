@@ -35,7 +35,7 @@ SRC					=	src/free_resources/free_array.c						\
 						src/vector_engine/vector_engine_compute.c			\
 						src/vector_engine/vector_engine_prop.c				\
 						src/window_handling/should_stay_opened.c			\
-						src/window_handling/update_window.c					\
+						src/window_handling/update_window_settings.c		\
 						src/my_world.c										\
 						src/usage.c
 

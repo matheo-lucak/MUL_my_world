@@ -186,6 +186,14 @@ sfBool init_resources_fps(fps_assets_t *resources_fps);
 **                                  ******************
 */
 
+
+//Updates window settings such as
+//
+// Size
+// Anchor
+// Mouse settings
+void udpate_window_settings(win_settings_t *win_settings);
+
 //Checks if a window should stay opened or not.
 //
 //Returns sfTrue (1) if it should.

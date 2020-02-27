@@ -25,7 +25,7 @@ sfVector2f update_window_anchor(win_settings_t *win_settings)
                     win_settings->view);
 }
 
-void udpate_window(win_settings_t *win_settings)
+void udpate_window_settings(win_settings_t *win_settings)
 {
     sfVector2u size_u;
 
