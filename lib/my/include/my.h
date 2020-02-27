@@ -193,6 +193,7 @@ int my_strncmp(const char *first, char const *second, const unsigned int n);
 void *my_memcpy(void *dest, const void *src, size_t n);
 
 char *my_strcat(const char *core, const char *to_append);
+char *my_strcpy(char *dest, char const *src);
 char **my_str_to_word_array(char *sentence, const char splitter[],
                             const unsigned int freer);
 

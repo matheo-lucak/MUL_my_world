@@ -6,8 +6,8 @@
 */
 
 #include <math.h>
+#include <SFML/System/Vector2.h>
 #include "my.h"
-#include "defender.h"
 
 sfVector2f vec_add(sfVector2f vec1, sfVector2f vec2)
 {

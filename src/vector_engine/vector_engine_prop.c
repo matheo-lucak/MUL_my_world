@@ -6,8 +6,8 @@
 */
 
 #include <math.h>
+#include <SFML/System/Vector2.h>
 #include "my.h"
-#include "defender.h"
 
 float vec_mag(sfVector2f vec1)
 {

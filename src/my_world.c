@@ -31,12 +31,12 @@ void my_world(void)
     fps_assets_t resources_fps;
 
     if (!init_game_structures(&win_settings, &terraformer, &resources_fps))
-        return;
+        return ;
     while (should_stay_opened(win_settings.window, &win_settings.event)) {
         sfRenderWindow_clear(win_settings.window, sfBlack);
         //win_settings.size = sfRenderWindow_getSize(win_settings.window);
         update_mouse_tool(&win_settings);
-        control_camera_view(terraformer.map_settings, win_settings, &resources_fps);
+        control_camera_view(&win_settings, terraformer.map_settings, &resources_fps);
         if (control_angle_view(&(terraformer.map_settings)) || win_settings.mouse_tool.hold) {
             update_map_2d(&terraformer);
             update_tile_map_2d(&terraformer);
