@@ -10,45 +10,40 @@
 #include "input_handling.h"
 #include "map_update.h"
 
-void print_fps(void)
+static void print_fps(sfRenderWindow *window, fps_assets_t *resources_fps)
 {
-    static sfClock *clock = NULL;
-    static int frame = 0;
-    sfTime time;
-
-    if (!clock)
-        clock = sfClock_create();
-    if (clock) {
-        time = sfClock_getElapsedTime(clock);
-        frame += 1;
-        if (sfTime_asSeconds(time) > 1) {
-            my_printf("FPS: %d\n", frame);
-            sfClock_restart(clock);
-            frame = 0;
-        }
+    resources_fps->time = sfClock_getElapsedTime(resources_fps->clock);
+    resources_fps->cur_fps += 1;
+    if (sfTime_asSeconds(resources_fps->time) > 1) {
+        sfClock_restart(resources_fps->clock);
+        if (resources_fps->old_fps != resources_fps->cur_fps)
+            sfText_setString(resources_fps->fps_drawer, resources_fps->my_fps);
+        resources_fps->old_fps = resources_fps->cur_fps;
+        resources_fps->cur_fps = 0;
     }
+    //sfRenderWindow_drawText(window, resources_fps->fps_drawer, NULL);
 }
 
 void my_world(void)
 { 
-    map_linked_list_t *my_map = NULL;
     map_formatter_t terraformer;
     win_settings_t win_settings;
+    fps_assets_t resources_fps;
 
-    if (!init_game_structures(&win_settings, &terraformer))
+    if (!init_game_structures(&win_settings, &terraformer, &resources_fps))
         return;
-    while (should_stay_opened(win_settings.window)) {
+    while (should_stay_opened(win_settings.window, &win_settings.event)) {
         sfRenderWindow_clear(win_settings.window, sfBlack);
+        //win_settings.size = sfRenderWindow_getSize(win_settings.window);
         update_mouse_tool(&win_settings);
-        control_camera_view(terraformer.map_settings, win_settings);
-        if (control_angle_view(&(terraformer.map_settings)) ||
-            win_settings.mouse_tool.hold) {
+        control_camera_view(terraformer.map_settings, win_settings, &resources_fps);
+        if (control_angle_view(&(terraformer.map_settings)) || win_settings.mouse_tool.hold) {
             update_map_2d(&terraformer);
             update_tile_map_2d(&terraformer);
         }
-        draw_tile_map_2d(&win_settings, &terraformer);
+        draw_tile_map_2d(win_settings, &terraformer);
+        print_fps(win_settings.window, &resources_fps);
         sfRenderWindow_display(win_settings.window);
-        print_fps();
-    }
-    free_game_structures(&win_settings, &terraformer, &my_map);
+    }   
+    free_game_structures(&win_settings, &terraformer, &resources_fps);
 }

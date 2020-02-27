@@ -9,14 +9,15 @@ MAIN				=	src/main.c
 
 SRC					=	src/free_resources/free_array.c						\
 						src/free_resources/free_game_structures.c			\
-						src/free_resources/free_map_list.c					\
 						src/free_resources/free_shaders_array.c				\
+						src/free_resources/free_resources_fps.c				\
 						src/free_resources/free_terraformer.c				\
 						src/free_resources/free_textures_array.c			\
 						src/free_resources/free_win_settings.c				\
 						src/initializers/init_game_structures.c				\
 						src/initializers/init_map_2d.c						\
 						src/initializers/init_shaders.c						\
+						src/initializers/init_resources_fps.c				\
 						src/initializers/init_terraformer.c					\
 						src/initializers/init_textures.c					\
 						src/initializers/init_win_settings.c				\
@@ -61,7 +62,7 @@ $(LIB):
 						$(MAKE) -C ./lib/my
 
 $(ASSETS):
-						tar -xzf assets.tar.gz
+						tar -xf assets.tar.xz
 
 debug:					CPPFLAGS += -g
 debug:					$(LIB)

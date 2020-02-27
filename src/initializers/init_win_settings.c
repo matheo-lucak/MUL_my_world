@@ -24,6 +24,6 @@ sfBool init_win_settings(win_settings_t *win_settings)
         free_win_settings(win_settings);
         return (sfFalse);
     }
-    sfView_setCenter(win_settings->view, (sfVector2f){0, 0});
+    sfView_setCenter(win_settings->view, vec2f(0, 0));
     return (sfTrue);
 }

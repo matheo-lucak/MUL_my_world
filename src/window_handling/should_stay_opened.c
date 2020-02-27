@@ -7,15 +7,13 @@
 
 #include "my_world.h"
 
-sfBool should_stay_opened(sfRenderWindow *window)
+sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event)
 {
-    static sfEvent event;
-
     if (!sfRenderWindow_isOpen(window))
         return (sfFalse);
     if (sfKeyboard_isKeyPressed(sfKeySpace))
         return (sfFalse);
-    if (sfRenderWindow_pollEvent(window, &event) && event.type == sfEvtClosed)
+    if (sfRenderWindow_pollEvent(window, event) && event->type == sfEvtClosed)
         return (sfFalse);
     return (sfTrue);
 }
