@@ -187,6 +187,10 @@ sfBool init_resources_fps(fps_assets_t *resources_fps);
 */
 
 
+//
+void window_update(win_settings_t *win_settings,
+                map_formatter_t *terraformer, fps_assets_t *resources_fps);
+
 //Updates window settings such as
 //
 // Size

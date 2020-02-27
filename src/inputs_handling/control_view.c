@@ -47,7 +47,7 @@ static void control_camera_rescale(win_settings_t win_settings,
     }
 }
 
-sfBool control_camera_view(presets_t map_settings, win_settings_t win_settings,
+sfBool control_camera_view(win_settings_t win_settings, presets_t map_settings,
                             fps_assets_t *resources_fps)
 {
     sfBool changed = sfFalse;

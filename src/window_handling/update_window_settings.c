@@ -9,7 +9,7 @@
 #include "input_handling.h"
 #include "my_world.h"
 
-sfVector2f update_window_anchor(win_settings_t *win_settings)
+static void update_window_anchor(win_settings_t *win_settings)
 {
     win_settings->anchor.topleft = sfRenderWindow_mapPixelToCoords
                     (win_settings->window, vec2i(0, 0), win_settings->view);
