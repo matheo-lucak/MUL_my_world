@@ -85,12 +85,25 @@ typedef struct mouse_tool_s
     sfVector2f click_pos;
     sfBool hold;
 } mouse_tool_t;
-//The window tool box.
 
+
+typedef struct anchor_s
+{
+    sfVector2f topleft;
+    sfVector2f topright;
+    sfVector2f bottomleft;
+    sfVector2f bottomright;
+} anchor_t;
+
+//The window tool box.
 typedef struct win_settings_s {
     sfRenderWindow *window;
-    sfVideoMode video_mode;
     sfView *view;
+    anchor_t anchor;
+    sfVideoMode video_mode;
+    sfVector2f size;
+    sfVector2f center;
+    sfEvent event;
     mouse_tool_t mouse_tool;
 } win_settings_t;
 

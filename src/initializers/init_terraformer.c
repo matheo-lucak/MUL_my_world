@@ -57,7 +57,7 @@ static sfBool init_map_settings(map_formatter_t *terraformer)
 
 static sfBool init_maps(map_formatter_t *terraformer, size_t seed)
 {
-    terraformer->map_3d = generate_map(terraformer->map_settings.size, seed);
+    terraformer->map_3d = generate_map(terraformer->map_settings.size, 10);
     if (!(terraformer->map_3d))
         return (sfFalse);
     terraformer->map_2d = init_map_2d(terraformer->map_settings.size);

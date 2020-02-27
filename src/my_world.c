@@ -30,7 +30,7 @@ void print_fps(void)
 }
 
 void my_world(void)
-{
+{ 
     map_linked_list_t *my_map = NULL;
     map_formatter_t terraformer;
     win_settings_t win_settings;
