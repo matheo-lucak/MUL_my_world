@@ -99,11 +99,11 @@ typedef struct mouse_tool_s {
 //The window tool box.
 typedef struct win_settings_s {
     sfRenderWindow *window;
+    sfView *view;
     sfVideoMode video_mode;
     sfVector2f size;
     sfVector2f center;
     sfEvent event;
-    sfView *view;
     mouse_tool_t mouse_tool;
 } win_settings_t;
 
