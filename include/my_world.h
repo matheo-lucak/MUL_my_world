@@ -12,6 +12,9 @@
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
 
+#define vec2f(x, y) (sfVector2f){x, y}
+#define vec2i(x, y) (sfVector2i){x, y}
+
 //An enum of each possible material a square can be.
 
 typedef enum tile_matter_e {
@@ -97,8 +100,9 @@ typedef struct mouse_tool_s {
 typedef struct win_settings_s {
     sfRenderWindow *window;
     sfVideoMode video_mode;
-    sfVector2f window_size;
-    sfVector2f window_center;
+    sfVector2f size;
+    sfVector2f center;
+    sfEvent event;
     sfView *view;
     mouse_tool_t mouse_tool;
 } win_settings_t;
@@ -120,12 +124,12 @@ void usage(void);
 **                             ****************
 */
 
-//Initializes an array to every different sfShader's.
+//Initializes a Shaders array matching with the amount of textures..
 //
 //The array is NULL-terminated.
 //
 //If an error occurs -> returns NULL.
-sfShader **init_shaders(void);
+sfShader **init_shaders(sfTexture **textures);
 
 //Initializes an array to every different sfTexture's.
 //
@@ -178,7 +182,7 @@ sfBool init_resources_fps(fps_assets_t *resources_fps);
 //
 //Returns sfTrue (1) if it should.
 //Returns sfFalse (0) otherwise.
-sfBool should_stay_opened(sfRenderWindow *window);
+sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event);
 
 //Draws tile map 2D in RenderWindow
 void draw_tile_map_2d(win_settings_t win_settings,

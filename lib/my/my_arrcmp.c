@@ -9,8 +9,8 @@
 
 int my_arrcmp(char **first, char **second)
 {
-    int len_first = my_arrlen(first);
-    int len_second = my_arrlen(second);
+    int len_first = my_arrlen((void **)first);
+    int len_second = my_arrlen((void **)second);
     int index = 0;
 
     if (!first || !second) {

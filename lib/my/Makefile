@@ -11,6 +11,7 @@ SRC				=	./my_putchar.c						\
 					./my_isalphanum.c					\
 					./my_str_is_alphanum.c				\
 					./my_int_size.c						\
+					./my_int_to_str.c					\
 					./my_strlen.c						\
 					./my_strnlen.c						\
 					./my_strlen_char.c					\

@@ -52,7 +52,7 @@ void draw_circle(win_settings_t win_settings, map_formatter_t *terraformer,
     if (!circle) {
         circle = sfCircleShape_create();
         sfCircleShape_setRadius(circle, 0.1);
-        sfCircleShape_setOrigin(circle, (sfVector2f){0.1, 0.1});
+        sfCircleShape_setOrigin(circle, vec2f(0.1, 0.1));
     }
     sfCircleShape_setPosition(circle, terraformer->map_2d[pos.y][pos.x]);
     check_circle_selected(win_settings, terraformer, circle, pos);

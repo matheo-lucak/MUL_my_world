@@ -21,7 +21,7 @@ static void print_fps(sfRenderWindow *window, fps_assets_t *resources_fps)
         resources_fps->old_fps = resources_fps->cur_fps;
         resources_fps->cur_fps = 0;
     }
-    sfRenderWindow_drawText(window, resources_fps->fps_drawer, NULL);
+    //sfRenderWindow_drawText(window, resources_fps->fps_drawer, NULL);
 }
 
 void my_world(void)
@@ -32,13 +32,13 @@ void my_world(void)
 
     if (!init_game_structures(&win_settings, &terraformer, &resources_fps))
         return;
-    while (should_stay_opened(win_settings.window)) {
+    while (should_stay_opened(win_settings.window, &win_settings.event)) {
         sfRenderWindow_clear(win_settings.window, sfBlack);
-        //win_settings.window_size = sfRenderWindow_getSize(win_settings.window);
+        //win_settings.size = sfRenderWindow_getSize(win_settings.window);
         update_mouse_tool(&win_settings);
         control_camera_view(terraformer.map_settings, win_settings, &resources_fps);
         if (control_angle_view(&(terraformer.map_settings)) || win_settings.mouse_tool.hold) {
-            win_settings.window_center = sfView_getCenter(win_settings.view);
+            win_settings.center = sfView_getCenter(win_settings.view);
             update_map_2d(&terraformer);
             update_tile_map_2d(&terraformer);
         }

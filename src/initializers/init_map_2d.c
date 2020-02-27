@@ -21,7 +21,7 @@ tile_t create_new_tile(sfTexture **textures, sfShader **shaders)
         return (new_tile);
     }
     new_tile.rstate.texture = textures[0];
-    my_memcpy(&(new_tile.rstate.shader), *shaders, sizeof(sfShader *));
+    new_tile.rstate.shader = shaders[0];
     new_tile.shape_drawer = sfVertexArray_create();
     return (new_tile);
 }

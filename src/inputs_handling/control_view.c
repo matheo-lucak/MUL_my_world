@@ -16,17 +16,17 @@ static void control_camera_translate(win_settings_t win_settings,
     coeff.x /= 2000;
     coeff.y /= 2000;
     if (sfKeyboard_isKeyPressed(sfKeyRight)) {
-        sfView_move(win_settings.view, (sfVector2f){mv_speed.x * coeff.x, 0});
+        sfView_move(win_settings.view, vec2f(mv_speed.x * coeff.x, 0));
         *changed = sfTrue;
     } else if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
-        sfView_move(win_settings.view, (sfVector2f){mv_speed.x * -1 * coeff.x, 0});
+        sfView_move(win_settings.view, vec2f(mv_speed.x * -1 * coeff.x, 0));
         *changed = sfTrue;
     }
     if (sfKeyboard_isKeyPressed(sfKeyUp)) {
-        sfView_move(win_settings.view, (sfVector2f){0, mv_speed.y * -1 * coeff.y});
+        sfView_move(win_settings.view, vec2f(0, mv_speed.y * -1 * coeff.y));
         *changed = sfTrue;
     } else if (sfKeyboard_isKeyPressed(sfKeyDown)) {
-        sfView_move(win_settings.view, (sfVector2f){0, mv_speed.y * coeff.y});
+        sfView_move(win_settings.view, vec2f(0, mv_speed.y * coeff.y));
         *changed = sfTrue;
     }
 }
@@ -35,14 +35,14 @@ static void control_camera_rescale(win_settings_t win_settings,
                                     fps_assets_t *resources_fps,
                                     sfBool *changed)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyA)) {
+    if (sfKeyboard_isKeyPressed(sfKeyE)) {
         sfView_zoom(win_settings.view, 1.02);
-        sfText_scale(resources_fps->fps_drawer, (sfVector2f){1.02, 1.02});
+        sfText_scale(resources_fps->fps_drawer, vec2f(1.02, 1.02));
         *changed = sfTrue;
     }
-    if (sfKeyboard_isKeyPressed(sfKeyE)) {
+    if (sfKeyboard_isKeyPressed(sfKeyA)) {
         sfView_zoom(win_settings.view, 0.98);
-        sfText_scale(resources_fps->fps_drawer, (sfVector2f){0.98, 0.98});
+        sfText_scale(resources_fps->fps_drawer, vec2f(0.98, 0.98));
         *changed = sfTrue;
     }
 }

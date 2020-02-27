@@ -5,7 +5,7 @@
 ** gets the size of an array
 */
 
-int my_arrlen(char **array)
+int my_arrlen(void **array)
 {
     int i = 0;
 

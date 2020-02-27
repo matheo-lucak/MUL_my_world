@@ -6,21 +6,29 @@
 */
 
 #include <stdlib.h>
+#include "my.h"
 #include "my_world.h"
 
-sfShader **init_shaders(void)
+sfShader **init_shaders(sfTexture **textures)
 {
-    sfShader **shaders = malloc(sizeof(sfShader *) * 2);
+    int len = my_arrlen((void **)textures);
+    int index = 0;
+    sfShader **shaders = malloc(sizeof(sfShader *) * (len + 1));
 
-    if (!shaders)
+    if (!shaders || len == 0)
         return (NULL);
-    shaders[0] = sfShader_createFromFile("assets/shaders/shader.vert",
+    while (index < len) {
+        shaders[index] = sfShader_createFromFile("assets/shaders/shader.vert",
                                         NULL,
                                         "assets/shaders/shader.frag");
-    if (!shaders[0]) {
-        free(shaders);
-        return (NULL);
+        sfShader_setTextureUniform(shaders[index], "tex", textures[index]);
+        sfShader_setVec2Uniform(shaders[index], "scale", (sfGlslVec2){1, 1});
+        if (!shaders[index]) {
+            free(shaders);
+            return (NULL);
+        }
+        index++;
     }
-    shaders[1] = NULL;
+    shaders[index] = NULL;
     return (shaders);
 }
