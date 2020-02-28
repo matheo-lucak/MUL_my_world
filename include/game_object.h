@@ -30,6 +30,7 @@ typedef enum element_e {
     SOUND_BUTTON,
     PIXEL_BUTTON,
     SPATULA_BUTTON,
+    FLORIAN,
     NONE
 } elem_t;
 

@@ -62,6 +62,7 @@ SRC_MAP_GENERATION		=	src/map_generation/apply_biomes.c				\
 							src/map_generation/save_map.c					\
 
 SRC_MAP_UPDATE			=	src/map_update/hud/draw_edit_button.c			\
+							src/map_update/hud/draw_florian_the_toucan.c	\
 							src/map_update/hud/draw_hud.c					\
 							src/map_update/hud/draw_mode_button.c			\
 							src/map_update/hud/draw_save_button.c			\

@@ -53,7 +53,8 @@ sfBool init_hud(hud_t *hud)
         return (sfFalse);
     hud->text_box = create_game_obj(TEXT_BOX);
     hud->sound_button = create_game_obj(SOUND_BUTTON);
-    if (!(hud->text_box) || !(hud->sound_button))
+    hud->florian = create_game_obj(FLORIAN);
+    if (!(hud->text_box) || !(hud->sound_button) || !(hud->florian))
         return (sfFalse);
     return (sfTrue);
 }
