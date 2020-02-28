@@ -5,6 +5,7 @@
 ** Main instance of the game.
 */
 
+#include <stdlib.h>
 #include "my.h"
 #include "my_world.h"
 #include "vector_engine.h"
@@ -56,6 +57,6 @@ void my_world(void)
         window_update(&win_settings, &terraformer, &resources_fps);
         draw_fps(win_settings, &resources_fps);
         sfRenderWindow_display(win_settings.window);
-        }   
+    }   
     free_game_structures(&win_settings, &terraformer, &resources_fps);
 }

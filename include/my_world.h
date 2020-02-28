@@ -63,7 +63,6 @@ typedef struct map_linked_list_s {
 
 
 //The alterer of coordinates of the points in the map.
-
 typedef struct map_formatter_s {
     presets_t map_settings;
     float **map_3d;
@@ -74,6 +73,7 @@ typedef struct map_formatter_s {
 } map_formatter_t;
 
 
+
 typedef struct fps_assets_s {
     sfText *fps_drawer;
     sfClock *clock;
@@ -81,11 +81,13 @@ typedef struct fps_assets_s {
 } fps_assets_t;
 
 
+
 typedef struct mouse_tool_s {
     sfVector2f pos;
     sfVector2f click_pos;
     sfBool hold;
 } mouse_tool_t;
+
 
 
 typedef struct anchor_s
@@ -96,6 +98,36 @@ typedef struct anchor_s
     sfVector2f bottomright;
 } anchor_t;
 
+
+
+typedef enum edit_mode_flag_e
+{
+    VIEW_MODE = 1,
+    TEXTURE_MODE = 2,
+    PIXEL_MODE = 4
+} edit_mode_flag_t;
+
+
+
+typedef enum view_mode_e
+{
+    VIEW_TEXTURE = 1,
+    VIEW_LINE = 2,
+    VIEW_PIN = 4,
+    VIEW_ALL = 7
+} view_mode_t;
+
+
+
+typedef struct game_mode_s
+{
+    unsigned edit_mode : 3;
+    unsigned edit_repeat : 1;
+    unsigned view_mode : 3;
+} game_mode_t;
+
+
+
 //The window tool box.
 typedef struct win_settings_s {
     sfRenderWindow *window;
@@ -105,8 +137,10 @@ typedef struct win_settings_s {
     sfVector2f scale;
     sfVideoMode video_mode;
     sfEvent event;
+    game_mode_t mode;
     mouse_tool_t mouse_tool;
 } win_settings_t;
+
 
 
 /*
@@ -198,11 +232,11 @@ void udpate_window_settings(win_settings_t *win_settings);
 sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event);
 
 //Draws tile map 2D in RenderWindow
-void draw_tile_map_2d(win_settings_t win_settings,
+void draw_tile_map_2d(win_settings_t *win_settings,
                         map_formatter_t *terraformer);
 
 //Draws one circle in RenderWindow
-void draw_circle(win_settings_t win_settings, map_formatter_t *terraformer,
+void draw_circle(win_settings_t *win_settings, map_formatter_t *terraformer,
                     sfVector2i pos);
 
 
@@ -215,6 +249,30 @@ void magnet_number(float *nb, float offset, int acc, float magnet);
 //Main instance of the my_world edit game.
 void my_world(void);
 
+
+/*
+**                                 ******************
+**                                 | Edit mode tool |
+**                                 ******************
+*/
+
+//Updates mode with new flag such as
+//  VIEW_MODE
+//  TEXTURE_MOD
+//  PIXEL_MOD
+void change_edit_mode(game_mode_t *mode, edit_mode_flag_t flag);
+
+//Checks flags such as
+//  VIEW_MODE
+//  TEXTURE_MOD
+//  PIXEL_MOD
+sfBool is_edit_mode(game_mode_t mode, edit_mode_flag_t flag);
+
+void set_view_mode(game_mode_t *mode, view_mode_t flag);
+
+void unset_view_mode(game_mode_t *mode, view_mode_t flag);
+
+sfBool is_view_mode(game_mode_t mode, view_mode_t flag);
 
 /*
 **                                 *******************

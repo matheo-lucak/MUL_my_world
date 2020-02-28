@@ -25,5 +25,6 @@ sfBool init_win_settings(win_settings_t *win_settings)
         return (sfFalse);
     }
     sfView_setCenter(win_settings->view, vec2f(0, 0));
+    win_settings->mode.view_mode = VIEW_ALL;
     return (sfTrue);
 }

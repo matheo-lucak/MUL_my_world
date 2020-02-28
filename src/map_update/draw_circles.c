@@ -30,7 +30,6 @@ static void check_circle_selected(win_settings_t win_settings,
     sfCircleShape_setFillColor(circle, sfBlue);
     if (circle_contains_point(circle, win_settings.mouse_tool.pos) &&
         win_settings.mouse_tool.hold == 1 && !point_selected) {
-        my_printf("%d && %d\n", saved_pos.x, saved_pos.y);
         saved_pos = pos;
         point_selected = 1;
         old_z = terraformer->map_3d[pos.y][pos.x];
@@ -45,17 +44,19 @@ static void check_circle_selected(win_settings_t win_settings,
         point_selected = 0;
 }
 
-void draw_circle(win_settings_t win_settings, map_formatter_t *terraformer,
+void draw_circle(win_settings_t *win_settings, map_formatter_t *terraformer,
                     sfVector2i pos)
 {
     static sfCircleShape *circle = NULL;
 
+    if (!is_view_mode(win_settings->mode, VIEW_PIN))
+        return ;
     if (!circle) {
         circle = sfCircleShape_create();
         sfCircleShape_setRadius(circle, 0.1);
         sfCircleShape_setOrigin(circle, vec2f(0.1, 0.1));
     }
     sfCircleShape_setPosition(circle, terraformer->map_2d[pos.y][pos.x]);
-    check_circle_selected(win_settings, terraformer, circle, pos);
-    sfRenderWindow_drawCircleShape(win_settings.window, circle, NULL);
+    check_circle_selected(*win_settings, terraformer, circle, pos);
+    sfRenderWindow_drawCircleShape(win_settings->window, circle, NULL);
 }
