@@ -1,66 +1,40 @@
-This is .legend, you will find out here how to generate a map file and create new game_object
+Hello, chief, my name is Florian !
+Florian, the toucan !
+Welcome, to YOUR world !
+Here, anything is possible !
+All of this is yours !
 
-First of all, maps:
+Different tools are available and waiting for you !
 
-There are 2 types of maps:
+First off, you can center the view to your world !
+Use the 'C' keytouch for that !
 
-    Fully-saved maps :  Contains map width and map height
-                        Then contains all of the points coordinates, X and Y are represented by the place in the file and Z are the visible values (scaled by 100)
-                        All digits are separated with ';', including for map size
+*KOKWAK* !!
 
-                        For instance:
+Also, use the directionnal *KOKWAK* arrows to move your view.
 
-                        2;4
-                        100;200
-                        100;300
-                        200;300
-                        300;300
+To rotate your world, use the 'ZQSD' keys. *KOKWAK* !!
+And to zoom in and out, respectively use 'A' and 'E'.
 
-    Shortly-saved maps: Contains map width and map height
-                        Then contains on the same line the generation seed which should be > 0 && < 255
+*KOKWAK* !!
 
-                        For instance:
+If you want to take a quick moment,
+pause the game with 'ESCAPE'.
+Return back to the action by pressing it again !
 
-                        32 ; 32 ; 156
+*KOKWAK* !!
 
-That's all for the maps
+On your left, several categories can help you improve your world !
+I will let you discover them but know that:
+The Viewing offers different viewing perspectives.
+The Painting let you choose the texture you can apply on a tile !
+The Pencil offers different types of brushes !
 
-Let's take a look at game_objects:
+And you can also save a map or load one on the bottom right corner !
 
-Each game_object should have his path wrote in the corresponding order of the game_object's value in the game_object.h's enum elem_t.
-The number of game_objects MUST be indicated in the first line of the path file.
-The path file is : assets/config/object_paths
+*KOKWAK* !!
 
-You must store new game_objects config file in the following path: assets/config/objects
+That's all for me !
+Good luck chief ! !
 
-A game_object config file is built as followed :
-
-First, indicate the texture path as such:
-    texture : "PATH"
-
-In second, indicate the frame number
-    /!\ Sprite sheets have to be align only in X axis /!\
-    frame_nb : "FRAME_NB"
-
-Those two first steps are ESSENTIALS to create a game_object
-
-However, we can add modules such as origin which centers the sprite with the given local coordinates
-    origin : "X_CENTER" ; "Y_CENTER"
-
-After having setup your game_object, you can store variables in it;
-There are 9 possible storage types which are :
-    clock, image, text, sound, v2i, v2f, irect, int, float.
-
-    But first, mention how many variables your game_object will store with the following procedure:
-        component : "COMPONENT_NB"
-    Each storage type is declared following its properties:
-    The first number corresponds to the 'enum' name of the new variable (/!\ Using 0 for enum name will be considerated has an error)
-        2 ; clock ;
-        3 ; image ; "PATH"
-        1 ; sound ; "PATH"; "VOLUME"
-        5 ; v2i ; "X" ; "Y"
-        5 ; v2f ; "X" ; "Y"
-        3 ; irect ; "X" ; "Y" ; "W" ; "H"
-        3 ; int ; "NB"
-        3 ; float "NB"
-
+*KOKWAK* !!
