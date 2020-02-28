@@ -19,7 +19,7 @@ static sfBool does_florian_wants_to_speak(game_obj_t *florian)
 
     if (!clock)
         return (sfFalse);
-    if (sfTime_asSeconds(sfClock_getElapsedTime(clock)) > 1) {
+    if (sfTime_asSeconds(sfClock_getElapsedTime(clock)) > 1.5) {
         sfClock_restart(clock);
         return (sfTrue);
     }
@@ -30,6 +30,7 @@ static void florian_speak(win_settings_t *sets, game_obj_t *florian, char *buffe
 {
     sfText *text = florian->comp[find_comp(florian, TEXT)]->text;
     sfVector2f pos = florian->comp[find_comp(florian, POS)]->v2f;
+    sfFloatRect hitbox;
 
     if (!text)
         return ;
@@ -38,8 +39,13 @@ static void florian_speak(win_settings_t *sets, game_obj_t *florian, char *buffe
     pos.x = florian->pos.x - (florian->view_box.width - pos.x) * sets->scale.x;
     pos.y = florian->pos.y - (florian->view_box.height - pos.y) * sets->scale.y;
     sfText_setPosition(text, pos);
-    sfRenderWindow_drawText(sets->window, text, NULL);
     sfText_setString(text, buffer);
+    hitbox = sfText_getGlobalBounds(text);
+    if (hitbox.width > 500 * sets->scale.x) {
+        sfText_scale(text, vec2f(500 * sets->scale.x / hitbox.width,
+                                500 * sets->scale.x / hitbox.width));
+    }
+    sfRenderWindow_drawText(sets->window, text, NULL);
 }
 
 static sfBool florian_the_toucan_wants_to_speak(win_settings_t *sets,
