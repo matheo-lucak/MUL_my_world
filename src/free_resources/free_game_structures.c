@@ -18,5 +18,6 @@ void free_game_structures(map_formatter_t *ter,  hud_t *hud)
         free_obj_list(hud->slider);
         free_obj_list(hud->sound_button);
         free_obj_list(hud->text_box);
+        free_obj(hud->florian);
     }
 }
