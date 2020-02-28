@@ -30,6 +30,7 @@ static void check_circle_selected(win_settings_t win_settings,
     sfCircleShape_setFillColor(circle, sfBlue);
     if (circle_contains_point(circle, win_settings.mouse_tool.pos) &&
         win_settings.mouse_tool.hold == 1 && !point_selected) {
+        my_printf("%d && %d\n", saved_pos.x, saved_pos.y);
         saved_pos = pos;
         point_selected = 1;
         old_z = terraformer->map_3d[pos.y][pos.x];

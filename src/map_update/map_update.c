@@ -11,7 +11,7 @@
 
 void fill_vertex(sfVector2f point, sfVertexArray *shape_drawer, sfVector2f tex_anchor)
 {
-    sfVertex voxel = {.position = point, .color = sfRed, .texCoords = tex_anchor};
+    sfVertex voxel = {.position = point, .color = sfWhite, .texCoords = tex_anchor};
 
     sfVertexArray_append(shape_drawer, voxel);
 }

@@ -24,6 +24,11 @@ void draw_vertex(win_settings_t win_settings, map_formatter_t *terraformer,
     sfRenderWindow_drawVertexArray
                 (win_settings.window, terraformer->tile_map_2d[y][x].shape_drawer,
                 &(terraformer->tile_map_2d[y][x].rstate));
+    sfVertexArray_setPrimitiveType(terraformer->tile_map_2d[y][x].shape_drawer, sfLinesStrip);
+    sfRenderWindow_drawVertexArray
+                (win_settings.window, terraformer->tile_map_2d[y][x].shape_drawer,
+                NULL);
+    sfVertexArray_setPrimitiveType(terraformer->tile_map_2d[y][x].shape_drawer, sfQuads);
 }
 
 void draw_tile_map_2d(win_settings_t win_settings,

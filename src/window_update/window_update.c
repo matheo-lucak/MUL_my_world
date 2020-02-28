@@ -21,4 +21,5 @@ void window_update(win_settings_t *win_settings,
         update_mouse_tool(win_settings);
         udpate_window_settings(win_settings);
         draw_tile_map_2d(*win_settings, terraformer);
+
 }

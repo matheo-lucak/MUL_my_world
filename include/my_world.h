@@ -41,10 +41,6 @@ typedef struct presets_s {
 
 
 
-//A square of the map node -> when linked together -> squares of the map
-
-
-
 //A tile of the map
 
 typedef struct tile_s {
