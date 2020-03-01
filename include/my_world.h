@@ -327,7 +327,7 @@ void free_resources_fps(fps_assets_t *resources_fps);
 
 /*
 **                                    ****************
-**                                    | Some maths ! |
+**                                    |  Some maths  |
 **                                    ****************
 */
 

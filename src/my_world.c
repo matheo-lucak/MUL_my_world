@@ -45,7 +45,7 @@ static void draw_fps(win_settings_t win_settings, fps_assets_t *resources_fps)
 }
 
 void my_world(void)
-{ 
+{
     map_formatter_t terraformer;
     win_settings_t win_settings;
     fps_assets_t resources_fps;
@@ -57,6 +57,6 @@ void my_world(void)
         window_update(&win_settings, &terraformer, &resources_fps);
         draw_fps(win_settings, &resources_fps);
         sfRenderWindow_display(win_settings.window);
-    }   
+    }
     free_game_structures(&win_settings, &terraformer, &resources_fps);
 }

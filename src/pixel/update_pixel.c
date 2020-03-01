@@ -21,5 +21,4 @@ void update_pixellist(win_settings_t win_settings, pixellist_t *pixels,
         sfRenderWindow_drawRectangleShape(win_settings.window, rect, NULL);
         tmp = tmp->next;
     } while (pixels != tmp && tmp);
-    
 }
