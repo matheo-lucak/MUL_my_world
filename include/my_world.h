@@ -325,5 +325,13 @@ void free_game_structures(win_settings_t *win_settings,
 
 void free_resources_fps(fps_assets_t *resources_fps);
 
+/*
+**                                    ****************
+**                                    | Some maths ! |
+**                                    ****************
+*/
+
+//Returns a random number between the given bounds as parameter
+int get_randomnb(int min, int max);
 
 #endif /* MY_WORLD_H_ */
