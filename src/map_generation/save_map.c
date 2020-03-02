@@ -34,6 +34,7 @@ static sfBool write_map_data_in_file(FILE *fptr, float **map_3d, sfVector2i map_
             write_int_in_file(fptr, map_3d[y][x]);
             x += 1;
         }
+        fwrite("\n", sizeof(char), 1, fptr);
         x = 0;
         y += 1;
     }
