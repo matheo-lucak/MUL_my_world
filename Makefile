@@ -30,14 +30,14 @@ SRC					=	src/free_resources/free_array.c						\
 						src/map_update/draw_circles.c						\
 						src/map_update/draw_tile_map_2d.c					\
 						src/map_update/map_update.c							\
-						src/math_process/getrandnb.c						\
+						src/math_process/get_randnb.c						\
 						src/math_process/project_iso_point.c				\
+						src/math_process/magnet_number.c					\
 						src/menu/menu_update.c								\
 						src/pixel/pixel_physic.c							\
 						src/pixel/pixellist_add_pixels.c					\
 						src/pixel/pixellist_add_x_pixels.c					\
 						src/pixel/update_pixel.c							\
-						src/math_process/magnet_number.c					\
 						src/vector_engine/vector_engine_compute.c			\
 						src/vector_engine/vector_engine_prop.c				\
 						src/window_handling/edit_mode.c						\

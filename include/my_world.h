@@ -207,6 +207,12 @@ sfBool init_game_structures(win_settings_t *win_settings,
 
 sfBool init_resources_fps(fps_assets_t *resources_fps);
 
+//Save all the map data into a new_file
+//Overwrite the file if it already exists
+//Returns True in case of success
+//Returns False in case of error
+sfBool save_map(map_formatter_t terraformer, char *file_name);
+
 /*
 **                                  ******************
 **                                  | Main game loop |

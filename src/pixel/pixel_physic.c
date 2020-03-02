@@ -55,6 +55,7 @@ void update_pixel_physic(win_settings_t win_settings, pixellist_t *pixel)
         apply_gravity(pixel, win_settings.mouse_tool.pos,
                                             vec2f(50, 1000), 5000);
     }
+    pixel_bounce_window(win_settings, pixel);
     pixel->vel = vec_add(pixel->vel, pixel->acc);
     pixel->vel = vec_lim(pixel->vel, (sfVector2f){3, 3}, (sfVector2f){-3, -3});
     pixel->pos = vec_add(pixel->pos, pixel->vel);

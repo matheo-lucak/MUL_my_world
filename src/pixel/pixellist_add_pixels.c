@@ -5,6 +5,7 @@
 ** pixelList_addPixelToPixelList
 */
 
+#include <stdlib.h>
 #include "my_world.h"
 #include "pixel.h"
 
@@ -44,7 +45,7 @@ sfBool pixellist_add_pixel(pixellist_t **head,
 {
     if (!(*head) && !pixellist_add_first_pixel(head, spawning_position)) {
         return (sfFalse);
-    } else if (!pixellist_add_first_pixel(head, spawning_position)) {
+    } else if (!pixellist_add_new_pixel(head, spawning_position)) {
         return (sfFalse);
     }
     return (sfTrue);

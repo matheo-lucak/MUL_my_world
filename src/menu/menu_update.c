@@ -6,10 +6,13 @@
 */
 
 #include "my_world.h"
+#include "input_handling.h"
 #include "pixel.h"
 
-void menu_update(win_settings_t *win_settings, pixellist_t **pixels)
+void menu_update(win_settings_t *win_settings, pixellist_t *pixels)
 {
+    sfRectangleShape *rect = NULL;
+
     update_mouse_tool(win_settings);
     udpate_window_settings(win_settings);
     update_pixellist(*win_settings, pixels, rect);
