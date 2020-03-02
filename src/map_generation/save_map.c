@@ -72,7 +72,7 @@ sfBool save_map(map_formatter_t terraformer, char *file_name)
     fptr = fopen(file_name, "w");
     if (!fptr)
         return (sfFalse);
-    if(!write_map_size_in_file(fptr, terraformer.map_settings.size))
+    if (!write_map_size_in_file(fptr, terraformer.map_settings.size))
         return (sfFalse);
     if (!write_map_data_in_file(fptr, terraformer.map_3d,
                                 terraformer.map_settings.size))

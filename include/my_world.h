@@ -213,7 +213,7 @@ sfBool init_resources_fps(fps_assets_t *resources_fps);
 //Returns False in case of error
 sfBool save_map(map_formatter_t terraformer, char *file_name);
 
-//Returns a float** representing 3D map
+//Returns a float ** representing 3D map
 //Returns NULL in case of error
 float **open_map(char *file_name);
 

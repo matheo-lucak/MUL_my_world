@@ -19,9 +19,7 @@ void draw_vertex(win_settings_t *win_settings, map_formatter_t *terraformer,
         return ;
     hit_box = sfVertexArray_getBounds(terraformer->tile_map_2d[y][x].shape_drawer);
     if (sfFloatRect_contains(&hit_box, win_settings->mouse_tool.pos.x, win_settings->mouse_tool.pos.y) && win_settings->mouse_tool.hold) {
-        
         terraformer->tile_map_2d[y][x].matter_state = 3;
-
     }
     if (is_view_mode(win_settings->mode, VIEW_TEXTURE)) {
         sfRenderWindow_drawVertexArray
