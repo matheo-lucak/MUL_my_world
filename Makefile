@@ -26,6 +26,7 @@ SRC					=	src/free_resources/free_array.c						\
 						src/map_generation/generate_map.c					\
 						src/map_generation/get_hash.c						\
 						src/map_generation/perlin_noise.c					\
+						src/map_generation/save_map.c						\
 						src/map_list/create_map_list.c						\
 						src/map_update/draw_circles.c						\
 						src/map_update/draw_tile_map_2d.c					\
