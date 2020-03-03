@@ -17,4 +17,6 @@ void free_win_settings(win_settings_t win_settings)
             sfRenderWindow_close(win_settings.window);
         sfRenderWindow_destroy(win_settings.window);
     }
+    if (win_settings.main_track)
+        sfMusic_destroy(win_settings.main_track);
 }

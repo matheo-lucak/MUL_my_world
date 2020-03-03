@@ -51,6 +51,7 @@ sfBool my_world(win_settings_t *win_settings)
 
     if (!init_game_structures(&terraformer, &resources_fps))
         return (sfFalse);
+    sfMusic_setVolume(win_settings->main_track, 45);
     sfView_setCenter(win_settings->view, vec2f(0, 0));
     while (should_stay_opened(win_settings->window, &win_settings->event, &goback_menu)) {
         sfRenderWindow_clear(win_settings->window, sfBlack);

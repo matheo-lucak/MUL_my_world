@@ -11,6 +11,7 @@ static sfBool run_menu(win_settings_t win_settings)
 {
     static sfEvent event;
 
+    sfMusic_setVolume(win_settings.main_track, 75);
     sfView_reset(win_settings.view, (sfFloatRect){0, 0, 1920, 1080});
     while (sfKeyboard_isKeyPressed(sfKeyEnter));
     sfRenderWindow_clear(win_settings.window, sfBlack);

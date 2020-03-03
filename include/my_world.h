@@ -11,6 +11,7 @@
 
 #include <SFML/System.h>
 #include <SFML/Graphics.h>
+#include <SFML/Audio.h>
 
 #define vec2f(x, y) (sfVector2f){x, y}
 #define vec2i(x, y) (sfVector2i){x, y}
@@ -140,6 +141,7 @@ typedef struct win_settings_s {
     sfEvent event;
     game_mode_t mode;
     mouse_tool_t mouse_tool;
+    sfMusic *main_track;
 } win_settings_t;
 
 

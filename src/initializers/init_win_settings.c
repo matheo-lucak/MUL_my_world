@@ -26,5 +26,13 @@ sfBool init_win_settings(win_settings_t *win_settings)
     }
     sfView_setCenter(win_settings->view, vec2f(0, 0));
     win_settings->mode.view_mode = VIEW_ALL;
+    win_settings->main_track = sfMusic_createFromFile("assets/sounds/my_world_main_track.ogg");
+    if (!win_settings->main_track) {
+        free_win_settings(*win_settings);
+        return (sfFalse);
+    }
+    sfMusic_setVolume(win_settings->main_track, 75);
+    sfMusic_setLoop(win_settings->main_track, sfTrue);
+    sfMusic_play(win_settings->main_track);
     return (sfTrue);
 }
