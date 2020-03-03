@@ -7,12 +7,14 @@
 
 #include "my_world.h"
 
-sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event)
+sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event, sfBool *goback_menu)
 {
     if (!sfRenderWindow_isOpen(window))
         return (sfFalse);
-    if (sfKeyboard_isKeyPressed(sfKeySpace))
+    if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
+        *goback_menu = sfTrue;
         return (sfFalse);
+    }
     if (sfRenderWindow_pollEvent(window, event) && event->type == sfEvtClosed)
         return (sfFalse);
     return (sfTrue);

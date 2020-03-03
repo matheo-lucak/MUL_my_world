@@ -12,7 +12,6 @@
 
 static void draw_fps(win_settings_t win_settings, fps_assets_t *resources_fps)
 {
-    static int fps_counter = 0;
     static char fps_string[20];
     static int first_call = 0;
     char *tmp = NULL;
@@ -25,13 +24,13 @@ static void draw_fps(win_settings_t win_settings, fps_assets_t *resources_fps)
     }
     if (!resources_fps || !(resources_fps->clock))
         return ;
-    fps_counter += 1;
+    resources_fps->fps_counter += 1;
     if (sfTime_asSeconds(sfClock_getElapsedTime(resources_fps->clock)) > 1) {
-        tmp = my_int_to_str(fps_counter);
+        tmp = my_int_to_str(resources_fps->fps_counter);
         my_strcpy(fps_string + 5, tmp);
         if (tmp)
             free(tmp);
-        fps_counter = 0;
+        resources_fps->fps_counter = 0;
         sfClock_restart(resources_fps->clock);
         sfText_setString(resources_fps->fps_drawer, fps_string);
     }
@@ -44,19 +43,21 @@ static void draw_fps(win_settings_t win_settings, fps_assets_t *resources_fps)
                             resources_fps->fps_drawer, NULL);
 }
 
-void my_world(void)
+sfBool my_world(win_settings_t *win_settings)
 {
     map_formatter_t terraformer;
-    win_settings_t win_settings;
     fps_assets_t resources_fps;
+    sfBool goback_menu = sfFalse;
 
-    if (!init_game_structures(&win_settings, &terraformer, &resources_fps))
-        return ;
-    while (should_stay_opened(win_settings.window, &win_settings.event)) {
-        sfRenderWindow_clear(win_settings.window, sfBlack);
-        window_update(&win_settings, &terraformer, &resources_fps);
-        draw_fps(win_settings, &resources_fps);
-        sfRenderWindow_display(win_settings.window);
+    if (!init_game_structures(&terraformer, &resources_fps))
+        return (sfFalse);
+    sfView_setCenter(win_settings->view, vec2f(0, 0));
+    while (should_stay_opened(win_settings->window, &win_settings->event, &goback_menu)) {
+        sfRenderWindow_clear(win_settings->window, sfBlack);
+        window_update(win_settings, &terraformer, &resources_fps);
+        draw_fps(*win_settings, &resources_fps);
+        sfRenderWindow_display(win_settings->window);
     }
-    free_game_structures(&win_settings, &terraformer, &resources_fps);
+    free_game_structures(&terraformer, &resources_fps);
+    return (goback_menu);
 }

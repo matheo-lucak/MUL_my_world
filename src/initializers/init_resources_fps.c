@@ -26,5 +26,6 @@ sfBool init_resources_fps(fps_assets_t *resources_fps)
     if (!resources_fps->fps_font)
         return (exit_init_resources_fps(resources_fps));
     sfText_setFont(resources_fps->fps_drawer, resources_fps->fps_font);
+    resources_fps->fps_counter = 0;
     return (sfTrue);
 }

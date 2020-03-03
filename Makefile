@@ -36,6 +36,7 @@ SRC					=	src/free_resources/free_array.c						\
 						src/math_process/project_iso_point.c				\
 						src/math_process/magnet_number.c					\
 						src/menu/menu_update.c								\
+						src/menu/menu.c										\
 						src/pixel/pixel_physic.c							\
 						src/pixel/pixellist_add_pixels.c					\
 						src/pixel/pixellist_add_x_pixels.c					\

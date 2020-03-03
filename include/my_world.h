@@ -78,6 +78,7 @@ typedef struct fps_assets_s {
     sfText *fps_drawer;
     sfClock *clock;
     sfFont *fps_font;
+    size_t fps_counter;
 } fps_assets_t;
 
 
@@ -143,6 +144,8 @@ typedef struct win_settings_s {
 
 
 
+void menu(void);
+
 /*
 **                                 *********
 **                                 | Usage |
@@ -201,8 +204,7 @@ sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
 //
 //Returns sfTrue (1) if mallocs work.
 //Returns sfFalse (0) otherwise.
-sfBool init_game_structures(win_settings_t *win_settings,
-                            map_formatter_t *terraformer,
+sfBool init_game_structures(map_formatter_t *terraformer,
                             fps_assets_t *resources_fps);
 
 sfBool init_resources_fps(fps_assets_t *resources_fps);
@@ -240,7 +242,7 @@ void udpate_window_settings(win_settings_t *win_settings);
 //
 //Returns sfTrue (1) if it should.
 //Returns sfFalse (0) otherwise.
-sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event);
+sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event, sfBool *goback_menu);
 
 //Draws tile map 2D in RenderWindow
 void draw_tile_map_2d(win_settings_t *win_settings,
@@ -258,7 +260,7 @@ void draw_circle(win_settings_t *win_settings, map_formatter_t *terraformer,
 void magnet_number(float *nb, float offset, int acc, float magnet);
 
 //Main instance of the my_world edit game.
-void my_world(void);
+sfBool my_world(win_settings_t *win_settings);
 
 
 /*
@@ -316,7 +318,7 @@ void free_textures_array(sfTexture **textures);
 void free_shaders_array(sfShader **shaders);
 
 //Free's allocated memory for win_settings.
-void free_win_settings(win_settings_t *win_settings);
+void free_win_settings(win_settings_t win_settings);
 
 //Free's allocated memory for terraformer.
 //If the pointer points to NULL, nothing happens.
@@ -329,8 +331,7 @@ void free_map_list(map_linked_list_t **head);
 
 //Free's allocated memory for win_settings, terraformer and my_map.
 //If (the) pointer(s) point(s) to NULL, nothing happens with these/this one(s).
-void free_game_structures(win_settings_t *win_settings,
-                        map_formatter_t *terraformer,
+void free_game_structures(map_formatter_t *terraformer,
                         fps_assets_t *resources_fps);
 
 

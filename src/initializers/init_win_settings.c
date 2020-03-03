@@ -21,7 +21,7 @@ sfBool init_win_settings(win_settings_t *win_settings)
     sfRenderWindow_setMouseCursorVisible(win_settings->window, sfTrue);
     win_settings->view = sfView_createFromRect(rect);
     if (!win_settings->view) {
-        free_win_settings(win_settings);
+        free_win_settings(*win_settings);
         return (sfFalse);
     }
     sfView_setCenter(win_settings->view, vec2f(0, 0));
