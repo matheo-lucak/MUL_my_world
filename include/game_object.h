@@ -16,58 +16,12 @@
 typedef enum elem
 {
     PLAYER,
-    PLAYER2,
-    BACKGROUND,
-    MIDDLEGROUND,
-    GROUND,
-    HOUSE,
-    BARREL,
-    HEALTH_BAR,
-    STAMINA_BAR,
-    CRATE,
-    HAY_WAGON,
-    WELL,
-    CURSOR,
-    MAP_NAME_FIELD,
-    WOOD_T,
-    WOOD_B,
-    WOOD_L,
-    WOOD_R,
-    SPIKE,
-    ITEM_BAR,
-    B_PLAY,
-    B_INF_PLAY,
-    B_EDIT,
-    SCORE_BAR,
-    HSCORE_BAR,
     NONE
 } elem_t;
 
 typedef enum prop
 {
     LIFE,
-    STAMINA,
-    SPEED,
-    GRAVITY,
-    FALL_SPEED,
-    JUMP_SPEED,
-    CLOCK,
-    JUMP_CLOCK,
-    IMAGE,
-    DEFAULT_IMAGE,
-    FALLING,
-    JUMPING,
-    RUNNING,
-    BLOCKED,
-    NORMAL_HITBOX,
-    JUMP_HITBOX,
-    BAR_FIELD,
-    ORIGIN,
-    TEXT,
-    JUMP_SOUND,
-    HIT_SOUND,
-    HIT_SOUND2,
-    SAVED_X
 } prop_t;
 
 typedef struct component
