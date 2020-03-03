@@ -10,7 +10,7 @@
 sfBool init_game_structures(map_formatter_t *terraformer,
                             fps_assets_t *resources_fps)
 {
-    if (!init_terraformer(terraformer, 120))
+    if (!init_terraformer(terraformer, get_randomnb(1, 255)))
         return (sfFalse);
     if (!init_resources_fps(resources_fps))
         return (sfFalse);
