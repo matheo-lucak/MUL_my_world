@@ -24,12 +24,12 @@ static sfBool run_menu(win_settings_t win_settings, menu_assets_t menu_assets)
 {
     sfMusic_setVolume(win_settings.main_track, 75);
     sfView_reset(win_settings.view, (sfFloatRect){0, 0, 1920, 1080});
-    sfRenderWindow_drawSprite(win_settings.window, menu_assets.earth->sprite, NULL);
     while (sfKeyboard_isKeyPressed(sfKeyEnter));
     while (!sfKeyboard_isKeyPressed(sfKeyEnter)) {
         if (should_close_window(win_settings))
             return (sfFalse);
         sfRenderWindow_clear(win_settings.window, sfBlack);
+        sfRenderWindow_drawSprite(win_settings.window, menu_assets.earth->sprite, NULL);
         sfRenderWindow_display(win_settings.window);
     }
     return (sfTrue);

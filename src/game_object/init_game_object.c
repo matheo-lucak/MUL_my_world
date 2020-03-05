@@ -22,7 +22,7 @@ static sfBool get_texture(int fd, sfTexture **texture)
 
     parsed_buffer = my_str_to_word_array(get_next_line(fd), " :;", 1);
     if (!parsed_buffer || !texture ||
-        my_strncmp(parsed_buffer[0], "texture :", 9))
+        my_strncmp(parsed_buffer[0], "texture", 7))
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 2) {
         my_free_arr(parsed_buffer);
@@ -41,7 +41,7 @@ static sfBool get_frame_nb(int fd, unsigned int *frame_nb)
 
     parsed_buffer = my_str_to_word_array(get_next_line(fd), " :;", 1);
     if (!parsed_buffer || !frame_nb ||
-        my_strncmp(parsed_buffer[0], "frame_nb :", 10))
+        my_strncmp(parsed_buffer[0], "frame_nb", 8))
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 2) {
         my_free_arr(parsed_buffer);
@@ -87,11 +87,11 @@ sfBool init_game_object(game_obj_t *obj)
     if (fd == -1)
         return (sfFalse);
     if (!get_texture(fd, &(obj->texture))) {
-        my_putstr("Bad config file\n");
+        my_putstr("Bad Texture config file\n");
         return (sfFalse);
     }
     if (!get_frame_nb(fd, &(obj->frame_nb))){
-        my_putstr("Bad config file\n");
+        my_putstr("Bad Frame config file\n");
         return (sfFalse);
     }
     if (!get_view_box(obj->texture, &(obj->view_box), obj->frame_nb) ||

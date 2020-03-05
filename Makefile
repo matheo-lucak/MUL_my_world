@@ -83,7 +83,7 @@ $(LIB):
 						$(MAKE) -C ./lib/my
 
 $(ASSETS):
-						tar -xf assets.tar.gz
+						tar -xf assets.tar.xz
 
 debug:					CPPFLAGS += -g
 debug:					$(LIB)
