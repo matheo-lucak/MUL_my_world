@@ -10,6 +10,7 @@ SRC				=	./my_putchar.c						\
 					./my_isalpha.c						\
 					./my_isalphanum.c					\
 					./my_str_is_alphanum.c				\
+					./my_str_is_num.c					\
 					./my_int_size.c						\
 					./my_int_to_str.c					\
 					./my_strlen.c						\
@@ -39,6 +40,7 @@ SRC				=	./my_putchar.c						\
 					./my_strdup_char.c					\
 					./my_strdup_cmpstr.c				\
 					./my_memcpy.c						\
+					./my_memset.c						\
 					./my_strcat.c						\
 					./my_strcpy.c						\
 					./my_str_to_word_array.c			\

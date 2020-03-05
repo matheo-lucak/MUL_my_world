@@ -5,6 +5,7 @@
 ** create_game_object
 */
 
+#include <stdlib.h>
 #include "game_object.h"
 
 int find_comp(game_obj_t *obj, prop_t type)
@@ -26,5 +27,7 @@ game_obj_t *create_game_obj(elem_t type)
         return (NULL);
     obj->next = NULL;
     obj->type = type;
+    if (!init_game_object(obj))
+        return (NULL);
     return (obj);
 }

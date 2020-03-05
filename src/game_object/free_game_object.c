@@ -5,6 +5,7 @@
 ** free_game_object
 */
 
+#include <stdlib.h>
 #include "game_object.h"
 
 sfBool free_comp(component_t *comp)

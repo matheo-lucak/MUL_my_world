@@ -55,6 +55,12 @@ int my_isalphanum(const char c);
 //Returns 0 otherwise.
 int my_str_is_alphanum(const char *str);
 
+//Checks whether a string only contains digits
+//
+//Returns 1 if it is.
+//Returns 0 otherwise.
+int my_str_is_num(const char *str);
+
 //Prints onto the stdout with custom flags to print variables.
 //
 //%c -> prints a char.
@@ -190,6 +196,8 @@ char *my_strdup_char(const char *template, const char c);
 char *my_strdup_cmpstr(const char *template, const char cmp[]);
 int my_strcmp(const char *first, const char *second, const int splitter);
 int my_strncmp(const char *first, char const *second, const unsigned int n);
+
+void my_memset(char *str, const char c, const int len);
 void *my_memcpy(void *dest, const void *src, size_t n);
 
 char *my_strcat(const char *core, const char *to_append);

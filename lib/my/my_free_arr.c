@@ -17,4 +17,5 @@ void my_free_arr(char **array)
         free(array[i]);
         i += 1;
     }
+    free(array);
 }

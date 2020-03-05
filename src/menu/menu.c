@@ -6,11 +6,10 @@
 */
 
 #include "my_world.h"
+#include "game_menu.h"
 
-static sfBool run_menu(win_settings_t win_settings)
+static sfBool run_menu(win_settings_t win_settings, menu_assets_t menu_assets)
 {
-    static sfEvent event;
-
     sfView_reset(win_settings.view, (sfFloatRect){0, 0, 1920, 1080});
     while (sfKeyboard_isKeyPressed(sfKeyEnter));
     sfRenderWindow_clear(win_settings.window, sfBlack);
@@ -20,7 +19,8 @@ static sfBool run_menu(win_settings_t win_settings)
             return (sfFalse);
         if (sfKeyboard_isKeyPressed(sfKeySpace))
             return (sfFalse);
-        if (sfRenderWindow_pollEvent(win_settings.window, &event) && event.type == sfEvtClosed)
+        if (sfRenderWindow_pollEvent(win_settings.window,
+            &(win_settings.event)) && win_settings.event.type == sfEvtClosed)
             return (sfFalse);
     }
     return (sfTrue);
@@ -29,11 +29,13 @@ static sfBool run_menu(win_settings_t win_settings)
 void menu(void)
 {
     win_settings_t win_settings;
+    menu_assets_t menu_assets;
 
-    if (!init_win_settings(&win_settings))
+    if (!init_win_settings(&win_settings) ||
+        !init_menu_assets(win_settings, &menu_assets))
         return;
     do {
-        if (!run_menu(win_settings))
+        if (!run_menu(win_settings, menu_assets))
             break;
     } while (my_world(&win_settings));
     free_win_settings(win_settings);
