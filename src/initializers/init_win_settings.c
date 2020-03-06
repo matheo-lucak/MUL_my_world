@@ -31,6 +31,7 @@ sfBool init_win_settings(win_settings_t *win_settings)
         free_win_settings(*win_settings);
         return (sfFalse);
     }
+    udpate_window_settings(win_settings);
     sfMusic_setVolume(win_settings->main_track, 75);
     sfMusic_setLoop(win_settings->main_track, sfTrue);
     sfMusic_play(win_settings->main_track);

@@ -24,7 +24,7 @@ sfBool init_menu_assets(win_settings_t win_settings,
 {
     if (!menu_assets)
         return (sfFalse);
-    pixellist_add_x_pixels(&(menu_assets->pixels), vec2f(10, 10), 200);
+    pixellist_add_x_pixels(&(menu_assets->pixels), (sfFloatRect){0, 0, win_settings.size.x, win_settings.size.y}, 1);
     menu_assets->pixel_drawer = init_pixel_drawer();
     if (!menu_assets->pixel_drawer)
         return (sfFalse);

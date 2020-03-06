@@ -17,7 +17,7 @@ int get_randomnb(int min, int max)
         i++;
     }
     if (max == min)
-        return (0);
+        return (rand() % max);
     nb = rand() % (max - min) + min;
     return (nb);
 }

@@ -32,7 +32,7 @@ sfBool pixellist_add_pixel(pixellist_t **head,
 //Returns False in case of error
 //Returns True in case of success
 sfBool pixellist_add_x_pixels(pixellist_t **head,
-                                const sfVector2f spawning_position,
+                                const sfFloatRect boundings,
                                 const size_t nb_pixels);
 
 //Updates pixel's physic such as
