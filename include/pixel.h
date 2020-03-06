@@ -40,11 +40,15 @@ sfBool pixellist_add_x_pixels(pixellist_t **head,
 void update_pixel_physic(win_settings_t sets, pixellist_t *pixel);
 
 
+void update_pixel_color(win_settings_t sets, pixellist_t *pixel,
+                                                sfRectangleShape *rect);
+
 //Updates all pixels in a given pixellist by:
 //Updating physic
 //Drawing pixel
 void update_pixellist(win_settings_t sets, pixellist_t **head,
                                 sfRectangleShape *rect);
+
 
 void free_pixels(pixellist_t **head);
 

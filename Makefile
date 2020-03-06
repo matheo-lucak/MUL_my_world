@@ -67,6 +67,7 @@ SRC_MATH_PROCESS		=	src/math_process/get_randnb.c					\
 SRC_MENU				=	src/menu/menu.c									\
 
 SRC_PIXEL				=	src/pixel/free_pixels.c							\
+							src/pixel/pixel_color.c							\
 							src/pixel/pixel_physic.c						\
 							src/pixel/pixellist_add_pixels.c				\
 							src/pixel/pixellist_add_x_pixels.c				\

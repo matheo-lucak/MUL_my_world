@@ -33,6 +33,7 @@ void update_pixellist(win_settings_t sets, pixellist_t **head,
     do {
         update_pixel_physic(sets, tmp);
         sfRectangleShape_setPosition(rect, tmp->pos);
+        update_pixel_color(sets, tmp, rect);
         sfRenderWindow_drawRectangleShape(sets.window, rect, NULL);
         tmp = tmp->next;
     } while ((*head) != tmp && tmp);
