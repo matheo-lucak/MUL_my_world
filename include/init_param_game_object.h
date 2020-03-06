@@ -1,0 +1,25 @@
+/*
+** EPITECH PROJECT, 2020
+** MUL_my_world_2019
+** File description:
+** init_param_game_object
+*/
+
+#ifndef INIT_PARAM_GAME_OBJECT_H_
+#define INIT_PARAM_GAME_OBJECT_H_
+
+#include "game_object.h"
+
+sfBool set_texture(game_obj_t *obj, char *buffer);
+sfBool set_frame_nb(game_obj_t *obj, char *buffer);
+sfBool set_view_box(game_obj_t *obj);
+sfBool set_sprite(game_obj_t *obj);
+
+static sfBool (*get_param_from_file[])(game_obj_t *obj, char *buffer) = {
+    set_texture,
+    set_frame_nb
+};
+
+sfBool set_all_component(game_obj_t *obj, int fd, char *buffer);
+
+#endif /* !INIT_PARAM_GAME_OBJECT_H_ */

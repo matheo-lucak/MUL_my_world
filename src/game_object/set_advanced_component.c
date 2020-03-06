@@ -27,7 +27,7 @@ sfBool set_comp_clock(game_obj_t *obj, prop_t type)
 sfBool reset_comp_clock(game_obj_t *obj, prop_t type)
 {
     int i = 0;
-    
+
     if (!obj || !(obj->comp))
         return (sfFalse);
     i = find_comp(obj, type);

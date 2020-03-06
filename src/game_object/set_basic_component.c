@@ -63,3 +63,17 @@ sfBool set_comp_v2f(game_obj_t *obj, prop_t type, sfVector2f vec)
     obj->comp[i]->v2f = vec;
     return (sfTrue);
 }
+
+sfBool set_comp_irect(game_obj_t *obj, prop_t type, sfIntRect rect)
+{
+    int i = 0;
+
+    if (!obj || !(obj->comp))
+        return (sfFalse);
+    i = find_comp(obj, type);
+    if (!(obj->comp[i]))
+        return (sfFalse);
+    my_memset((char *)obj->comp[i], '\0', sizeof(component_t));
+    obj->comp[i]->irect = rect;
+    return (sfTrue);
+}

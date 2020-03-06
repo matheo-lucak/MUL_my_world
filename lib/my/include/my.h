@@ -190,6 +190,8 @@ char **my_arrdup(const char * const *template);
 char **my_append_to_array(char **array, char *str, const int freer);
 void my_free_arr(char **array);
 
+int my_hay_needle(const char *str, const char *to_find);
+
 char *my_strdup(const char *template);
 char *my_strndup(const char *template, int n);
 char *my_strdup_char(const char *template, const char c);
