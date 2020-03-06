@@ -12,7 +12,7 @@ int find_comp(game_obj_t *obj, prop_t type)
 {
     int i = 0;
 
-    while (obj->comp[i]->type != type && i < obj->comp_nb)
+    while ((obj->comp[i]) && obj->comp[i]->type != type && i < obj->comp_nb)
         i++;
     if (obj->comp[i]->type != type)
         return (0);

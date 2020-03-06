@@ -15,6 +15,8 @@ sfBool init_clock(game_obj_t *obj, char *buffer)
 
     if (buffer)
         free(buffer);
+    if (!prop)
+        return (sfFalse);
     return (set_comp_clock(obj, prop));
 }
 
@@ -25,7 +27,7 @@ sfBool init_text(game_obj_t *obj, char *buffer)
     sfBool error = sfFalse;
     int size = 0;
 
-    if (!parsed_buffer || my_arrlen((void **)parsed_buffer) != 4)
+    if (!parsed_buffer || !prop || my_arrlen((void **)parsed_buffer) != 4)
         return (sfFalse);
     size = my_getnbr(parsed_buffer[3]);
     if (!size) {
@@ -44,7 +46,7 @@ sfBool init_sound(game_obj_t *obj, char *buffer)
     sfBool error = sfFalse;
     int volume = 0;
 
-    if (!parsed_buffer || my_arrlen((void **)parsed_buffer) != 4)
+    if (!parsed_buffer || !prop || my_arrlen((void **)parsed_buffer) != 4)
         return (sfFalse);
     volume = my_getnbr(parsed_buffer[3]);
     if (!volume) {
@@ -62,7 +64,7 @@ sfBool init_image(game_obj_t *obj, char *buffer)
     prop_t prop = my_getnbr(buffer);
     sfBool error = sfFalse;
 
-    if (!parsed_buffer || my_arrlen((void **)parsed_buffer) != 3)
+    if (!parsed_buffer || !prop || my_arrlen((void **)parsed_buffer) != 3)
         return (sfFalse);
     error = set_comp_image(obj, prop, parsed_buffer[2]);
     my_free_arr(parsed_buffer);

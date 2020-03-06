@@ -17,7 +17,7 @@ sfBool set_comp_int(game_obj_t *obj, prop_t type, int nb)
     i = find_comp(obj, type);
     if (!(obj->comp[i]))
         return (sfFalse);
-    my_memset((char *)obj->comp[i], '\0', sizeof(component_t));
+    my_memset((char *)obj->comp[i] + sizeof(prop_t), '\0', sizeof(component_t) - sizeof(prop_t));
     obj->comp[i]->i = nb;
     return (sfTrue);
 }
@@ -31,7 +31,7 @@ sfBool set_comp_float(game_obj_t *obj, prop_t type, float nb)
     i = find_comp(obj, type);
     if (!(obj->comp[i]))
         return (sfFalse);
-    my_memset((char *)obj->comp[i], '\0', sizeof(component_t));
+    my_memset((char *)obj->comp[i] + sizeof(prop_t), '\0', sizeof(component_t) - sizeof(prop_t));
     obj->comp[i]->f = nb;
     return (sfTrue);
 }
@@ -45,7 +45,7 @@ sfBool set_comp_v2i(game_obj_t *obj, prop_t type, sfVector2i vec)
     i = find_comp(obj, type);
     if (!(obj->comp[i]))
         return (sfFalse);
-    my_memset((char *)obj->comp[i], '\0', sizeof(component_t));
+    my_memset((char *)obj->comp[i] + sizeof(prop_t), '\0', sizeof(component_t) - sizeof(prop_t));
     obj->comp[i]->v2i = vec;
     return (sfTrue);
 }
@@ -59,7 +59,7 @@ sfBool set_comp_v2f(game_obj_t *obj, prop_t type, sfVector2f vec)
     i = find_comp(obj, type);
     if (!(obj->comp[i]))
         return (sfFalse);
-    my_memset((char *)obj->comp[i], '\0', sizeof(component_t));
+    my_memset((char *)obj->comp[i] + sizeof(prop_t), '\0', sizeof(component_t) - sizeof(prop_t));
     obj->comp[i]->v2f = vec;
     return (sfTrue);
 }
@@ -73,7 +73,7 @@ sfBool set_comp_irect(game_obj_t *obj, prop_t type, sfIntRect rect)
     i = find_comp(obj, type);
     if (!(obj->comp[i]))
         return (sfFalse);
-    my_memset((char *)obj->comp[i], '\0', sizeof(component_t));
+    my_memset((char *)obj->comp[i] + sizeof(prop_t), '\0', sizeof(component_t) - sizeof(prop_t));
     obj->comp[i]->irect = rect;
     return (sfTrue);
 }

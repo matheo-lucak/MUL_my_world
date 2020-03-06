@@ -21,17 +21,17 @@ typedef enum elem
 
 typedef enum prop
 {
-    LIFE,
+    LIFE = 1,
     CLOCK,
 } prop_t;
 
 typedef struct component
 {
+    prop_t type;
     sfClock *clock;
     sfImage *image;
     sfText *text;
     sfSound *sound;
-    prop_t type;
     sfVector2i v2i;
     sfVector2f v2f;
     sfIntRect irect;

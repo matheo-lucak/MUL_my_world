@@ -67,14 +67,14 @@ sfBool set_all_component(game_obj_t *obj, int fd, char *buffer)
 component_t *add_comp(game_obj_t *obj, prop_t type)
 {
     component_t *new_prop = malloc(sizeof(component_t));
-    int i = 0;
+    int index = 0;
 
-    while (obj->comp[i] != NULL && i < obj->comp_nb)
-        i++;
-    if (new_prop == NULL)
+    while (obj->comp[index] && index < obj->comp_nb)
+        index += 1;
+    if (!new_prop)
         return (NULL);
-    new_prop->type = type;
     my_memset((char *)new_prop, '\0', sizeof(component_t));    
-    obj->comp[i] = new_prop;
+    new_prop->type = type;
+    obj->comp[index] = new_prop;
     return (new_prop);
 }
