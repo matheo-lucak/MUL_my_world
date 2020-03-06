@@ -60,6 +60,8 @@ int find_comp(game_obj_t *obj, prop_t type);
 
 sfBool init_game_object(game_obj_t *obj);
 
+void anime_game_object(game_obj_t *obj, const int lapse);
+
 void set_hitbox(game_obj_t *obj);
 void set_pos(game_obj_t *obj, float x, float y);
 
@@ -76,8 +78,5 @@ sfBool set_comp_text(game_obj_t *obj, prop_t type, char *path, int size);
 sfBool set_comp_image(game_obj_t *obj, prop_t type, char *path);
 sfBool reset_comp_clock(game_obj_t *obj, prop_t type);
 sfBool set_comp_clock(game_obj_t *obj, prop_t type);
-
-
-void anime_game_object(game_obj_t *obj);
 
 #endif /* !GAME_OBJECT_H_ */

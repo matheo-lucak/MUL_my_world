@@ -7,6 +7,7 @@
 
 #include "my_world.h"
 #include "game_menu.h"
+#include "game_object.h"
 
 static sfBool should_close_window(win_settings_t win_settings)
 {
@@ -29,7 +30,7 @@ static sfBool run_menu(win_settings_t win_settings, menu_assets_t menu_assets)
         if (should_close_window(win_settings))
             return (sfFalse);
         sfRenderWindow_clear(win_settings.window, sfBlack);
-        anime_game_object(menu_assets.earth);
+        anime_game_object(menu_assets.earth, 125);
         sfSprite_setTextureRect(menu_assets.earth->sprite, menu_assets.earth->view_box);
         sfRenderWindow_drawSprite(win_settings.window, menu_assets.earth->sprite, NULL);
         sfRenderWindow_display(win_settings.window);
@@ -42,8 +43,8 @@ void menu(void)
     win_settings_t win_settings;
     menu_assets_t menu_assets;
 
-    if (!init_win_settings(&win_settings) ||
-        !init_menu_assets(win_settings, &menu_assets))
+    if (!init_win_settings(&win_settings)
+        || !init_menu_assets(win_settings, &menu_assets))
         return;
     do {
         if (!run_menu(win_settings, menu_assets))

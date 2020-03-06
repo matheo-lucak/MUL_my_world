@@ -7,7 +7,7 @@
 
 #include "game_object.h"
 
-void anime_game_object(game_obj_t *obj)
+void anime_game_object(game_obj_t *obj, const int lapse)
 {
     static sfClock *clock = NULL;
     if (!clock)
@@ -16,11 +16,11 @@ void anime_game_object(game_obj_t *obj)
     sfUint32 msecond = sfTime_asMilliseconds(time);
     int frame = obj->view_box.left / obj->view_box.width;
 
-    if (300 * (frame + 1) < (int)msecond &&
-        300 * (frame + 2) > (int)msecond &&
+    if (lapse * (frame + 1) < (int)msecond &&
+        lapse * (frame + 2) > (int)msecond &&
         obj->view_box.left == frame * obj->view_box.width)
         obj->view_box.left += obj->view_box.width;
-    if (300 * 13 < (int)msecond) {
+    if (lapse * (int)obj->frame_nb < (int)msecond) {
         sfClock_restart(clock);
         obj->view_box.left = 0;
     }
