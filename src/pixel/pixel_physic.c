@@ -19,17 +19,15 @@ static void apply_force(pixellist_t *pixel, sfVector2f force)
 
 static void pixel_bounce_window(win_settings_t sets, pixellist_t *pixel)
 {
-    sfVector2f pos = pixel->pos;
-
-    pos = sfRenderWindow_mapPixelToCoords(sets.window,
-                                        vec2i(pos.x, pos.y),
-                                        sets.view);
-    if ((pos.x < sets.anchor.topleft.x && pixel->vel.x < 0)
-        || (pos.x > sets.anchor.topright.x && pixel->vel.x > 0))
+    if (!pixel)
+        return ;
+    if ((pixel->pos.x < 0 && pixel->vel.x < 0)
+        || (pixel->pos.x > sets.video_mode.width && pixel->vel.x > 0))
         pixel->vel.x *= -1;
-    if ((pos.y < sets.anchor.topleft.y && pixel->vel.y < 0)
-        || (pos.y > sets.anchor.bottomleft.y && pixel->vel.y > 0))
+    if ((pixel->pos.y < 0 && pixel->vel.y < 0) 
+        || (pixel->pos.y > sets.video_mode.height && pixel->vel.y > 0)) {
         pixel->vel.y *= -1;
+    }
 }
 
 static void apply_gravity(pixellist_t *pixel, const sfVector2f gravity_center,
@@ -52,20 +50,14 @@ static void apply_gravity(pixellist_t *pixel, const sfVector2f gravity_center,
 
 void update_pixel_physic(win_settings_t sets, pixellist_t *pixel)
 {
-    sfVector2i mouse_pos_int = {0, 0};
     sfVector2f lims = {0, 0};
-    sfVector2f click_coords = {0, 0};
 
     if (!pixel)
         return ;
     pixel->acc = (sfVector2f) {0, 0};
     if (sets.mouse_tool.hold) {
-        mouse_pos_int = conv_vec2f_vec2i(sets.mouse_tool.pos);
         lims = vec2f(50, 1000);
-        click_coords = sfRenderWindow_mapPixelToCoords(sets.window,
-                                                        mouse_pos_int,
-                                                        sets.view);
-        apply_gravity(pixel, click_coords, lims, 5000);
+        apply_gravity(pixel, sets.mouse_tool.pos, lims, 5000);
     }
     pixel_bounce_window(sets, pixel);
     pixel->vel = vec_add(pixel->vel, pixel->acc);
