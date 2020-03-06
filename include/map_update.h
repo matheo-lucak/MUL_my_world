@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** map_update
+** A header for 2d transformation into isometric 2d
 */
 
 #ifndef MAP_UPDATE_H_
@@ -17,9 +17,9 @@ sfVector2f project_iso_point(const sfVector3f pos_3d, sfVector2i map_size,
                             sfVector2i angles);
 
 //Updates map 2D by computing isometric coordinates of each point of the map.
-void update_map_2d(map_formatter_t *terraformer);
+void update_map_2d(map_formatter_t *ter);
 
 //Updates tile map 2D by updating vertex array coords, texture, shader.
-void update_tile_map_2d(map_formatter_t *terraformer);
+void update_tile_map_2d(map_formatter_t *ter);
 
 #endif /* MAP_UPDATE_H_ */

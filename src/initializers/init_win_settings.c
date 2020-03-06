@@ -6,34 +6,42 @@
 */
 
 #include "my_world.h"
+#include "vector_engine.h"
 
-sfBool init_win_settings(win_settings_t *win_settings)
+static sfBool init_main_track(sfMusic *main_track)
 {
-    sfFloatRect rect = (sfFloatRect){0, 0, 1920, 1080};
+    const char main_track_path[] = "assets/sounds/my_world_main_track.ogg";
 
-    win_settings->video_mode = (sfVideoMode){1920, 1080, 32};
-    win_settings->window = sfRenderWindow_create(win_settings->video_mode,
+    main_track = sfMusic_createFromFile(main_track_path);
+    if (!main_track)
+        return (sfFalse);
+    sfMusic_setVolume(main_track, 75);
+    sfMusic_setLoop(main_track, sfTrue);
+    sfMusic_play(main_track);
+    return (sfTrue);
+}
+
+sfBool init_win_settings(win_settings_t *sets)
+{
+    sets->video_mode = (sfVideoMode){1920, 1080, 32};
+    sets->window = sfRenderWindow_create(sets->video_mode,
                         "My_world by Matheo Lucak & Guillaume Bogard-Coquard",
                         sfClose | sfDefaultStyle, NULL);
-    if (!win_settings->window)
+    if (!sets->window)
         return (sfFalse);
-    sfRenderWindow_setFramerateLimit(win_settings->window, 60);
-    sfRenderWindow_setMouseCursorVisible(win_settings->window, sfTrue);
-    win_settings->view = sfView_createFromRect(rect);
-    if (!win_settings->view) {
-        free_win_settings(*win_settings);
-        return (sfFalse);
-    }
-    sfView_setCenter(win_settings->view, vec2f(0, 0));
-    win_settings->mode.view_mode = VIEW_ALL;
-    win_settings->main_track = sfMusic_createFromFile("assets/sounds/my_world_main_track.ogg");
-    if (!win_settings->main_track) {
-        free_win_settings(*win_settings);
+    sfRenderWindow_setFramerateLimit(sets->window, 60);
+    sfRenderWindow_setMouseCursorVisible(sets->window, sfTrue);
+    sets->view = sfView_createFromRect((sfFloatRect){0, 0, 1920, 1080});
+    if (!sets->view) {
+        free_win_settings(*sets);
         return (sfFalse);
     }
-    udpate_window_settings(win_settings);
-    sfMusic_setVolume(win_settings->main_track, 75);
-    sfMusic_setLoop(win_settings->main_track, sfTrue);
-    sfMusic_play(win_settings->main_track);
+    sfView_setCenter(sets->view, vec2f(0, 0));
+    sets->mode.view_mode = VIEW_ALL;
+    if (init_main_track(sets->main_track)) {
+        free_win_settings(*sets);
+        return (sfFalse);
+    }
+    udpate_window_settings(sets);
     return (sfTrue);
 }

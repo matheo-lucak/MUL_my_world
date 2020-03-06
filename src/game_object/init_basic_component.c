@@ -11,16 +11,16 @@
 sfBool init_irect(game_obj_t *obj, char *buffer)
 {
     char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
-    prop_t prop = my_getnbr(buffer);    
+    prop_t prop = my_getnbr(buffer);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 6)
         return (sfFalse);
     error = set_comp_irect(obj, prop, (sfIntRect)
-                                    {my_getnbr(parsed_input[2]),
-                                    my_getnbr(parsed_input[3]),
-                                    my_getnbr(parsed_input[4]),
-                                    my_getnbr(parsed_input[5])});
+                        {my_getnbr(parsed_input[2]),
+                        my_getnbr(parsed_input[3]),
+                        my_getnbr(parsed_input[4]),
+                        my_getnbr(parsed_input[5])});
     my_free_arr(parsed_input);
     return (error);
 }
@@ -28,7 +28,7 @@ sfBool init_irect(game_obj_t *obj, char *buffer)
 sfBool init_v2f(game_obj_t *obj, char *buffer)
 {
     char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
-    prop_t prop = my_getnbr(buffer);    
+    prop_t prop = my_getnbr(buffer);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 4)
@@ -43,7 +43,7 @@ sfBool init_v2f(game_obj_t *obj, char *buffer)
 sfBool init_v2i(game_obj_t *obj, char *buffer)
 {
     char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
-    prop_t prop = my_getnbr(buffer);    
+    prop_t prop = my_getnbr(buffer);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 4)
@@ -57,10 +57,10 @@ sfBool init_v2i(game_obj_t *obj, char *buffer)
 sfBool init_f(game_obj_t *obj, char *buffer)
 {
     char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
-    prop_t prop = my_getnbr(buffer);    
+    prop_t prop = my_getnbr(buffer);
     sfBool error = sfFalse;
 
-    if (!parsed_input || !prop ||my_arrlen((void **)parsed_input) != 3)
+    if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 3)
         return (sfFalse);
     error = set_comp_float(obj, prop, (float)my_getnbr(parsed_input[2]));
     my_free_arr(parsed_input);
@@ -70,7 +70,7 @@ sfBool init_f(game_obj_t *obj, char *buffer)
 sfBool init_i(game_obj_t *obj, char *buffer)
 {
     char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
-    prop_t prop = my_getnbr(buffer);    
+    prop_t prop = my_getnbr(buffer);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 3)

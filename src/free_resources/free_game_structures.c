@@ -7,9 +7,9 @@
 
 #include "my_world.h"
 
-void free_game_structures(map_formatter_t *terraformer,
-                        fps_assets_t *resources_fps)
+void free_game_structures(map_formatter_t *ter,
+                        fps_assets_t *fps_assets)
 {
-    free_terraformer(terraformer);
-    free_resources_fps(resources_fps);
+    free_terraformer(ter);
+    free_resources_fps(fps_assets);
 }

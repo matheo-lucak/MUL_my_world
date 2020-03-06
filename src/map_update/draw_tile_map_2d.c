@@ -9,43 +9,46 @@
 #include "my_world.h"
 #include "my_graphical.h"
 
-void draw_vertex(win_settings_t *win_settings, map_formatter_t *terraformer,
-                                                        int y, int x)
+static void assert_tile(sfRenderWindow *win, tile_t *tile,
+                            const game_mode_t mode)
 {
-    sfFloatRect hit_box;
-
-    if (terraformer->map_settings.size.x - 1 == x ||
-        terraformer->map_settings.size.y - 1 == y)
-        return ;
-    hit_box = sfVertexArray_getBounds(terraformer->tile_map_2d[y][x].shape_drawer);
-    if (sfFloatRect_contains(&hit_box, win_settings->mouse_tool.pos.x, win_settings->mouse_tool.pos.y) && win_settings->mouse_tool.hold) {
-        terraformer->tile_map_2d[y][x].matter_state = 3;
+    if (is_view_mode(mode, VIEW_TEXTURE)) {
+        sfRenderWindow_drawVertexArray(win, tile->shape_drawer,
+                                        &(tile->rstate));
     }
-    if (is_view_mode(win_settings->mode, VIEW_TEXTURE)) {
-        sfRenderWindow_drawVertexArray
-            (win_settings->window, terraformer->tile_map_2d[y][x].shape_drawer,
-            &(terraformer->tile_map_2d[y][x].rstate));
+    if (is_view_mode(mode, VIEW_LINE)) {
+        sfVertexArray_setPrimitiveType(tile->shape_drawer, sfLinesStrip);
+        sfRenderWindow_drawVertexArray(win, tile->shape_drawer, NULL);
     }
-    if (is_view_mode(win_settings->mode, VIEW_LINE)) {
-        sfVertexArray_setPrimitiveType(
-            terraformer->tile_map_2d[y][x].shape_drawer, sfLinesStrip);
-        sfRenderWindow_drawVertexArray
-            (win_settings->window, terraformer->tile_map_2d[y][x].shape_drawer,
-            NULL);
-    }
-    sfVertexArray_setPrimitiveType(terraformer->tile_map_2d[y][x].shape_drawer, sfQuads);
+    sfVertexArray_setPrimitiveType(tile->shape_drawer, sfQuads);
 }
 
-void draw_tile_map_2d(win_settings_t *win_settings,
-                        map_formatter_t *terraformer)
+static void draw_vertex(win_settings_t *sets, map_formatter_t *ter,
+                        const int y, const int x)
 {
-    int x = 0;
-    int y = 0;
+    sfFloatRect hitbox;
+    sfBool selection = sfFalse;
 
-    while (y < terraformer->map_settings.size.y) {
-        for (x = 0; x < terraformer->map_settings.size.x; x += 1) {
-            draw_vertex(win_settings, terraformer, y, x);
-            draw_circle(win_settings, terraformer, (sfVector2i){x, y});
+    if (ter->map_settings.size.x - 1 == x || ter->map_settings.size.y - 1 == y)
+        return;
+    hitbox = sfVertexArray_getBounds(ter->tile_map_2d[y][x].shape_drawer);
+    selection = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
+                                        sets->mouse_tool.pos.y);
+    if (selection && sets->mouse_tool.hold)
+        ter->tile_map_2d[y][x].matter_state = SAND;
+    assert_tile(sets->window, &(ter->tile_map_2d[y][x]), sets->mode);
+}
+
+void draw_tile_map_2d(win_settings_t *sets,
+                        map_formatter_t *ter)
+{
+    register int x = 0;
+    register int y = 0;
+
+    while (y < ter->map_settings.size.y) {
+        for (x = 0; x < ter->map_settings.size.x; x += 1) {
+            draw_vertex(sets, ter, y, x);
+            draw_circle(sets, ter, (sfVector2i){x, y});
         }
         y += 1;
     }

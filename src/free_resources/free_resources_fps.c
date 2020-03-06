@@ -8,13 +8,13 @@
 #include <stdlib.h>
 #include <my_world.h>
 
-void free_resources_fps(fps_assets_t *resources_fps)
+void free_resources_fps(fps_assets_t *fps_assets)
 {
-    if (resources_fps->clock)
-        sfClock_destroy(resources_fps->clock);
-    if (resources_fps->fps_drawer)
-        sfText_destroy(resources_fps->fps_drawer);
-    if (resources_fps->fps_font)
-        sfFont_destroy(resources_fps->fps_font);
-    resources_fps->fps_counter = 0;
+    if (fps_assets->clock)
+        sfClock_destroy(fps_assets->clock);
+    if (fps_assets->fps_drawer)
+        sfText_destroy(fps_assets->fps_drawer);
+    if (fps_assets->fps_font)
+        sfFont_destroy(fps_assets->fps_font);
+    fps_assets->fps_counter = 0;
 }

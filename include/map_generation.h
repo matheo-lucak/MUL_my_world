@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** map_generation.h
+** A header for perlin map generation
 */
 
 #ifndef MAP_GEN_H_
@@ -21,7 +21,7 @@ float perlin_2d(const sfVector2f pos, const float freq,
 //Sub function of perlin2d.
 //Set do_free to 1 to free the hash.
 int noise2(const int x, const int y, const size_t seed,
-            const int do_free);
+                const int do_free);
 
 //Generate float 3d map with perlin noise
 float **generate_map(const sfVector2i map_size,

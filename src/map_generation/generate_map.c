@@ -9,6 +9,7 @@
 #include <math.h>
 #include "map_generation.h"
 #include "my_world.h"
+#include "vector_engine.h"
 
 float **generate_map(const sfVector2i map_size,
                     const size_t seed)

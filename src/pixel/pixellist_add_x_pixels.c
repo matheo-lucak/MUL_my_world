@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** pixellist_add_pixel
+** Adds a X nb of pixels to a pixel list
 */
 
 #include "pixel.h"
@@ -23,6 +23,7 @@ sfBool pixellist_add_x_pixels(pixellist_t **head,
                         get_randomnb(boundings.left, boundings.width),
                         get_randomnb(boundings.top, boundings.height))))
             return (sfFalse);
+        index += 1;
     }
     return (sfTrue);
 }

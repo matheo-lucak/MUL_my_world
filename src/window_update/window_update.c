@@ -13,8 +13,8 @@ void window_update(win_settings_t *win_settings,
 {
     control_camera_view(*win_settings, terraformer->map_settings,
                         resources_fps);
-    if (control_angle_view(&(terraformer->map_settings)) ||
-        win_settings->mouse_tool.hold) {
+    if (control_angle_view(&(terraformer->map_settings))
+        || win_settings->mouse_tool.hold) {
         update_map_2d(terraformer);
         update_tile_map_2d(terraformer);
     }

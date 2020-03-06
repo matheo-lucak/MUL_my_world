@@ -11,51 +11,50 @@
 #include "vector_engine.h"
 #include "input_handling.h"
 
-static sfBool should_close_window(win_settings_t win_settings)
+static sfBool should_close_window(win_settings_t sets)
 {
-    if (!sfRenderWindow_isOpen(win_settings.window))
+    if (!sfRenderWindow_isOpen(sets.window))
         return (sfTrue);
     if (sfKeyboard_isKeyPressed(sfKeySpace))
         return (sfTrue);
-    if (sfRenderWindow_pollEvent(win_settings.window, &win_settings.event)
-        && win_settings.event.type == sfEvtClosed)
+    if (sfRenderWindow_pollEvent(sets.window, &sets.event)
+        && sets.event.type == sfEvtClosed)
         return (sfTrue);
     return (sfFalse);
 }
 
-static sfBool run_menu(win_settings_t win_settings, menu_assets_t menu_assets)
+static sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
 {
-    sfMusic_setVolume(win_settings.main_track, 75);
-    sfView_setSize(win_settings.view, win_settings.size);
-    sfView_setCenter(win_settings.view, vec_mult(win_settings.size, 0.5));
-    sfRenderWindow_setView(win_settings.window, win_settings.view);
+    sfMusic_setVolume(sets.main_track, 75);
+    sfView_setSize(sets.view, sets.size);
+    sfView_setCenter(sets.view, vec_mult(sets.size, 0.5));
+    sfRenderWindow_setView(sets.window, sets.view);
     while (sfKeyboard_isKeyPressed(sfKeyEnter));
     while (!sfKeyboard_isKeyPressed(sfKeyEnter)) {
-        if (should_close_window(win_settings))
+        if (should_close_window(sets))
             return (sfFalse);
-        sfRenderWindow_clear(win_settings.window, sfBlack);
-        udpate_window_settings(&win_settings);
-        update_pixellist(win_settings, menu_assets.pixels, menu_assets.pixel_drawer);
+        sfRenderWindow_clear(sets.window, sfBlack);
+        udpate_window_settings(&sets);
+        update_pixellist(sets, menu_assets.pixels, menu_assets.pixel_drawer);
         anime_game_object(menu_assets.earth, 125);
         sfSprite_setPosition(menu_assets.earth->sprite, menu_assets.earth->pos);
-        sfRenderWindow_drawSprite(win_settings.window, menu_assets.earth->sprite, NULL);
-        sfRenderWindow_display(win_settings.window);
+        sfRenderWindow_drawSprite(sets.window, menu_assets.earth->sprite, NULL);
+        sfRenderWindow_display(sets.window);
     }
     return (sfTrue);
 }
 
 void menu(void)
 {
-    win_settings_t win_settings;
+    win_settings_t sets;
     menu_assets_t menu_assets;
 
-    if (!init_win_settings(&win_settings)
-        || !init_menu_assets(win_settings, &menu_assets))
+    if (!init_win_settings(&sets) || !init_menu_assets(&menu_assets))
         return;
     do {
-        udpate_window_settings(&win_settings);
-        if (!run_menu(win_settings, menu_assets))
+        udpate_window_settings(&sets);
+        if (!run_menu(sets, menu_assets))
             break;
-    } while (my_world(&win_settings));
-    free_win_settings(win_settings);
+    } while (my_world(&sets));
+    free_win_settings(sets);
 }

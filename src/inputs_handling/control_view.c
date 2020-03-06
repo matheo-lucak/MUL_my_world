@@ -6,77 +6,84 @@
 */
 
 #include "my_world.h"
+#include "vector_engine.h"
 
-static void control_camera_translate(win_settings_t win_settings,
-                                    presets_t map_settings, sfBool *changed)
+static sfVector2f compute_translation(const sfVector2i mv_speed,
+                                    const sfVector2f coeff,
+                                    const size_t index)
 {
+    static sfVector2f (*transl[])(sfVector2i, sfVector2f) = {transl_up,
+                                                    transl_down, transl_left,
+                                                    transl_right};
+
+    if (index > 3)
+        return (vec2f(0, 0));
+    return (transl[index](mv_speed, coeff));
+}
+
+static void control_camera_translate(win_settings_t sets,
+                                    presets_t map_settings,
+                                    sfBool *changed)
+{
+    register size_t index = 0;
     sfVector2i mv_speed = map_settings.movement_speed;
-    sfVector2f coeff = sfView_getSize(win_settings.view);
+    sfVector2f coeff = sfView_getSize(sets.view);
+    int translate_inputs[] = {sfKeyUp, sfKeyDown, sfKeyLeft, sfKeyRight};
 
     coeff.x /= 2000;
     coeff.y /= 2000;
-    if (sfKeyboard_isKeyPressed(sfKeyRight)) {
-        sfView_move(win_settings.view, vec2f(mv_speed.x * coeff.x, 0));
-        *changed = sfTrue;
-    } else if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
-        sfView_move(win_settings.view, vec2f(mv_speed.x * -1 * coeff.x, 0));
-        *changed = sfTrue;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyUp)) {
-        sfView_move(win_settings.view, vec2f(0, mv_speed.y * -1 * coeff.y));
-        *changed = sfTrue;
-    } else if (sfKeyboard_isKeyPressed(sfKeyDown)) {
-        sfView_move(win_settings.view, vec2f(0, mv_speed.y * coeff.y));
-        *changed = sfTrue;
+    while (index < 4) {
+        if (sfKeyboard_isKeyPressed(translate_inputs[index])) {
+            sfView_move(sets.view, compute_translation(mv_speed, coeff, index));
+            *changed = sfTrue;
+        }
+        index += 1;
     }
 }
 
-static void control_camera_rescale(win_settings_t win_settings,
-                                    fps_assets_t *resources_fps,
+static void control_camera_rescale(win_settings_t sets,
+                                    fps_assets_t *fps_assets,
                                     sfBool *changed)
 {
     if (sfKeyboard_isKeyPressed(sfKeyE)) {
-        sfView_zoom(win_settings.view, 1.02);
-        sfText_scale(resources_fps->fps_drawer, vec2f(1.02, 1.02));
+        if (sfKeyboard_isKeyPressed(sfKeyA))
+            return;
+        sfView_zoom(sets.view, 1.02);
+        sfText_scale(fps_assets->fps_drawer, vec2f(1.02, 1.02));
         *changed = sfTrue;
     }
     if (sfKeyboard_isKeyPressed(sfKeyA)) {
-        sfView_zoom(win_settings.view, 0.98);
-        sfText_scale(resources_fps->fps_drawer, vec2f(0.98, 0.98));
+        if (sfKeyboard_isKeyPressed(sfKeyE))
+            return;
+        sfView_zoom(sets.view, 0.98);
+        sfText_scale(fps_assets->fps_drawer, vec2f(0.98, 0.98));
         *changed = sfTrue;
     }
 }
 
-sfBool control_camera_view(win_settings_t win_settings, presets_t map_settings,
-                            fps_assets_t *resources_fps)
+sfBool control_camera_view(win_settings_t sets, presets_t map_settings,
+                            fps_assets_t *fps_assets)
 {
     sfBool changed = sfFalse;
 
-    control_camera_translate(win_settings, map_settings, &changed);
-    control_camera_rescale(win_settings, resources_fps, &changed);
-    sfRenderWindow_setView(win_settings.window, win_settings.view);
+    control_camera_translate(sets, map_settings, &changed);
+    control_camera_rescale(sets, fps_assets, &changed);
+    sfRenderWindow_setView(sets.window, sets.view);
     return (changed);
 }
 
 sfBool control_angle_view(presets_t *map_settings)
 {
+    register size_t index = 0;
     sfBool changed = sfFalse;
+    int rotate_inputs[] = {sfKeyZ, sfKeyS, sfKeyQ, sfKeyD};
+    static void (*rotation[])(presets_t *, sfBool *) = {rotate_up, rotate_down,
+                                                    rotate_left, rotate_right};
 
-    if (sfKeyboard_isKeyPressed(sfKeyS) && map_settings->angles.y > 0) {
-        map_settings->angles.y -= map_settings->rotation_speed.y;
-        changed = sfTrue;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyZ) && map_settings->angles.y < 180) {
-        map_settings->angles.y += map_settings->rotation_speed.y;
-        changed = sfTrue;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyQ) && map_settings->angles.x > 0) {
-        map_settings->angles.x -= map_settings->rotation_speed.x;
-        changed = sfTrue;
-    }
-    if (sfKeyboard_isKeyPressed(sfKeyD) && map_settings->angles.x < 90) {
-        map_settings->angles.x += map_settings->rotation_speed.x;
-        changed = sfTrue;
+    while (index < 4) {
+        if (sfKeyboard_isKeyPressed(rotate_inputs[index]))
+            rotation[index](map_settings, &changed);
+        index += 1;
     }
     if (map_settings->angles.x < 0)
         map_settings->angles.x += 360;
