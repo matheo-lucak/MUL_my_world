@@ -8,6 +8,8 @@
 #include "my_world.h"
 #include "game_menu.h"
 #include "game_object.h"
+#include "vector_engine.h"
+#include "input_handling.h"
 
 static sfBool should_close_window(win_settings_t win_settings)
 {
@@ -24,15 +26,16 @@ static sfBool should_close_window(win_settings_t win_settings)
 static sfBool run_menu(win_settings_t win_settings, menu_assets_t menu_assets)
 {
     sfMusic_setVolume(win_settings.main_track, 75);
-    sfView_reset(win_settings.view, (sfFloatRect){0, 0, 1920, 1080});
+    sfView_setCenter(win_settings.view, vec_mult(win_settings.size, 0.5));
     while (sfKeyboard_isKeyPressed(sfKeyEnter));
     while (!sfKeyboard_isKeyPressed(sfKeyEnter)) {
         if (should_close_window(win_settings))
             return (sfFalse);
         sfRenderWindow_clear(win_settings.window, sfBlack);
+        udpate_window_settings(&win_settings);
+        update_mouse_tool(&win_settings);
         anime_game_object(menu_assets.earth, 125);
-        sfSprite_setTextureRect(menu_assets.earth->sprite, menu_assets.earth->view_box);
-        sfRenderWindow_drawSprite(win_settings.window, menu_assets.earth->sprite, NULL);
+        update_pixellist(win_settings, menu_assets.pixels, menu_assets.pixel_drawer);
         sfRenderWindow_display(win_settings.window);
     }
     return (sfTrue);

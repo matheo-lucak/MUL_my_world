@@ -9,6 +9,7 @@
 #include "pixel.h"
 #include "my_world.h"
 #include "game_object.h"
+#include "my_graphical.h"
 
 static void apply_force(pixellist_t *pixel, sfVector2f force)
 {
@@ -18,12 +19,16 @@ static void apply_force(pixellist_t *pixel, sfVector2f force)
 
 static void pixel_bounce_window(win_settings_t win_settings, pixellist_t *pixel)
 {
-    if ((pixel->pos.x < win_settings.anchor.topleft.x && pixel->vel.x < 0)
-        || (pixel->pos.x > win_settings.anchor.topright.x
+    sfVector2f pos = pixel->pos;
+
+    pos = sfRenderWindow_mapPixelToCoords(win_settings.window,
+                        vec2i(pos.x, pos.y), win_settings.view);
+    if ((pos.x < win_settings.anchor.topleft.x && pixel->vel.x < 0)
+        || (pos.x > win_settings.anchor.topright.x
                                                     && pixel->vel.x > 0))
         pixel->vel.x *= -1;
-    if ((pixel->pos.y < win_settings.anchor.topleft.y && pixel->vel.y < 0)
-        || (pixel->pos.y > win_settings.anchor.bottomleft.y
+    if ((pos.y < win_settings.anchor.topleft.y && pixel->vel.y < 0)
+        || (pos.y > win_settings.anchor.bottomleft.y
                                                     && pixel->vel.y > 0))
         pixel->vel.y *= -1;
 }
@@ -52,7 +57,8 @@ void update_pixel_physic(win_settings_t win_settings, pixellist_t *pixel)
         return ;
     pixel->acc = (sfVector2f) {0, 0};
     if (win_settings.mouse_tool.hold) {
-        apply_gravity(pixel, win_settings.mouse_tool.pos,
+        apply_gravity(pixel, sfRenderWindow_mapPixelToCoords(win_settings.window,
+            conv_vec2f_vec2i(win_settings.mouse_tool.pos), win_settings.view),
                                             vec2f(50, 1000), 5000);
     }
     pixel_bounce_window(win_settings, pixel);
