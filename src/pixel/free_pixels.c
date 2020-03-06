@@ -8,16 +8,20 @@
 #include <stdlib.h>
 #include "pixel.h"
 
-void free_pixels(pixellist_t *head)
+void free_pixels(pixellist_t **head)
 {
-    pixellist_t *tmp = head;
+    pixellist_t *tmp = NULL;
+    pixellist_t *save = NULL;
 
-    if (!head)
+    if (!(*head))
         return;
-    do {
-        head = head->next;
+    save = (*head)->prev;
+    for (tmp = (*head); tmp != save->prev; tmp = tmp->next) {
+        (*head) = (*head)->next;
         if (tmp)
             free(tmp);
-        tmp = head;
-    } while (tmp);
+    }
+    if (tmp)
+        free(tmp);
+    (*head) = NULL;
 }

@@ -10,6 +10,7 @@
 #include "game_object.h"
 #include "vector_engine.h"
 #include "input_handling.h"
+#include "pixel.h"
 
 static sfBool should_close_window(win_settings_t sets)
 {
@@ -29,6 +30,7 @@ static sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
     sfView_setSize(sets.view, sets.size);
     sfView_setCenter(sets.view, vec_mult(sets.size, 0.5));
     sfRenderWindow_setView(sets.window, sets.view);
+    set_pos(menu_assets.earth, (1920 / 2) - (480 / 2), (1080 / 2) - (400 / 2));
     while (sfKeyboard_isKeyPressed(sfKeyEnter));
     while (!sfKeyboard_isKeyPressed(sfKeyEnter)) {
         if (should_close_window(sets))
@@ -54,6 +56,7 @@ void menu(void)
         udpate_window_settings(&sets);
         if (!run_menu(sets, menu_assets))
             break;
+        free_pixels(&(menu_assets.pixels));
     } while (my_world(&sets));
     free_win_settings(sets);
 }
