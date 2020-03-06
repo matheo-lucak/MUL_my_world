@@ -17,7 +17,7 @@ typedef struct menu_assets_s {
     sfRectangleShape *pixel_drawer;
 } menu_assets_t;
 
-sfBool init_menu_assets(menu_assets_t *menu_assets);
+sfBool init_menu_assets(win_settings_t sets, menu_assets_t *menu_assets);
 
 sfRectangleShape *init_pixel_drawer(void);
 

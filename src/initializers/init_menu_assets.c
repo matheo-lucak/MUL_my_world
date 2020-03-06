@@ -20,11 +20,11 @@ sfRectangleShape *init_pixel_drawer(void)
     return (pixel_drawer);
 }
 
-sfBool init_menu_assets(menu_assets_t *menu_assets)
+sfBool init_menu_assets(win_settings_t sets, menu_assets_t *menu_assets)
 {
     if (!menu_assets)
         return (sfFalse);
-    pixellist_add_x_pixels(&(menu_assets->pixels), (sfFloatRect){0, 0, win_settings.size.x, win_settings.size.y}, 1);
+    pixellist_add_x_pixels(&(menu_assets->pixels), (sfFloatRect){0, 0, sets.size.x, sets.size.y}, 1);
     menu_assets->pixel_drawer = init_pixel_drawer();
     if (!menu_assets->pixel_drawer)
         return (sfFalse);

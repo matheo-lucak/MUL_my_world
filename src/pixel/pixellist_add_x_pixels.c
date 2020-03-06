@@ -12,7 +12,7 @@ sfBool pixellist_add_x_pixels(pixellist_t **head,
                                 const sfFloatRect boundings,
                                 const size_t nb_pixels)
 {
-    static pixel_nb = 0;
+    static size_t pixel_nb = 0;
     size_t index;
 
     pixel_nb += nb_pixels;

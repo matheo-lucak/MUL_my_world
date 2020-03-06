@@ -49,7 +49,7 @@ void menu(void)
     win_settings_t sets;
     menu_assets_t menu_assets;
 
-    if (!init_win_settings(&sets) || !init_menu_assets(&menu_assets))
+    if (!init_win_settings(&sets) || !init_menu_assets(sets, &menu_assets))
         return;
     do {
         udpate_window_settings(&sets);
