@@ -8,15 +8,15 @@
 #include <stdlib.h>
 #include "my_world.h"
 
-void free_win_settings(win_settings_t win_settings)
+void free_win_settings(win_settings_t sets)
 {
-    if (win_settings.view)
-        sfView_destroy(win_settings.view);
-    if (win_settings.window) {
-        if (sfRenderWindow_isOpen(win_settings.window))
-            sfRenderWindow_close(win_settings.window);
-        sfRenderWindow_destroy(win_settings.window);
+    if (sets.view)
+        sfView_destroy(sets.view);
+    if (sets.window) {
+        if (sfRenderWindow_isOpen(sets.window))
+            sfRenderWindow_close(sets.window);
+        sfRenderWindow_destroy(sets.window);
     }
-    if (win_settings.main_track)
-        sfMusic_destroy(win_settings.main_track);
+    if (sets.main_track)
+        sfMusic_destroy(sets.main_track);
 }

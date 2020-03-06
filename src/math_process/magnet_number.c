@@ -7,7 +7,8 @@
 
 #include "my_world.h"
 
-void magnet_number(float *nb, float offset, int acc, float magnet)
+void magnet_number(float *nb, const float offset,
+                    const int acc, const float magnet)
 {
     int modulo = (int)(acc * magnet);
     int sized_nb;
@@ -16,17 +17,15 @@ void magnet_number(float *nb, float offset, int acc, float magnet)
         return;
     sized_nb = (int)(*nb * acc);
     if (*nb >= 0) {
-        if (sized_nb % modulo >= (int)(acc * (magnet - offset))) {
+        if (sized_nb % modulo >= (int)(acc * (magnet - offset)))
             *nb += (float)((acc * magnet) - sized_nb % modulo) / acc;
-        } else if (sized_nb % modulo <= (int)(offset * acc)) {
+        else if (sized_nb % modulo <= (int)(offset * acc))
             *nb -= (float)(sized_nb % modulo) / acc;
-        }
     }
     if (*nb < 0) {
-        if ((-sized_nb % modulo) >= (int)(acc * (magnet - offset))) {
+        if ((-sized_nb % modulo) >= (int)(acc * (magnet - offset)))
             *nb -= (float)((acc * magnet) + sized_nb % modulo) / acc;
-        } else if ((-sized_nb % modulo) <= (int)(offset * acc)) {
+        else if ((-sized_nb % modulo) <= (int)(offset * acc))
             *nb += (float)(-sized_nb % modulo) / acc;
-        }
     }
 }

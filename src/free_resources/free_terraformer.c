@@ -7,10 +7,10 @@
 
 #include "my_world.h"
 
-void free_terraformer(map_formatter_t *terraformer)
+void free_terraformer(map_formatter_t *ter)
 {
-    if (!terraformer)
+    if (!ter)
         return;
-    free_textures_array(terraformer->textures);
-    free_shaders_array(terraformer->shaders);
+    free_textures_array(ter->textures);
+    free_shaders_array(ter->shaders);
 }

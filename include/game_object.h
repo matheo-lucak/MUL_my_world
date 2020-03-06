@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** game_object
+** A header for game objects
 */
 
 #ifndef GAME_OBJECT_H_
@@ -13,20 +13,17 @@
 #include "SFML/System.h"
 #include "SFML/Graphics.h"
 
-typedef enum elem
-{
+typedef enum elem {
     EARTH,
     NONE
 } elem_t;
 
-typedef enum prop
-{
+typedef enum prop {
     LIFE = 1,
     CLOCK,
 } prop_t;
 
-typedef struct component
-{
+typedef struct component {
     prop_t type;
     sfClock *clock;
     sfImage *image;
@@ -39,18 +36,17 @@ typedef struct component
     float f;
 } component_t;
 
-typedef struct game_obj
-{
-    component_t **comp;
+typedef struct game_obj {
     sfTexture *texture;
     sfSprite *sprite;
-    struct game_obj *next;
     sfIntRect view_box;
     sfFloatRect hitbox;
     sfVector2f pos;
     unsigned int frame_nb;
     int comp_nb;
     elem_t type;
+    component_t **comp;
+    struct game_obj *next;
 } game_obj_t;
 
 

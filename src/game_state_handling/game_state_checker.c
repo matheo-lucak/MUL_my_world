@@ -2,12 +2,13 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** should_stay_opened.c
+** Checks whether the game should continue
 */
 
 #include "my_world.h"
 
-sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event, sfBool *goback_menu)
+sfBool game_state_checker(sfRenderWindow *window, sfEvent *event,
+                        sfBool *goback_menu)
 {
     if (!sfRenderWindow_isOpen(window))
         return (sfFalse);

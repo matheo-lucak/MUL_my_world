@@ -10,7 +10,7 @@
 void change_edit_mode(game_mode_t *mode, edit_mode_flag_t flag)
 {
     if (!mode)
-        return ;
+        return;
     mode->edit_mode = 0;
     mode->edit_mode |= flag;
 }
@@ -18,20 +18,18 @@ void change_edit_mode(game_mode_t *mode, edit_mode_flag_t flag)
 void set_view_mode(game_mode_t *mode, view_mode_t flag)
 {
     if (!mode)
-        return ;
+        return;
     mode->view_mode |= flag;
 }
 
 void unset_view_mode(game_mode_t *mode, view_mode_t flag)
 {
     if (!mode)
-        return ;
+        return;
     mode->view_mode ^= flag;
 }
 
 sfBool is_view_mode(game_mode_t mode, view_mode_t flag)
 {
-    if (mode.view_mode & flag)
-        return (sfTrue);
-    return (sfFalse);
+    return (mode.view_mode & flag) ? sfTrue : sfFalse;
 }

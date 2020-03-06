@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** init_comp_game_object
+** A header to initialize components for game objects
 */
 
 #ifndef INIT_COMP_GAME_OBJECT_H_

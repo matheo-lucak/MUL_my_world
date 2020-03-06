@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "my.h"
 #include "init_comp_game_object.h"
+#include "game_object.h"
 
 static sfBool (*init_component[])(game_obj_t *obj, char *buffer);
 
@@ -30,7 +31,7 @@ int find_init_component(char *buffer)
 sfBool set_component(game_obj_t *obj, char *buffer)
 {
     int index = 0;
-    
+
     if (!buffer)
         return (sfFalse);
     add_comp(obj, (prop_t)my_getnbr(buffer));
@@ -73,7 +74,7 @@ component_t *add_comp(game_obj_t *obj, prop_t type)
         index += 1;
     if (!new_prop)
         return (NULL);
-    my_memset((char *)new_prop, '\0', sizeof(component_t));    
+    my_memset((char *)new_prop, '\0', sizeof(component_t));
     new_prop->type = type;
     obj->comp[index] = new_prop;
     return (new_prop);

@@ -33,8 +33,6 @@ sfVector2f vec_mult(sfVector2f vec1, float coeff)
 
     res.x = vec1.x * coeff;
     res.y = vec1.y * coeff;
-    if (!res.x && !res.y)
-        return ((sfVector2f){0, 0});
     return (res);
 }
 

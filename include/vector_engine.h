@@ -1,14 +1,17 @@
 /*
 ** EPITECH PROJECT, 2019
-** Vector_engine
+** MUL_my_world_2019
 ** File description:
-** defender header file
+** A header for vector processings
 */
 
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef VECTOR_H_
+#define VECTOR_H_
 
 #include <SFML/System/Vector2.h>
+
+#define vec2f(x, y) (sfVector2f){x, y}
+#define vec2i(x, y) (sfVector2i){x, y}
 
 //Returns the sum of vec1 and vec2.
 sfVector2f vec_add(sfVector2f vec1, sfVector2f vec2);
@@ -31,4 +34,4 @@ sfVector2f vec_norm(sfVector2f vec1);
 //Returns vec1 given as parameter with limited values in x and y.
 sfVector2f vec_lim(sfVector2f vec1, sfVector2f top_lim, sfVector2f bottom_lim);
 
-#endif
+#endif /* VECTOR_H_ */

@@ -8,6 +8,7 @@
 #include "my_world.h"
 #include "game_menu.h"
 #include "game_object.h"
+#include "vector_engine.h"
 
 sfRectangleShape *init_pixel_drawer(void)
 {
@@ -19,8 +20,7 @@ sfRectangleShape *init_pixel_drawer(void)
     return (pixel_drawer);
 }
 
-sfBool init_menu_assets(win_settings_t win_settings,
-                            menu_assets_t *menu_assets)
+sfBool init_menu_assets(menu_assets_t *menu_assets)
 {
     if (!menu_assets)
         return (sfFalse);

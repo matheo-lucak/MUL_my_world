@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** init_param_game_object
+** A header for the initialization part of the game objects generation
 */
 
 #ifndef INIT_PARAM_GAME_OBJECT_H_

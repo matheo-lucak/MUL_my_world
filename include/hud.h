@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** hud
+** A header for HUD organization
 */
 
 #ifndef HUD_H_
@@ -11,8 +11,7 @@
 #include "game_object.h"
 #include "pixel.h"
 
-typedef struct hud_s
-{
+typedef struct hud_s {
     pixellist_t *pixels;
     game_obj_t *earth;
     game_obj_t *buttons;

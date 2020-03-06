@@ -14,7 +14,7 @@ int get_randomnb(int min, int max)
 
     if (!i) {
         srand((size_t)&i);
-        i++;
+        i += 1;
     }
     if (max == min)
         return (0);

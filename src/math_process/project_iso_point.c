@@ -9,8 +9,9 @@
 #include "map_update.h"
 #include "my_math.h"
 
-sfVector2f project_iso_point(const sfVector3f pos_3d, sfVector2i map_size,
-                            sfVector2i angles)
+sfVector2f project_iso_point(const sfVector3f pos_3d,
+                            const sfVector2i map_size,
+                            const sfVector2i angles)
 {
     sfVector2f pos_2d;
     sfVector3f coeff = pos_3d;

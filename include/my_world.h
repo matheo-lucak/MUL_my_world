@@ -13,9 +13,6 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
-#define vec2f(x, y) (sfVector2f){x, y}
-#define vec2i(x, y) (sfVector2i){x, y}
-
 //An enum of each possible material a square can be.
 
 typedef enum tile_matter_e {
@@ -92,8 +89,7 @@ typedef struct mouse_tool_s {
 
 
 
-typedef struct anchor_s
-{
+typedef struct anchor_s {
     sfVector2f topleft;
     sfVector2f topright;
     sfVector2f bottomleft;
@@ -102,8 +98,7 @@ typedef struct anchor_s
 
 
 
-typedef enum edit_mode_flag_e
-{
+typedef enum edit_mode_flag_e {
     VIEW_MODE = 1,
     TEXTURE_MODE = 2,
     PIXEL_MODE = 4
@@ -111,8 +106,7 @@ typedef enum edit_mode_flag_e
 
 
 
-typedef enum view_mode_e
-{
+typedef enum view_mode_e {
     VIEW_TEXTURE = 1,
     VIEW_LINE = 2,
     VIEW_PIN = 4,
@@ -121,8 +115,7 @@ typedef enum view_mode_e
 
 
 
-typedef struct game_mode_s
-{
+typedef struct game_mode_s {
     unsigned edit_mode : 3;
     unsigned edit_repeat : 1;
     unsigned view_mode : 3;
@@ -147,15 +140,11 @@ typedef struct win_settings_s {
 
 
 void menu(void);
+sfBool my_world(win_settings_t *sets);
 
-/*
-**                                 *********
-**                                 | Usage |
-**                                 *********
-*/
-
-//Prints the usage of my_world onto the stdout.
 void usage(void);
+
+void draw_fps(win_settings_t sets, fps_assets_t *fps_assets);
 
 
 /*
@@ -164,58 +153,21 @@ void usage(void);
 **                             ****************
 */
 
-//Initializes a Shaders array matching with the amount of textures..
-//
-//The array is NULL-terminated.
-//
-//If an error occurs -> returns NULL.
 sfShader **init_shaders(sfTexture **textures);
-
-//Initializes an array to every different sfTexture's.
-//
-//The array is NULL-terminated.
-//
-//If an error occurs -> returns NULL.
 sfTexture **init_textures(void);
-
-//Initializes a 2D array to stock map3D projection's values.
-//Returns the allocated array if success.
-//Returns NULL if an error occures.
 sfVector2f **init_map_2d(const sfVector2i map_size);
-
-//Initializes a 2D array of tiles to be displayed.
-//Returns the allocated array if success.
-//Returns NULL if an error occures.
 tile_t **init_tile_map_2d(const sfVector2i map_size, sfTexture **textures,
-                                                        sfShader **shaders);
-
-//Initializes the win_settings structure.
-//
-//Returns sfTrue (1) if mallocs work.
-//Returns sfFalse (0) otherwise.
-sfBool init_win_settings(win_settings_t *win_settings);
-
-//Initializes the terraformer structure.
-//
-//Returns sfTrue (1) if mallocs work.
-//Returns sfFalse (0) otherwise.
-sfBool init_terraformer(map_formatter_t *terraformer, size_t seed);
-
-//Initializes the win_settings struct
-//terraformer struct and my_map linked_list.
-//
-//Returns sfTrue (1) if mallocs work.
-//Returns sfFalse (0) otherwise.
-sfBool init_game_structures(map_formatter_t *terraformer,
-                            fps_assets_t *resources_fps);
-
-sfBool init_resources_fps(fps_assets_t *resources_fps);
+                                    sfShader **shaders);
+sfBool init_win_settings(win_settings_t *sets);
+sfBool init_terraformer(map_formatter_t *ter, size_t seed);
+sfBool init_game_structures(map_formatter_t *ter, fps_assets_t *fps_assets);
+sfBool init_resources_fps(fps_assets_t *fps_assets);
 
 //Save all the map data into a new_file
 //Overwrite the file if it already exists
 //Returns True in case of success
 //Returns False in case of error
-sfBool save_map(map_formatter_t terraformer, char *file_name);
+sfBool save_map(map_formatter_t ter, char *file_name);
 
 //Returns a float ** representing 3D map
 //Returns NULL in case of error
@@ -228,41 +180,22 @@ float **open_map(char *file_name);
 **                                  ******************
 */
 
-
-//
-void window_update(win_settings_t *win_settings,
-                map_formatter_t *terraformer, fps_assets_t *resources_fps);
+void game_view_update(win_settings_t *sets, map_formatter_t *ter,
+                    fps_assets_t *fps_assets);
 
 //Updates window settings such as
 //
 // Size
 // Anchor
 // Mouse settings
-void udpate_window_settings(win_settings_t *win_settings);
-
-//Checks if a window should stay opened or not.
-//
-//Returns sfTrue (1) if it should.
-//Returns sfFalse (0) otherwise.
-sfBool should_stay_opened(sfRenderWindow *window, sfEvent *event, sfBool *goback_menu);
-
-//Draws tile map 2D in RenderWindow
-void draw_tile_map_2d(win_settings_t *win_settings,
-                        map_formatter_t *terraformer);
-
-//Draws one circle in RenderWindow
-void draw_circle(win_settings_t *win_settings, map_formatter_t *terraformer,
-                    sfVector2i pos);
-
-
-//Magnet a number to a lenght if it's close enough:
-//magnet: magnetize the number
-//offset: range of the number to be magnetised
-//acc: accuracy, use at least 100
-void magnet_number(float *nb, float offset, int acc, float magnet);
-
-//Main instance of the my_world edit game.
-sfBool my_world(win_settings_t *win_settings);
+void udpate_window_settings(win_settings_t *sets);
+sfBool game_state_checker(sfRenderWindow *window, sfEvent *event,
+                            sfBool *goback_menu);
+void draw_tile_map_2d(win_settings_t *sets, map_formatter_t *ter);
+void draw_circle(win_settings_t *sets, map_formatter_t *ter,
+                    const sfVector2i pos);
+void magnet_number(float *nb, const float offset,
+                    const int acc, const float magnet);
 
 
 /*
@@ -282,24 +215,10 @@ void change_edit_mode(game_mode_t *mode, edit_mode_flag_t flag);
 //  TEXTURE_MOD
 //  PIXEL_MOD
 sfBool is_edit_mode(game_mode_t mode, edit_mode_flag_t flag);
-
 void set_view_mode(game_mode_t *mode, view_mode_t flag);
-
 void unset_view_mode(game_mode_t *mode, view_mode_t flag);
-
 sfBool is_view_mode(game_mode_t mode, view_mode_t flag);
 
-/*
-**                                 *******************
-**                                 | Map Linked List |
-**                                 *******************
-*/
-
-//Allocates each map_linked_list_t node and links nodes in the list.
-void create_map_list(map_linked_list_t **head,
-                    const sfVector2i map_limits,
-                    const sfTexture **textures,
-                    const sfShader **shaders);
 
 /*
 **                                    ************
@@ -307,45 +226,25 @@ void create_map_list(map_linked_list_t **head,
 **                                    ************
 */
 
-//Free's allocated memory from an arry sized.
-//If the pointer points to NULL, nothing happens.
 void free_array(void **array, const int size);
-
-//Free's allocated memory for a NULL-terminated texture array.
-//If the pointer points to NULL, nothing happens.
 void free_textures_array(sfTexture **textures);
-
-//Free's allocated memory for a NULL-terminated shader array.
-//If the pointer points to NULL, nothing happens.
 void free_shaders_array(sfShader **shaders);
-
-//Free's allocated memory for win_settings.
-void free_win_settings(win_settings_t win_settings);
-
-//Free's allocated memory for terraformer.
-//If the pointer points to NULL, nothing happens.
-void free_terraformer(map_formatter_t *terraformer);
-
-//Free's allocated memory for a map_linked_list_t.
-//
-//Fully checks if memory can be free'd to avoid double free's or corruption.
+void free_win_settings(win_settings_t sets);
+void free_terraformer(map_formatter_t *ter);
 void free_map_list(map_linked_list_t **head);
+void free_game_structures(map_formatter_t *ter, fps_assets_t *fps_assets);
+void free_resources_fps(fps_assets_t *fps_assets);
 
-//Free's allocated memory for win_settings, terraformer and my_map.
-//If (the) pointer(s) point(s) to NULL, nothing happens with these/this one(s).
-void free_game_structures(map_formatter_t *terraformer,
-                        fps_assets_t *resources_fps);
-
-
-void free_resources_fps(fps_assets_t *resources_fps);
-
-/*
-**                                    ****************
-**                                    |  Some maths  |
-**                                    ****************
-*/
-
-//Returns a random number between the given bounds as parameter
 int get_randomnb(int min, int max);
+
+void rotate_up(presets_t *map_settings, sfBool *changed);
+void rotate_down(presets_t *map_settings, sfBool *changed);
+void rotate_left(presets_t *map_settings, sfBool *changed);
+void rotate_right(presets_t *map_settings, sfBool *changed);
+
+sfVector2f transl_up(const sfVector2i mv_speed, const sfVector2f coeff);
+sfVector2f transl_down(const sfVector2i mv_speed, const sfVector2f coeff);
+sfVector2f transl_left(const sfVector2i mv_speed, const sfVector2f coeff);
+sfVector2f transl_right(const sfVector2i mv_speed, const sfVector2f coeff);
 
 #endif /* MY_WORLD_H_ */
