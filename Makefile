@@ -19,6 +19,7 @@ SRC					=	src/free_resources/free_array.c						\
 						src/game_object/free_game_object.c					\
 						src/game_object/init_component.c					\
 						src/game_object/init_game_object.c					\
+						src/game_object/draw_game_object.c					\
 						src/game_object/set_advanced_component.c			\
 						src/game_object/set_basic_component.c				\
 						src/game_object/set_game_object_param.c				\

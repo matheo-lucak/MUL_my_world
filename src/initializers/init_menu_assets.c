@@ -26,9 +26,8 @@ sfBool init_menu_assets(win_settings_t win_settings,
         return (sfFalse);
     pixellist_add_x_pixels(&(menu_assets->pixels), vec2f(10, 10), 1000);
     menu_assets->pixel_drawer = init_pixel_drawer();
-    if (!menu_assets->pixel_drawer) {
+    if (!menu_assets->pixel_drawer)
         return (sfFalse);
-    }
     menu_assets->earth = create_game_obj(EARTH);
     if (!(menu_assets->earth))
         return (sfFalse);

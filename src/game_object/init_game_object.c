@@ -71,7 +71,7 @@ static sfBool get_view_box(sfTexture *texture, sfIntRect *view_box,
 
 static sfBool set_sprite(sfSprite **sprite, sfTexture *texture)
 {
-    if (sprite || texture)
+    if (!sprite || !texture)
         return (sfFalse);
     *sprite = sfSprite_create();
     if (!(*sprite))
@@ -94,8 +94,8 @@ sfBool init_game_object(game_obj_t *obj)
         my_putstr("Bad Frame config file\n");
         return (sfFalse);
     }
-    if (!get_view_box(obj->texture, &(obj->view_box), obj->frame_nb) ||
-        !set_sprite(&(obj->sprite), obj->texture))
+    if (!get_view_box(obj->texture, &(obj->view_box), obj->frame_nb)
+        || !set_sprite(&(obj->sprite), obj->texture))
         return (sfFalse);
     obj->pos = (sfVector2f){0, 0};
     set_hitbox(obj);
