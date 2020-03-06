@@ -45,4 +45,7 @@ void update_pixel_physic(win_settings_t sets, pixellist_t *pixel);
 //Drawing pixel
 void update_pixellist(win_settings_t sets, pixellist_t *pixels,
                                 sfRectangleShape *rect);
+
+void free_pixels(pixellist_t *head);
+
 #endif /* !PIXEL_H_ */
