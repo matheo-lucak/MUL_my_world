@@ -7,74 +7,74 @@
 
 MAIN				=	src/main.c
 
-SRC_FREE_RESOURCES		=	src/free_resources/free_array.c\
-							src/free_resources/free_game_structures.c\
-							src/free_resources/free_resources_fps.c\
-							src/free_resources/free_shaders_array.c\
-							src/free_resources/free_terraformer.c\
-							src/free_resources/free_textures_array.c\
-							src/free_resources/free_win_settings.c\
+SRC_FREE_RESOURCES		=	src/free_resources/free_array.c					\
+							src/free_resources/free_game_structures.c		\
+							src/free_resources/free_resources_fps.c			\
+							src/free_resources/free_shaders_array.c			\
+							src/free_resources/free_terraformer.c			\
+							src/free_resources/free_textures_array.c		\
+							src/free_resources/free_win_settings.c			\
 
-SRC_GAME_DRAW_UPDATE	=	src/game_draw_update/draw_fps.c\
-							src/game_draw_update/game_view_update.c\
+SRC_GAME_DRAW_UPDATE	=	src/game_draw_update/draw_fps.c					\
+							src/game_draw_update/game_view_update.c			\
 
-SRC_GAME_OBJECT			=	src/game_object/create_game_object.c\
-							src/game_object/draw_game_object.c\
-							src/game_object/free_game_object.c\
-							src/game_object/init_advanced_component.c\
-							src/game_object/init_basic_component.c\
-							src/game_object/init_component.c\
-							src/game_object/init_game_object_param.c\
-							src/game_object/init_game_object.c\
-							src/game_object/set_advanced_component.c\
-							src/game_object/set_basic_component.c\
-							src/game_object/set_game_object_param.c\
+SRC_GAME_OBJECT			=	src/game_object/create_game_object.c			\
+							src/game_object/draw_game_object.c				\
+							src/game_object/free_game_object.c				\
+							src/game_object/init_advanced_component.c		\
+							src/game_object/init_basic_component.c			\
+							src/game_object/init_component.c				\
+							src/game_object/init_game_object_param.c		\
+							src/game_object/init_game_object.c				\
+							src/game_object/set_advanced_component.c		\
+							src/game_object/set_basic_component.c			\
+							src/game_object/set_game_object_param.c			\
 
-SRC_GAME_STATE_HANDLING	=	src/game_state_handling/edit_mode.c\
-							src/game_state_handling/game_state_checker.c\
-							src/game_state_handling/my_world.c\
+SRC_GAME_STATE_HANDLING	=	src/game_state_handling/edit_mode.c				\
+							src/game_state_handling/game_state_checker.c	\
+							src/game_state_handling/my_world.c				\
 							src/game_state_handling/update_window_settings.c\
 
-SRC_INITIALIZERS		=	src/initializers/init_game_structures.c\
-							src/initializers/init_map_2d.c\
-							src/initializers/init_menu_assets.c\
-							src/initializers/init_resources_fps.c\
-							src/initializers/init_shaders.c\
-							src/initializers/init_terraformer.c\
-							src/initializers/init_textures.c\
-							src/initializers/init_win_settings.c\
+SRC_INITIALIZERS		=	src/initializers/init_game_structures.c			\
+							src/initializers/init_map_2d.c					\
+							src/initializers/init_menu_assets.c				\
+							src/initializers/init_resources_fps.c			\
+							src/initializers/init_shaders.c					\
+							src/initializers/init_terraformer.c				\
+							src/initializers/init_textures.c				\
+							src/initializers/init_win_settings.c			\
 
-SRC_INPUTS_HANDLING		=	src/inputs_handling/angle_rotation.c\
-							src/inputs_handling/control_view.c\
-							src/inputs_handling/mouse_input.c\
-							src/inputs_handling/translate_cam.c\
-							src/inputs_handling/translations.c\
+SRC_INPUTS_HANDLING		=	src/inputs_handling/angle_rotation.c			\
+							src/inputs_handling/control_view.c				\
+							src/inputs_handling/mouse_input.c				\
+							src/inputs_handling/translate_cam.c				\
+							src/inputs_handling/translations.c				\
 
-SRC_MAP_GENERATION		=	src/map_generation/generate_map.c\
-							src/map_generation/get_hash.c\
-							src/map_generation/open_map.c\
-							src/map_generation/perlin_noise.c\
-							src/map_generation/save_map.c\
+SRC_MAP_GENERATION		=	src/map_generation/generate_map.c				\
+							src/map_generation/get_hash.c					\
+							src/map_generation/open_map.c					\
+							src/map_generation/perlin_noise.c				\
+							src/map_generation/save_map.c					\
 
-SRC_MAP_UPDATE			=	src/map_update/draw_circles.c\
-							src/map_update/draw_tile_map_2d.c\
-							src/map_update/map_update.c\
+SRC_MAP_UPDATE			=	src/map_update/draw_circles.c					\
+							src/map_update/draw_tile_map_2d.c				\
+							src/map_update/map_update.c						\
 
-SRC_MATH_PROCESS		=	src/math_process/get_randnb.c\
-							src/math_process/magnet_number.c\
-							src/math_process/project_iso_point.c\
+SRC_MATH_PROCESS		=	src/math_process/get_randnb.c					\
+							src/math_process/magnet_number.c				\
+							src/math_process/project_iso_point.c			\
 
-SRC_MENU				=	src/menu/menu_update.c\
-							src/menu/menu.c\
+SRC_MENU				=	src/menu/menu_update.c							\
+							src/menu/menu.c									\
 
-SRC_PIXEL				=	src/pixel/free_pixels.c\
-							src/pixel/pixel_physic.c\
-							src/pixel/pixellist_add_pixels.c\
-							src/pixel/pixellist_add_x_pixels.c\
-							src/pixel/update_pixel.c\
+SRC_PIXEL				=	src/pixel/free_pixels.c							\
+							src/pixel/pixel_physic.c						\
+							src/pixel/pixellist_add_pixels.c				\
+							src/pixel/pixellist_add_x_pixels.c				\
+							src/pixel/update_pixel.c						\
 
-SRC_VECTOR_ENGINE		=	src/vector_engine/vector_engine_compute.c\
-							src/vector_engine/vector_engine_prop.c\
+SRC_VECTOR_ENGINE		=	src/vector_engine/vector_engine_compute.c	\
+							src/vector_engine/vector_engine_prop.c		\
 
 SRC_OTHER				=	src/usage.c
 
@@ -106,8 +106,8 @@ $(ASSETS):
 						tar -xf assets.tar.xz
 
 debug:					CPPFLAGS += -g
-debug:					$(LIB)
-						$(CC) -o $@ $(SRC) $(MAIN) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+debug:					clean $(LIB) $(OBJ)
+						$(CC) -o $@ $(OBJ) $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
 
 tests_run:				LDLIBS += -lcriterion --coverage
 tests_run:				CFLAGS += --coverage

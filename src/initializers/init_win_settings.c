@@ -8,16 +8,18 @@
 #include "my_world.h"
 #include "vector_engine.h"
 
-static sfBool init_main_track(sfMusic *main_track)
+static sfBool init_main_track(sfMusic **main_track)
 {
     const char main_track_path[] = "assets/sounds/my_world_main_track.ogg";
 
-    main_track = sfMusic_createFromFile(main_track_path);
     if (!main_track)
         return (sfFalse);
-    sfMusic_setVolume(main_track, 75);
-    sfMusic_setLoop(main_track, sfTrue);
-    sfMusic_play(main_track);
+    *main_track = sfMusic_createFromFile(main_track_path);
+    if (!*main_track)
+        return (sfFalse);
+    sfMusic_setVolume(*main_track, 75);
+    sfMusic_setLoop(*main_track, sfTrue);
+    sfMusic_play(*main_track);
     return (sfTrue);
 }
 
@@ -38,7 +40,7 @@ sfBool init_win_settings(win_settings_t *sets)
     }
     sfView_setCenter(sets->view, vec2f(0, 0));
     sets->mode.view_mode = VIEW_ALL;
-    if (init_main_track(sets->main_track)) {
+    if (!init_main_track(&(sets->main_track))) {
         free_win_settings(*sets);
         return (sfFalse);
     }
