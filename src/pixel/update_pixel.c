@@ -9,28 +9,31 @@
 #include "pixel.h"
 #include "vector_engine.h"
 
-void is_new_pixel(win_settings_t win_settings, pixellist_t **pixels)
+static void is_new_pixel(win_settings_t sets, pixellist_t **head)
 {
     if (sfMouse_isButtonPressed(sfMouseRight)) {
-        pixellist_add_x_pixels(pixels, (sfFloatRect) {
-                                        win_settings.mouse_tool.pos.x - 1, win_settings.mouse_tool.pos.y - 1,
-                                        win_settings.mouse_tool.pos.x, win_settings.mouse_tool.pos.y},
-                                        1);
+        pixellist_add_x_pixels(head,
+                            (sfFloatRect){sets.mouse_tool.pos.x - 1,
+                            sets.mouse_tool.pos.y - 1,
+                            sets.mouse_tool.pos.x, sets.mouse_tool.pos.y}, 1);
     }
 }
 
-void update_pixellist(win_settings_t sets, pixellist_t *pixels,
+void update_pixellist(win_settings_t sets, pixellist_t **head,
                         sfRectangleShape *rect)
 {
-    pixellist_t *tmp = pixels;
+    pixellist_t *tmp = NULL;
 
-    if (!tmp || !rect)
-        return ;
-    is_new_pixel(sets, &pixels);
+    if (!rect || !head)
+        return;
+    is_new_pixel(sets, head);
+    if (!(*head))
+        return;
+    tmp = (*head);
     do {
         update_pixel_physic(sets, tmp);
         sfRectangleShape_setPosition(rect, tmp->pos);
         sfRenderWindow_drawRectangleShape(sets.window, rect, NULL);
         tmp = tmp->next;
-    } while (pixels != tmp && tmp);
+    } while ((*head) != tmp && tmp);
 }

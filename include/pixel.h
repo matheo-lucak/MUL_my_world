@@ -43,7 +43,7 @@ void update_pixel_physic(win_settings_t sets, pixellist_t *pixel);
 //Updates all pixels in a given pixellist by:
 //Updating physic
 //Drawing pixel
-void update_pixellist(win_settings_t sets, pixellist_t *pixels,
+void update_pixellist(win_settings_t sets, pixellist_t **head,
                                 sfRectangleShape *rect);
 
 void free_pixels(pixellist_t **head);

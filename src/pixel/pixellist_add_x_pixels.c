@@ -15,7 +15,11 @@ sfBool pixellist_add_x_pixels(pixellist_t **head,
     static size_t pixel_nb = 0;
     size_t index;
 
+    if (!head)
+        return (sfFalse);
     pixel_nb += nb_pixels;
+    if (!(*head))
+        pixel_nb = 0;
     if (pixel_nb > 3000)
         return (sfFalse);
     for (index = 0; index < nb_pixels; index++) {

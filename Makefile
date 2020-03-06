@@ -64,8 +64,7 @@ SRC_MATH_PROCESS		=	src/math_process/get_randnb.c					\
 							src/math_process/magnet_number.c				\
 							src/math_process/project_iso_point.c			\
 
-SRC_MENU				=	src/menu/menu_update.c							\
-							src/menu/menu.c									\
+SRC_MENU				=	src/menu/menu.c									\
 
 SRC_PIXEL				=	src/pixel/free_pixels.c							\
 							src/pixel/pixel_physic.c						\
