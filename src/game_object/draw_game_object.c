@@ -9,9 +9,7 @@
 
 void anime_game_object(game_obj_t *obj, const int lapse)
 {
-    static sfClock *clock = NULL;
-    if (!clock)
-        clock = sfClock_create();
+    sfClock *clock = obj->comp[find_comp(obj, CLOCK)]->clock;
     sfTime time = sfClock_getElapsedTime(clock);
     sfUint32 msecond = sfTime_asMilliseconds(time);
     int frame = obj->view_box.left / obj->view_box.width;
@@ -24,4 +22,12 @@ void anime_game_object(game_obj_t *obj, const int lapse)
         sfClock_restart(clock);
         obj->view_box.left = 0;
     }
+}
+
+void draw_game_object(win_settings_t sets, game_obj_t *obj)
+{
+    set_hitbox(obj);
+    sfSprite_setPosition(obj->sprite, obj->pos);
+    sfSprite_setTextureRect(obj->sprite, obj->view_box);
+    sfRenderWindow_drawSprite(sets.window, obj->sprite, NULL);
 }

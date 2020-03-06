@@ -13,6 +13,8 @@
 #include "SFML/System.h"
 #include "SFML/Graphics.h"
 
+#include "my_world.h"
+
 typedef enum elem {
     EARTH,
     NONE
@@ -74,5 +76,7 @@ sfBool set_comp_text(game_obj_t *obj, prop_t type, char *path, int size);
 sfBool set_comp_image(game_obj_t *obj, prop_t type, char *path);
 sfBool reset_comp_clock(game_obj_t *obj, prop_t type);
 sfBool set_comp_clock(game_obj_t *obj, prop_t type);
+
+void draw_game_object(win_settings_t sets, game_obj_t *obj);
 
 #endif /* !GAME_OBJECT_H_ */
