@@ -30,7 +30,7 @@ static sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
     sfView_setSize(sets.view, sets.size);
     sfView_setCenter(sets.view, vec_mult(sets.size, 0.5));
     sfRenderWindow_setView(sets.window, sets.view);
-    set_pos(menu_assets.earth, (1920 / 2) - (480 / 2), (1080 / 2) - (400 / 2));
+    set_pos(menu_assets.earth, sets.video_mode.width / 2, sets.video_mode.height / 2);
     while (sfKeyboard_isKeyPressed(sfKeyEnter));
     while (!sfKeyboard_isKeyPressed(sfKeyEnter)) {
         if (should_close_window(sets))

@@ -60,6 +60,7 @@ sfBool init_game_object(game_obj_t *obj);
 
 void anime_game_object(game_obj_t *obj, const int lapse);
 
+sfBool set_origin(game_obj_t *obj, char *buffer);
 void set_hitbox(game_obj_t *obj);
 void set_pos(game_obj_t *obj, float x, float y);
 

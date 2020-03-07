@@ -8,6 +8,18 @@
 #include "my.h"
 #include "game_object.h"
 
+sfBool set_sprite(game_obj_t *obj)
+{
+    if (!obj || !(obj->texture))
+        return (sfFalse);
+    obj->sprite = sfSprite_create();
+    if (!(obj->sprite))
+        return (sfFalse);
+    sfSprite_setTexture(obj->sprite, obj->texture, sfFalse);
+    sfSprite_setTextureRect(obj->sprite, obj->view_box);
+    return (sfTrue);
+}
+
 sfBool set_texture(game_obj_t *obj, char *buffer)
 {
     char **parsed_buffer = NULL;
@@ -23,7 +35,7 @@ sfBool set_texture(game_obj_t *obj, char *buffer)
     my_free_arr(parsed_buffer);
     if (!(obj->texture))
         return (sfFalse);
-    return (sfTrue);
+    return (set_sprite(obj));
 }
 
 sfBool set_frame_nb(game_obj_t *obj, char *buffer)
@@ -31,8 +43,7 @@ sfBool set_frame_nb(game_obj_t *obj, char *buffer)
     char **parsed_buffer = NULL;
 
     parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
-    if (!parsed_buffer || !obj ||
-        my_strncmp(parsed_buffer[0], "frame_nb", 8))
+    if (!parsed_buffer || !obj)
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 2) {
         my_free_arr(parsed_buffer);
@@ -42,6 +53,25 @@ sfBool set_frame_nb(game_obj_t *obj, char *buffer)
     my_free_arr(parsed_buffer);
     if (!(obj->frame_nb))
         return (sfFalse);
+    return (sfTrue);
+}
+
+sfBool set_origin(game_obj_t *obj, char *buffer)
+{
+    char **parsed_buffer = NULL;
+    sfVector2f origin = {0, 0};
+
+    parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
+    if (!parsed_buffer || !obj || !(obj->sprite))
+        return (sfFalse);
+    if (my_arrlen((void **)parsed_buffer) != 3) {
+        my_free_arr(parsed_buffer);
+        return (sfFalse);
+    }
+    origin.x = my_getnbr(parsed_buffer[1]);
+    origin.y = my_getnbr(parsed_buffer[2]);
+    sfSprite_setOrigin(obj->sprite, origin);
+    my_free_arr(parsed_buffer);
     return (sfTrue);
 }
 
@@ -56,17 +86,5 @@ sfBool set_view_box(game_obj_t *obj)
     obj->view_box.top = 0;
     obj->view_box.width = size.x / obj->frame_nb;
     obj->view_box.height = size.y;
-    return (sfTrue);
-}
-
-sfBool set_sprite(game_obj_t *obj)
-{
-    if (!obj || !(obj->texture))
-        return (sfFalse);
-    obj->sprite = sfSprite_create();
-    if (!(obj->sprite))
-        return (sfFalse);
-    sfSprite_setTexture(obj->sprite, obj->texture, sfFalse);
-    sfSprite_setTextureRect(obj->sprite, obj->view_box);
     return (sfTrue);
 }

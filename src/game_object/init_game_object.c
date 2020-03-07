@@ -13,18 +13,12 @@
 
 static sfBool (*get_param_from_file[])(game_obj_t *obj, char *buffer);
 
-static const char *config_path[] =
-{
-    "assets/config/objects/earth"
-};
+static const char *params[];
+
+static const char *config_path[];
 
 int find_param(char *buffer)
 {
-    static const char *params[] = {
-        "texture",
-        "frame_nb",
-        NULL
-    };
     int index = 0;
 
     while (params[index]) {
@@ -53,7 +47,6 @@ sfBool init_game_object(game_obj_t *obj)
     obj->pos = (sfVector2f){0, 0};
     set_view_box(obj);
     set_hitbox(obj);
-    set_sprite(obj);
     set_all_component(obj, fd, buffer);
     close(fd);
     return (sfTrue);

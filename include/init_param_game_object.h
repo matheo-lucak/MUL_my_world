@@ -14,10 +14,23 @@ sfBool set_texture(game_obj_t *obj, char *buffer);
 sfBool set_frame_nb(game_obj_t *obj, char *buffer);
 sfBool set_view_box(game_obj_t *obj);
 sfBool set_sprite(game_obj_t *obj);
+sfBool set_origin(game_obj_t *obj, char *buffer);
+
+static const char *params[] = {
+    "texture",
+    "frame_nb",
+    "origin",
+    NULL
+};
+static const char *config_path[] =
+{
+    "assets/config/objects/earth"
+};
 
 static sfBool (*get_param_from_file[])(game_obj_t *obj, char *buffer) = {
     set_texture,
-    set_frame_nb
+    set_frame_nb,
+    set_origin
 };
 
 sfBool set_all_component(game_obj_t *obj, int fd, char *buffer);
