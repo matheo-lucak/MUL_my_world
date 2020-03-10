@@ -54,6 +54,8 @@ sfBool init_game_object(game_obj_t *obj)
     if (!config_path)
         config_path = get_config_path();
     if (config_path) {
+        if (obj->type > my_arrlen(config_path))
+            return (sfFalse);
         fd = open(config_path[obj->type], O_RDONLY);
     }
     do {
