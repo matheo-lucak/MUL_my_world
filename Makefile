@@ -30,6 +30,7 @@ SRC_GAME_OBJECT			=	src/game_object/create_game_object.c			\
 							src/game_object/set_advanced_component.c		\
 							src/game_object/set_basic_component.c			\
 							src/game_object/set_game_object_param.c			\
+							src/game_object/add_game_obj_to_list.c			\
 
 SRC_GAME_STATE_HANDLING	=	src/game_state_handling/edit_mode.c				\
 							src/game_state_handling/game_state_checker.c	\
