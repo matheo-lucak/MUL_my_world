@@ -5,6 +5,7 @@
 ** menu.c
 */
 
+#include <math.h>
 #include "my.h"
 #include "my_world.h"
 #include "game_menu.h"
@@ -31,7 +32,8 @@ static void hovering_planet_effect(win_settings_t sets, game_obj_t *earth)
     static sfBool hovering = sfFalse;
     static size_t x = 0;
 
-    sfSprite_setScale(earth->sprite, vec2f(x + 1, (sin(my_pow(x + 1, 2)) / (x + 1)) + 1));
+    sfSprite_setScale(earth->sprite, vec2f((sin(my_pow(0.03 * x + 1, 4)) / (0.03 * x + 1)) + 1, (sin(my_pow(0.03 * x + 1, 4)) / (0.03 * x + 1)) + 1));
+    x += 1;
 }
 
 static sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
