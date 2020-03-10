@@ -17,6 +17,7 @@
 
 typedef enum elem {
     EARTH,
+    BACKGROUND_SPACE,
     NONE
 } elem_t;
 

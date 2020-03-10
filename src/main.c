@@ -33,6 +33,6 @@ int main(const int ac, const char * const av[], const char * const env[])
             return (0);
         return (84);
     }
-    menu();
+    window_actions();
     return (0);
 }

@@ -5,7 +5,7 @@
 ## rtfm
 ##
 
-MAIN				=	src/main.c
+MAIN					=	src/main.c
 
 SRC_FREE_RESOURCES		=	src/free_resources/free_array.c					\
 							src/free_resources/free_game_structures.c		\
@@ -65,7 +65,7 @@ SRC_MATH_PROCESS		=	src/math_process/get_randnb.c					\
 							src/math_process/magnet_number.c				\
 							src/math_process/project_iso_point.c			\
 
-SRC_MENU				=	src/menu/menu.c									\
+SRC_MENU				=	src/menu/run_menu.c								\
 
 SRC_PIXEL				=	src/pixel/free_pixels.c							\
 							src/pixel/pixel_color.c							\
@@ -74,10 +74,11 @@ SRC_PIXEL				=	src/pixel/free_pixels.c							\
 							src/pixel/pixellist_add_x_pixels.c				\
 							src/pixel/update_pixel.c						\
 
-SRC_VECTOR_ENGINE		=	src/vector_engine/vector_engine_compute.c	\
-							src/vector_engine/vector_engine_prop.c		\
+SRC_VECTOR_ENGINE		=	src/vector_engine/vector_engine_compute.c		\
+							src/vector_engine/vector_engine_prop.c			\
 
-SRC_OTHER				=	src/usage.c
+SRC_OTHER				=	src/usage.c										\
+							src/window_actions.c
 
 OBJ					=	$(MAIN:.c=.o) $(SRC_FREE_RESOURCES:.c=.o) $(SRC_GAME_DRAW_UPDATE:.c=.o) $(SRC_GAME_OBJECT:.c=.o) $(SRC_GAME_STATE_HANDLING:.c=.o) $(SRC_INITIALIZERS:.c=.o) $(SRC_INPUTS_HANDLING:.c=.o) $(SRC_MAP_GENERATION:.c=.o) $(SRC_MAP_UPDATE:.c=.o) $(SRC_MATH_PROCESS:.c=.o) $(SRC_MENU:.c=.o) $(SRC_PIXEL:.c=.o) $(SRC_VECTOR_ENGINE:.c=.o) $(SRC_OTHER:.c=.o)
 

@@ -10,9 +10,11 @@
 
 #include "game_object.h"
 #include "pixel.h"
+#include "my_world.h"
 
 typedef struct menu_assets_s {
     game_obj_t *earth;
+    game_obj_t *background;
     pixellist_t *pixels;
     sfRectangleShape *pixel_drawer;
 } menu_assets_t;
@@ -20,5 +22,7 @@ typedef struct menu_assets_s {
 sfBool init_menu_assets(win_settings_t sets, menu_assets_t *menu_assets);
 
 sfRectangleShape *init_pixel_drawer(void);
+
+sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets);
 
 #endif /* !GAME_MENU_H_ */

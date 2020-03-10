@@ -139,7 +139,8 @@ typedef struct win_settings_s {
 
 
 
-void menu(void);
+void window_actions(void);
+
 sfBool my_world(win_settings_t *sets);
 
 void usage(void);
