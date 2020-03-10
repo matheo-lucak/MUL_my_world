@@ -5,6 +5,7 @@
 ** menu.c
 */
 
+#include "my.h"
 #include "my_world.h"
 #include "game_menu.h"
 #include "game_object.h"
@@ -24,6 +25,15 @@ static sfBool should_close_window(win_settings_t sets)
     return (sfFalse);
 }
 
+static void hovering_planet_effect(win_settings_t sets, game_obj_t *earth)
+{
+    static sfBool bouncing = sfFalse;
+    static sfBool hovering = sfFalse;
+    static size_t x = 0;
+
+    sfSprite_setScale(earth->sprite, vec2f(x + 1, (sin(my_pow(x + 1, 2)) / (x + 1)) + 1));
+}
+
 static sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
 {
     sfMusic_setVolume(sets.main_track, 75);
@@ -39,6 +49,7 @@ static sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
         udpate_window_settings(&sets);
         update_pixellist(sets, &(menu_assets.pixels), menu_assets.pixel_drawer);
         anime_game_object(menu_assets.earth, 125);
+        hovering_planet_effect(sets, menu_assets.earth);
         draw_game_object(sets, menu_assets.earth);
         sfRenderWindow_display(sets.window);
     }
