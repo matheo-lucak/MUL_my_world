@@ -15,8 +15,6 @@ static sfBool (*get_param_from_file[])(game_obj_t *obj, char *buffer);
 
 static const char *params[];
 
-static const char *config_path[];
-
 int find_param(char *buffer)
 {
     int index = 0;
@@ -54,7 +52,7 @@ sfBool init_game_object(game_obj_t *obj)
     if (!config_path)
         config_path = get_config_path();
     if (config_path) {
-        if (obj->type > my_arrlen(config_path))
+        if ((int)obj->type > my_arrlen((void **)config_path))
             return (sfFalse);
         fd = open(config_path[obj->type], O_RDONLY);
     }
