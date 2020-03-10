@@ -55,6 +55,8 @@ typedef struct game_obj {
 
 game_obj_t *create_game_obj(elem_t type);
 
+sfBool add_game_obj_to_list(game_obj_t **list, elem_t element);
+
 int find_comp(game_obj_t *obj, prop_t type);
 
 sfBool init_game_object(game_obj_t *obj);
