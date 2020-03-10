@@ -13,6 +13,8 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
+#include "game_object.h"
+
 //An enum of each possible material a square can be.
 
 typedef enum tile_matter_e {
@@ -69,16 +71,6 @@ typedef struct map_formatter_s {
     sfShader **shaders;
     sfTexture **textures;
 } map_formatter_t;
-
-
-
-typedef struct fps_assets_s {
-    sfText *fps_drawer;
-    sfClock *clock;
-    sfFont *fps_font;
-    size_t fps_counter;
-} fps_assets_t;
-
 
 
 typedef struct mouse_tool_s {
@@ -138,6 +130,24 @@ typedef struct win_settings_s {
 } win_settings_t;
 
 
+typedef struct fps_assets_s {
+    sfText *fps_drawer;
+    sfClock *clock;
+    sfFont *fps_font;
+    size_t fps_counter;
+} fps_assets_t;
+
+
+
+typedef struct hud_s
+{
+    game_obj_t *slider;
+    game_obj_t *texture_bar;
+    fps_assets_t fps_assets;
+} hud_t;
+
+sfBool init_hud(hud_t *hud);
+
 
 void menu(void);
 sfBool my_world(win_settings_t *sets);
@@ -160,7 +170,8 @@ tile_t **init_tile_map_2d(const sfVector2i map_size, sfTexture **textures,
                                     sfShader **shaders);
 sfBool init_win_settings(win_settings_t *sets);
 sfBool init_terraformer(map_formatter_t *ter, size_t seed);
-sfBool init_game_structures(map_formatter_t *ter, fps_assets_t *fps_assets);
+sfBool init_game_structures(map_formatter_t *ter, hud_t *hud);
+sfBool init_hud(hud_t *hud);
 sfBool init_resources_fps(fps_assets_t *fps_assets);
 
 //Save all the map data into a new_file

@@ -5,6 +5,7 @@
 ** draw_game_object
 */
 
+#include "my_world.h"
 #include "game_object.h"
 
 void anime_game_object(game_obj_t *obj, const int lapse)

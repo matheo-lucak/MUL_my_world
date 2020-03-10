@@ -13,10 +13,10 @@
 #include "SFML/System.h"
 #include "SFML/Graphics.h"
 
-#include "my_world.h"
-
 typedef enum elem {
     EARTH,
+    SLIDER,
+    TEXTURE_BAR,
     NONE
 } elem_t;
 
@@ -54,6 +54,10 @@ typedef struct game_obj {
 
 game_obj_t *create_game_obj(elem_t type);
 
+sfBool free_obj(game_obj_t *obj);
+sfBool free_all_comp(game_obj_t *obj);
+
+
 int find_comp(game_obj_t *obj, prop_t type);
 
 sfBool init_game_object(game_obj_t *obj);
@@ -77,7 +81,5 @@ sfBool set_comp_text(game_obj_t *obj, prop_t type, char *path, int size);
 sfBool set_comp_image(game_obj_t *obj, prop_t type, char *path);
 sfBool reset_comp_clock(game_obj_t *obj, prop_t type);
 sfBool set_comp_clock(game_obj_t *obj, prop_t type);
-
-void draw_game_object(win_settings_t sets, game_obj_t *obj);
 
 #endif /* !GAME_OBJECT_H_ */

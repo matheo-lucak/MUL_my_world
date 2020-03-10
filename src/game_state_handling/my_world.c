@@ -12,20 +12,20 @@
 
 sfBool my_world(win_settings_t *sets)
 {
+    hud_t hud;
     map_formatter_t ter;
-    fps_assets_t fps_assets;
     sfBool goback_menu = sfFalse;
 
-    if (!init_game_structures(&ter, &fps_assets))
+    if (!init_game_structures(&ter, &hud))
         return (sfFalse);
     sfMusic_setVolume(sets->main_track, 45);
     sfView_setCenter(sets->view, vec2f(0, 0));
     while (game_state_checker(sets->window, &sets->event, &goback_menu)) {
         sfRenderWindow_clear(sets->window, sfBlack);
-        game_view_update(sets, &ter, &fps_assets);
-        draw_fps(*sets, &fps_assets);
+        game_view_update(sets, &ter, &(hud.fps_assets));
+        draw_fps(*sets, &(hud.fps_assets));
         sfRenderWindow_display(sets->window);
     }
-    free_game_structures(&ter, &fps_assets);
+    free_game_structures(&ter, &(hud.fps_assets));
     return (goback_menu);
 }

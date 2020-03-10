@@ -8,11 +8,11 @@
 #include "my_world.h"
 
 sfBool init_game_structures(map_formatter_t *ter,
-                            fps_assets_t *fps_assets)
+                            hud_t *hud)
 {
     if (!init_terraformer(ter, get_randomnb(1, 255)))
         return (sfFalse);
-    if (!init_resources_fps(fps_assets))
+    if (!init_hud(hud))
         return (sfFalse);
     return (sfTrue);
 }

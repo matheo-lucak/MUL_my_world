@@ -37,6 +37,7 @@ SRC_GAME_STATE_HANDLING	=	src/game_state_handling/edit_mode.c				\
 							src/game_state_handling/update_window_settings.c\
 
 SRC_INITIALIZERS		=	src/initializers/init_game_structures.c			\
+							src/initializers/init_hud.c						\
 							src/initializers/init_map_2d.c					\
 							src/initializers/init_menu_assets.c				\
 							src/initializers/init_resources_fps.c			\

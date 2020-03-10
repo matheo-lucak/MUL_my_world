@@ -15,6 +15,9 @@ typedef struct menu_assets_s {
     game_obj_t *earth;
     pixellist_t *pixels;
     sfRectangleShape *pixel_drawer;
+    game_obj_t *buttons;
+    game_obj_t *background;
+    sfMusic *music;
 } menu_assets_t;
 
 sfBool init_menu_assets(win_settings_t sets, menu_assets_t *menu_assets);
