@@ -29,12 +29,33 @@ int find_param(char *buffer)
     return (-1);
 }
 
+sfBool fill_basic_game_object(game_obj_t *obj, int fd, char *buffer)
+{
+    if (!obj)
+        return (sfFalse);
+    if (!(obj->texture))
+        return (sfFalse);
+    obj->pos = (sfVector2f){0, 0};
+    if (!set_view_box(obj) || !set_all_component(obj, fd, buffer))
+        return (sfFalse);
+    set_hitbox(obj);
+    if (fd != -1)
+        close(fd);
+    return (sfTrue);
+}
+
 sfBool init_game_object(game_obj_t *obj)
 {
+    static char **config_path = NULL;
     char *buffer = NULL;
-    int fd = open(config_path[obj->type], O_RDONLY);
     int param_index = -1;
+    int fd = 0;
 
+    if (!config_path)
+        config_path = get_config_path();
+    if (config_path) {
+        fd = open(config_path[obj->type], O_RDONLY);
+    }
     do {
         buffer = get_next_line(fd);
         param_index = find_param(buffer);
@@ -42,12 +63,5 @@ sfBool init_game_object(game_obj_t *obj)
             !get_param_from_file[param_index](obj, buffer))
             return (sfFalse);
     } while (buffer && my_hay_needle(buffer, "component : ") == -1);
-    if (!(obj->texture))
-        return (sfFalse);
-    obj->pos = (sfVector2f){0, 0};
-    set_view_box(obj);
-    set_hitbox(obj);
-    set_all_component(obj, fd, buffer);
-    close(fd);
-    return (sfTrue);
+    return (fill_basic_game_object(obj, fd, buffer));
 }

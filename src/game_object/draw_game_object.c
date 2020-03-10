@@ -10,8 +10,7 @@
 void anime_game_object(game_obj_t *obj, const int lapse)
 {
     sfClock *clock = obj->comp[find_comp(obj, CLOCK)]->clock;
-    sfTime time = sfClock_getElapsedTime(clock);
-    sfUint32 msecond = sfTime_asMilliseconds(time);
+    sfUint32 msecond = sfTime_asMilliseconds(sfClock_getElapsedTime(clock));
     int frame = obj->view_box.left / obj->view_box.width;
 
     if (lapse * (frame + 1) < (int)msecond &&

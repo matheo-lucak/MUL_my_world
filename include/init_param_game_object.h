@@ -22,16 +22,14 @@ static const char *params[] = {
     "origin",
     NULL
 };
-static const char *config_path[] =
-{
-    "assets/config/objects/earth"
-};
 
 static sfBool (*get_param_from_file[])(game_obj_t *obj, char *buffer) = {
     set_texture,
     set_frame_nb,
     set_origin
 };
+
+char **get_config_path(void);
 
 sfBool set_all_component(game_obj_t *obj, int fd, char *buffer);
 
