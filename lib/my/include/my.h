@@ -210,6 +210,10 @@ char **my_str_to_word_array(char *sentence, const char splitter[],
 //Returns a radian float considering a degree.
 float my_radians(const int degrees);
 
+//Returns the first argument raised to the second given argument
+int my_pow(int nb, int p);
+float my_powf(float nb, float p);
+
 //Checks if a char matches with at least another char in a string.
 //
 //Example: str = " \t", c = '\t'; -> Returns 1 because '\t' is in str.
