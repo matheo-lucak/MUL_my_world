@@ -14,6 +14,8 @@ sfBool init_hud(hud_t *hud)
         return (sfFalse);
     if (!init_resources_fps(&(hud->fps_assets)))
         return (sfFalse);
+    hud->slider = create_game_obj(SLIDER);
+    hud->texture_bar = create_game_obj(TEXTURE_BAR);
     if (!(hud->slider) || !(hud->texture_bar)) {
         free_obj(hud->slider);
         free_obj(hud->texture_bar);

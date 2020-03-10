@@ -25,7 +25,7 @@ SRC				=	./my_putchar.c						\
 					./my_putstr.c						\
 					./my_getnbr.c						\
 					./my_hay_needle.c					\
-					./my_pow.c						\
+					./my_pow.c							\
 					./my_put_nbr.c						\
 					./my_put_nbr_u.c					\
 					./my_put_nbr_s.c					\

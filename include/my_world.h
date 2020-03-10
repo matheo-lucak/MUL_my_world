@@ -141,15 +141,16 @@ typedef struct fps_assets_s {
 
 typedef struct hud_s
 {
+    fps_assets_t fps_assets;
     game_obj_t *slider;
     game_obj_t *texture_bar;
-    fps_assets_t fps_assets;
 } hud_t;
 
 sfBool init_hud(hud_t *hud);
 
 
-void menu(void);
+void window_actions(void);
+
 sfBool my_world(win_settings_t *sets);
 
 void usage(void);
@@ -191,14 +192,16 @@ float **open_map(char *file_name);
 **                                  ******************
 */
 
-void game_view_update(win_settings_t *sets, map_formatter_t *ter,
-                    fps_assets_t *fps_assets);
+void game_view_update(win_settings_t *sets, map_formatter_t *ter);
 
 //Updates window settings such as
 //
 // Size
 // Anchor
 // Mouse settings
+
+void draw_game_object(win_settings_t sets, game_obj_t *obj);
+
 void udpate_window_settings(win_settings_t *sets);
 sfBool game_state_checker(sfRenderWindow *window, sfEvent *event,
                             sfBool *goback_menu);

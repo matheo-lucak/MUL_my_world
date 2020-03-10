@@ -15,6 +15,7 @@
 
 typedef enum elem {
     EARTH,
+    BACKGROUND_SPACE,
     SLIDER,
     TEXTURE_BAR,
     NONE

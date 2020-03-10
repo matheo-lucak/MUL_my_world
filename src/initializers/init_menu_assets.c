@@ -5,6 +5,7 @@
 ** init_menu_assets
 */
 
+#include "my.h"
 #include "my_world.h"
 #include "game_menu.h"
 #include "game_object.h"
@@ -24,7 +25,9 @@ sfBool init_menu_assets(win_settings_t sets, menu_assets_t *menu_assets)
 {
     if (!menu_assets)
         return (sfFalse);
-    pixellist_add_x_pixels(&(menu_assets->pixels), (sfFloatRect){0, 0, sets.size.x, sets.size.y}, 1);
+    my_memset((char *)menu_assets, 0, sizeof(menu_assets_t));
+    pixellist_add_x_pixels(&(menu_assets->pixels),
+                            (sfFloatRect){0, 0, sets.size.x, sets.size.y}, 1);
     menu_assets->pixel_drawer = init_pixel_drawer();
     if (!menu_assets->pixel_drawer)
         return (sfFalse);

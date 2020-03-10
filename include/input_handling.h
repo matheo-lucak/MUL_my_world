@@ -20,8 +20,7 @@
 sfVector2f get_relative_mouse_pos(win_settings_t sets);
 
 //Allows the player to translate camera on 2D plane.
-sfBool control_camera_view(win_settings_t sets, presets_t map_settings,
-                            fps_assets_t *fps_assets);
+sfBool control_camera_view(win_settings_t sets, presets_t map_settings);
 
 //Allows the player to rotate camera (Z axis).
 //By default centered at map center.
