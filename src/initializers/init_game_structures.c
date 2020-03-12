@@ -10,7 +10,7 @@
 sfBool init_game_structures(map_formatter_t *ter,
                             hud_t *hud)
 {
-    if (!init_terraformer(ter, get_randomnb(1, 255)))
+    if (!init_terraformer(ter, 1))
         return (sfFalse);
     if (!init_hud(hud))
         return (sfFalse);

@@ -22,8 +22,8 @@ sfBool init_clock(game_obj_t *obj, char *buffer)
 
 sfBool init_text(game_obj_t *obj, char *buffer)
 {
-    char **parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
     prop_t prop = my_getnbr(buffer);
+    char **parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
     sfBool error = sfFalse;
     int size = 0;
 
@@ -41,8 +41,8 @@ sfBool init_text(game_obj_t *obj, char *buffer)
 
 sfBool init_sound(game_obj_t *obj, char *buffer)
 {
-    char **parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
     prop_t prop = my_getnbr(buffer);
+    char **parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
     sfBool error = sfFalse;
     int volume = 0;
 
@@ -60,8 +60,8 @@ sfBool init_sound(game_obj_t *obj, char *buffer)
 
 sfBool init_image(game_obj_t *obj, char *buffer)
 {
-    char **parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
     prop_t prop = my_getnbr(buffer);
+    char **parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
     sfBool error = sfFalse;
 
     if (!parsed_buffer || !prop || my_arrlen((void **)parsed_buffer) != 3)

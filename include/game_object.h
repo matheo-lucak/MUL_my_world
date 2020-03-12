@@ -18,12 +18,19 @@ typedef enum elem {
     BACKGROUND_SPACE,
     SLIDER,
     TEXTURE_BAR,
+    TEXTURE_VIEW_BUTTON,
+    VERTEX_VIEW_BUTTON,
+    PIN_VIEW_BUTTON,
+    SLIDER_ARROW,
     NONE
 } elem_t;
 
 typedef enum prop {
     LIFE = 1,
     CLOCK,
+    OFFSET,
+    SHIFT,
+    POS
 } prop_t;
 
 typedef struct component {
@@ -59,6 +66,8 @@ sfBool free_obj(game_obj_t *obj);
 sfBool free_all_comp(game_obj_t *obj);
 
 sfBool add_game_obj_to_list(game_obj_t **list, elem_t element);
+
+game_obj_t *find_game_object(game_obj_t *list, elem_t type);
 
 int find_comp(game_obj_t *obj, prop_t type);
 

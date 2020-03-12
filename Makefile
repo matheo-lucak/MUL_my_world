@@ -21,6 +21,7 @@ SRC_GAME_DRAW_UPDATE	=	src/game_draw_update/draw_fps.c					\
 SRC_GAME_OBJECT			=	src/game_object/create_game_object.c			\
 							src/game_object/draw_game_object.c				\
 							src/game_object/get_config_path.c				\
+							src/game_object/find_game_object.c				\
 							src/game_object/free_game_object.c				\
 							src/game_object/init_advanced_component.c		\
 							src/game_object/init_basic_component.c			\

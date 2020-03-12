@@ -10,8 +10,8 @@
 
 sfBool init_irect(game_obj_t *obj, char *buffer)
 {
-    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     prop_t prop = my_getnbr(buffer);
+    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 6)
@@ -27,8 +27,8 @@ sfBool init_irect(game_obj_t *obj, char *buffer)
 
 sfBool init_v2f(game_obj_t *obj, char *buffer)
 {
-    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     prop_t prop = my_getnbr(buffer);
+    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 4)
@@ -42,8 +42,8 @@ sfBool init_v2f(game_obj_t *obj, char *buffer)
 
 sfBool init_v2i(game_obj_t *obj, char *buffer)
 {
-    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     prop_t prop = my_getnbr(buffer);
+    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 4)
@@ -56,8 +56,8 @@ sfBool init_v2i(game_obj_t *obj, char *buffer)
 
 sfBool init_f(game_obj_t *obj, char *buffer)
 {
-    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     prop_t prop = my_getnbr(buffer);
+    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 3)
@@ -69,8 +69,8 @@ sfBool init_f(game_obj_t *obj, char *buffer)
 
 sfBool init_i(game_obj_t *obj, char *buffer)
 {
-    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     prop_t prop = my_getnbr(buffer);
+    char **parsed_input = my_str_to_word_array(buffer, " :;", 1);
     sfBool error = sfFalse;
 
     if (!parsed_input || !prop || my_arrlen((void **)parsed_input) != 3)

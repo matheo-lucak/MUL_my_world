@@ -13,8 +13,10 @@ sfBool set_sprite(game_obj_t *obj)
     if (!obj || !(obj->texture))
         return (sfFalse);
     obj->sprite = sfSprite_create();
-    if (!(obj->sprite))
+    if (!(obj->sprite)) {
+        my_printf("Set sprite failed for game_object %d\n", obj->type);
         return (sfFalse);
+    }
     sfSprite_setTexture(obj->sprite, obj->texture, sfFalse);
     sfSprite_setTextureRect(obj->sprite, obj->view_box);
     return (sfTrue);
@@ -28,13 +30,16 @@ sfBool set_texture(game_obj_t *obj, char *buffer)
     if (!parsed_buffer || !obj)
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 2) {
+        my_printf("Set texture failed for game_object %d\n", obj->type);
         my_free_arr(parsed_buffer);
         return (sfFalse);
     }
     obj->texture = sfTexture_createFromFile(parsed_buffer[1], NULL);
     my_free_arr(parsed_buffer);
-    if (!(obj->texture))
+    if (!(obj->texture)) {
+        my_printf("Set texture failed for game_object %d\n", obj->type);
         return (sfFalse);
+    }
     return (set_sprite(obj));
 }
 
@@ -46,6 +51,7 @@ sfBool set_frame_nb(game_obj_t *obj, char *buffer)
     if (!parsed_buffer || !obj)
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 2) {
+        my_printf("Set frame nb failed for game_object %d\n", obj->type);
         my_free_arr(parsed_buffer);
         return (sfFalse);
     }
@@ -65,6 +71,7 @@ sfBool set_origin(game_obj_t *obj, char *buffer)
     if (!parsed_buffer || !obj || !(obj->sprite))
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 3) {
+        my_printf("Set frame nb failed for game_object %d\n", obj->type);
         my_free_arr(parsed_buffer);
         return (sfFalse);
     }

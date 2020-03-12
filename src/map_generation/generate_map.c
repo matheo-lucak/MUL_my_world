@@ -26,7 +26,8 @@ float **generate_map(const sfVector2i map_size,
         if (!(map[y]))
             return (NULL);
         for (x = 0; x < map_size.x; x += 1) {
-            map[y][x] = exp(perlin_2d(vec2f(x, y), 0.05, 5, seed) * 5);
+            map[y][x] = perlin_2d(vec2f(x, y), 0.05, 5, seed) * 5;
+            map[y][x] += perlin_2d(vec2f(x, y), 0.05, 5, seed) * 2.5;
             magnet_number(&(map[y][x]), 0.5, 100, 1);
         }
         y += 1;

@@ -40,8 +40,8 @@ static char *component_pattern[] = {
     "v2i",
     "v2f",
     "irect",
-    "i",
-    "f",
+    "int",
+    "float",
     NULL
 };
 

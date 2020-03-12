@@ -55,12 +55,15 @@ char **get_config_path(void)
     if (fd == -1)
         return (NULL);
     len = get_config_path_len(fd);
-    if (!len)
+    if (!len) {
+        close(fd);
         return (NULL);
+    }
     config_path = malloc(sizeof(char *) * (len + 1));
-    if (!config_path)
+    if (!config_path || !fill_config_path(config_path, len, fd)) {
+        close(fd);
         return (NULL);
-    if (!fill_config_path(config_path, len, fd))
-        return (NULL);
+    }
+    close(fd);
     return (config_path);
 }
