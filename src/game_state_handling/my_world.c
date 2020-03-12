@@ -33,7 +33,6 @@ void draw_slider_arrow(win_settings_t sets, game_obj_t *slider)
         slider->comp[find_comp(slider, SHIFT)]->f -= 3;
     }
     sfSprite_setRotation(slider_arrow->sprite, x_offset * (x_shift + 3) / 360 + 180);
-    printf("%f && %f && %f\n", x_shift,  x_offset * (x_shift + 3) / 360 + 180, x_offset);
     draw_game_object(sets, slider_arrow);
 }
 
