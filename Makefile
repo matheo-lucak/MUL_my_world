@@ -60,7 +60,9 @@ SRC_MAP_GENERATION		=	src/map_generation/generate_map.c				\
 							src/map_generation/perlin_noise.c				\
 							src/map_generation/save_map.c					\
 
-SRC_MAP_UPDATE			=	src/map_update/draw_circles.c					\
+SRC_MAP_UPDATE			=	src/map_update/hud/draw_hud.c					\
+							src/map_update/hud/draw_slider.c				\
+							src/map_update/draw_circles.c					\
 							src/map_update/draw_tile_map_2d.c				\
 							src/map_update/map_update.c						\
 

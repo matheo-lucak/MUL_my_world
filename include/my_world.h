@@ -194,6 +194,10 @@ float **open_map(char *file_name);
 
 void game_view_update(win_settings_t *sets, map_formatter_t *ter);
 
+void draw_hud(win_settings_t sets, hud_t *hud);
+
+void draw_slider(win_settings_t sets, game_obj_t *slider);
+
 //Updates window settings such as
 //
 // Size
