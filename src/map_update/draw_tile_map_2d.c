@@ -34,7 +34,8 @@ static void draw_vertex(win_settings_t *sets, map_formatter_t *ter,
     hitbox = sfVertexArray_getBounds(ter->tile_map_2d[y][x].shape_drawer);
     selection = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
                                         sets->mouse_tool.pos.y);
-    if (selection && sets->mouse_tool.hold)
+    if (selection && sets->mouse_tool.hold
+        && sets->mode.edit_mode == TEXTURE_MODE)
         ter->tile_map_2d[y][x].matter_state = SAND;
     assert_tile(sets->window, &(ter->tile_map_2d[y][x]), sets->mode);
 }

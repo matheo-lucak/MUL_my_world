@@ -45,7 +45,8 @@ static void check_circle_selected(win_settings_t sets, map_formatter_t *ter,
         }
     } else
         sfCircleShape_setFillColor(circle, sfBlue);
-    if (selected_point && pos.x == saved_pos.x && pos.y == saved_pos.y)
+    if (selected_point && pos.x == saved_pos.x && pos.y == saved_pos.y
+        && sets.mode.edit_mode == PIXEL_MODE)
         set_green_update(sets, &(ter->map_3d[pos.y][pos.x]), circle, z_offset);
     if (!sets.mouse_tool.hold)
         selected_point = sfFalse;
@@ -56,6 +57,8 @@ void draw_circle(win_settings_t *sets, map_formatter_t *ter,
 {
     static sfCircleShape *circle = NULL;
 
+    if (!sets || !ter)
+        return ;
     if (!is_view_mode(sets->mode, VIEW_PIN))
         return;
     if (!circle) {
