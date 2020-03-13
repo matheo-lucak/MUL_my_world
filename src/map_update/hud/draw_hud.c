@@ -9,8 +9,10 @@
 #include "game_object.h"
 #include "vector_engine.h"
 
-void draw_hud(win_settings_t sets, hud_t *hud)
+void draw_hud(win_settings_t *sets, hud_t *hud)
 {
-    draw_fps(sets, &(hud->fps_assets));
+    if (!sets)
+        return ;
+    draw_fps(*sets, &(hud->fps_assets));
     draw_slider(sets, hud->slider);
 }

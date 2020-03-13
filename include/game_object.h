@@ -22,6 +22,9 @@ typedef enum elem {
     VERTEX_VIEW_BUTTON,
     PIN_VIEW_BUTTON,
     SLIDER_ARROW,
+    EDIT_MODE_BUTTON,
+    TEXTURE_MODE_BUTTON,
+    VIEW_MODE_BUTTON,
     NONE
 } elem_t;
 

@@ -61,6 +61,7 @@ SRC_MAP_GENERATION		=	src/map_generation/generate_map.c				\
 							src/map_generation/save_map.c					\
 
 SRC_MAP_UPDATE			=	src/map_update/hud/draw_hud.c					\
+							src/map_update/hud/draw_mode_button.c			\
 							src/map_update/hud/draw_slider.c				\
 							src/map_update/draw_circles.c					\
 							src/map_update/draw_tile_map_2d.c				\
