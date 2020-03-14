@@ -30,7 +30,7 @@ static sfBool should_close_window(win_settings_t sets,
 static void reset_settings_for_menu(win_settings_t sets,
                                     menu_assets_t menu_assets)
 {
-    sfMusic_setVolume(sets.main_track, 75);
+    sfMusic_setVolume(sets.main_track, 1);
     sfView_setSize(sets.view, sets.size);
     sfView_setCenter(sets.view, vec_mult(sets.size, 0.5));
     sfRenderWindow_setView(sets.window, sets.view);

@@ -40,7 +40,21 @@ sfBool set_texture(game_obj_t *obj, char *buffer)
         my_printf("Set texture failed for game_object %d\n", obj->type);
         return (sfFalse);
     }
-    return (set_sprite(obj));
+    return (sfTrue);
+}
+
+sfBool set_view_box(game_obj_t *obj)
+{
+    sfVector2u size = (sfVector2u){0, 0};
+
+    if (!obj || !(obj->texture) || !(obj->frame_nb))
+        return (sfFalse);
+    size = sfTexture_getSize(obj->texture);
+    obj->view_box.left = 0;
+    obj->view_box.top = 0;
+    obj->view_box.width = size.x / obj->frame_nb;
+    obj->view_box.height = size.y;
+    return (sfTrue);
 }
 
 sfBool set_frame_nb(game_obj_t *obj, char *buffer)
@@ -57,7 +71,7 @@ sfBool set_frame_nb(game_obj_t *obj, char *buffer)
     }
     obj->frame_nb = my_getnbr(parsed_buffer[1]);
     my_free_arr(parsed_buffer);
-    if (!(obj->frame_nb))
+    if (!(obj->frame_nb) || !set_view_box(obj) || !set_sprite(obj))
         return (sfFalse);
     return (sfTrue);
 }
@@ -79,19 +93,5 @@ sfBool set_origin(game_obj_t *obj, char *buffer)
     origin.y = my_getnbr(parsed_buffer[2]);
     sfSprite_setOrigin(obj->sprite, origin);
     my_free_arr(parsed_buffer);
-    return (sfTrue);
-}
-
-sfBool set_view_box(game_obj_t *obj)
-{
-    sfVector2u size = (sfVector2u){0, 0};
-
-    if (!obj || !obj->texture || !(obj->frame_nb))
-        return (sfFalse);
-    size = sfTexture_getSize(obj->texture);
-    obj->view_box.left = 0;
-    obj->view_box.top = 0;
-    obj->view_box.width = size.x / obj->frame_nb;
-    obj->view_box.height = size.y;
     return (sfTrue);
 }

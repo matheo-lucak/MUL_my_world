@@ -77,6 +77,7 @@ typedef struct mouse_tool_s {
     sfVector2f pos;
     sfVector2f click_pos;
     sfBool hold;
+    sfBool click;
 } mouse_tool_t;
 
 
@@ -111,6 +112,7 @@ typedef struct game_mode_s {
     unsigned edit_mode : 3;
     unsigned edit_repeat : 1;
     unsigned view_mode : 3;
+    tile_matter_t matter;
 } game_mode_t;
 
 
@@ -194,12 +196,19 @@ float **open_map(char *file_name);
 
 void game_view_update(win_settings_t *sets, map_formatter_t *ter);
 
-void draw_hud(win_settings_t *sets, hud_t *hud);
+void draw_hud(win_settings_t *sets, map_formatter_t ter, hud_t *hud);
 
-void draw_slider_button(win_settings_t *sets, game_obj_t *slider,
-                                        float x_shift, float x_offset);
+void draw_texture_bar(win_settings_t *sets, map_formatter_t ter,
+                                game_obj_t *slider, float x_offset);
 
-void draw_slider(win_settings_t *sets, game_obj_t *slider);
+void draw_view_button(win_settings_t *sets, game_obj_t *slider,
+                                                float x_offset);
+
+void draw_slider_button(win_settings_t *sets, map_formatter_t ter,
+                                game_obj_t *slider, float x_offset);
+
+void draw_slider(win_settings_t *sets, map_formatter_t ter,
+                                        game_obj_t *slider);
 
 //Updates window settings such as
 //

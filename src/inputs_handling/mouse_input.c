@@ -22,7 +22,11 @@ sfVector2f get_relative_mouse_pos(win_settings_t sets)
 void update_mouse_tool(win_settings_t *sets)
 {
     sets->mouse_tool.pos = get_relative_mouse_pos(*sets);
-    if (!(sets->mouse_tool.hold) && sfMouse_isButtonPressed(sfMouseLeft))
+    if (!(sets->mouse_tool.hold) && sfMouse_isButtonPressed(sfMouseLeft)) {
+        sets->mouse_tool.click = sfTrue;
         sets->mouse_tool.click_pos = sets->mouse_tool.pos;
+    } else {
+        sets->mouse_tool.click = sfFalse;
+    }
     sets->mouse_tool.hold = sfMouse_isButtonPressed(sfMouseLeft);
 }

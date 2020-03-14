@@ -31,7 +31,8 @@ static void link_button_function(win_settings_t *sets, game_obj_t *edit_b)
 {
     sfFloatRect hitbox = {0, 0, 0, 0};
     sfBool overlap = 0;
-
+    sfSound *sound = NULL;
+    edit_mode_flag_t mode = 0;
 
     if (!sets || !edit_b)
         return ;
@@ -39,13 +40,17 @@ static void link_button_function(win_settings_t *sets, game_obj_t *edit_b)
     overlap = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
                                                     sets->mouse_tool.pos.y);
     if (sets->mouse_tool.hold && overlap) {
-        change_edit_mode(&(sets->mode),
-                            find_game_mode_from_button_type(edit_b->type));
-        printf("Mode changed to -> %d\n", sets->mode.edit_mode);
+        mode = find_game_mode_from_button_type(edit_b->type);
+        sound = edit_b->comp[find_comp(edit_b, SOUND)]->sound;
+        if (sound && mode != sets->mode.edit_mode) {
+            sfSound_play(sound);
+            change_edit_mode(&(sets->mode), mode);
+        }
     }
 }
 
-static void draw_slider_button_by_type(win_settings_t *sets, game_obj_t *slider,
+static void draw_slider_button_by_type(win_settings_t *sets,
+                                        game_obj_t *slider,
                                         float x_offset, elem_t type) 
 {
     game_obj_t *edit_b = find_game_object(slider, type);
@@ -65,10 +70,15 @@ static void draw_slider_button_by_type(win_settings_t *sets, game_obj_t *slider,
     draw_game_object(*sets, edit_b);
 }
 
-void draw_slider_button(win_settings_t *sets, game_obj_t *slider,
-                                        float x_shift, float x_offset)
+void draw_slider_button(win_settings_t *sets, map_formatter_t ter,
+                                game_obj_t *slider, float x_offset)
 {
-    draw_slider_button_by_type(sets, slider, x_shift - x_offset, EDIT_MODE_BUTTON);
-    draw_slider_button_by_type(sets, slider, x_shift - x_offset, TEXTURE_MODE_BUTTON);
-    draw_slider_button_by_type(sets, slider, x_shift - x_offset, VIEW_MODE_BUTTON);
+    draw_slider_button_by_type(sets, slider, x_offset,
+                                                    EDIT_MODE_BUTTON);
+    draw_slider_button_by_type(sets, slider, x_offset,
+                                                    TEXTURE_MODE_BUTTON);
+    draw_slider_button_by_type(sets, slider, x_offset,
+                                                    VIEW_MODE_BUTTON);
+    draw_view_button(sets, slider, x_offset);
+    draw_texture_bar(sets, ter, slider, x_offset);
 }
