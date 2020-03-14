@@ -42,6 +42,7 @@ void udpate_window_settings(win_settings_t *sets)
         return ;
     size_u = sfRenderWindow_getSize(sets->window);
     sets->size = (sfVector2f) {size_u.x, size_u.y};
+    sets->mode.edit_repeat = 1;
     update_window_scale(sets);
     update_window_anchor(sets);
     update_mouse_tool(sets);

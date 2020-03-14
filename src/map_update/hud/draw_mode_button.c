@@ -41,7 +41,6 @@ static void link_button_function(win_settings_t *sets, game_obj_t *edit_b)
     if (sets->mouse_tool.hold && overlap) {
         change_edit_mode(&(sets->mode),
                             find_game_mode_from_button_type(edit_b->type));
-        printf("Mode changed to -> %d\n", sets->mode.edit_mode);
     }
 }
 
@@ -71,4 +70,5 @@ void draw_slider_button(win_settings_t *sets, game_obj_t *slider,
     draw_slider_button_by_type(sets, slider, x_shift - x_offset, EDIT_MODE_BUTTON);
     draw_slider_button_by_type(sets, slider, x_shift - x_offset, TEXTURE_MODE_BUTTON);
     draw_slider_button_by_type(sets, slider, x_shift - x_offset, VIEW_MODE_BUTTON);
+    draw_view_button(sets, slider, x_shift, x_offset);
 }
