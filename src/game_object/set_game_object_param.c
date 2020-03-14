@@ -11,6 +11,7 @@ void set_pos(game_obj_t *obj, float x, float y)
 {
     obj->pos.x = x;
     obj->pos.y = y;
+    obj->hitbox = sfSprite_getGlobalBounds(obj->sprite);
 }
 
 void set_hitbox(game_obj_t *obj)

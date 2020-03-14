@@ -14,7 +14,8 @@
 #include "input_handling.h"
 #include "pixel.h"
 
-static sfBool should_close_window(win_settings_t sets)
+static sfBool should_close_window(win_settings_t sets,
+                                menu_assets_t menu_assets)
 {
     if (!sfRenderWindow_isOpen(sets.window))
         return (sfTrue);
@@ -50,8 +51,10 @@ sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
         update_pixellist(sets, &(menu_assets.pixels), menu_assets.pixel_drawer);
         anime_game_object(menu_assets.earth, 125);
         draw_game_object(sets, menu_assets.earth);
+        if (hovering_earth_action(menu_assets.earth, sets.mouse_tool))
+            break;
         sfRenderWindow_display(sets.window);
-        close_window = should_close_window(sets);
+        close_window = should_close_window(sets, menu_assets);
     }
     return (close_window);
 }

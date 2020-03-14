@@ -29,5 +29,6 @@ void draw_game_object(win_settings_t sets, game_obj_t *obj)
     set_hitbox(obj);
     sfSprite_setPosition(obj->sprite, obj->pos);
     sfSprite_setTextureRect(obj->sprite, obj->view_box);
+    obj->hitbox = sfSprite_getGlobalBounds(obj->sprite);
     sfRenderWindow_drawSprite(sets.window, obj->sprite, NULL);
 }
