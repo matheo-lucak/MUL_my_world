@@ -25,6 +25,10 @@ sfBool init_menu_assets(win_settings_t sets, menu_assets_t *menu_assets);
 
 sfRectangleShape *init_pixel_drawer(void);
 
+
+sfBool hovering_earth_action(const game_obj_t *earth,
+                            const mouse_tool_t mouse);
+
 sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets);
 
 #endif /* !GAME_MENU_H_ */

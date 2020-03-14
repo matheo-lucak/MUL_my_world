@@ -15,8 +15,8 @@ int my_strncmp(const char *first, const char *second, const unsigned int n)
         return (first - second);
     while (first[index] && second[index] && index < n) {
         if (first[index] != second[index])
-            break;
+            return (first[index] - second[index]);
         index += 1;
     }
-    return (first[index] - second[index]);
+    return (0);
 }

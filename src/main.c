@@ -25,8 +25,10 @@ static sfBool check_env(const char * const env[])
 
 int main(const int ac, const char * const av[], const char * const env[])
 {
-    if (!check_env(env))
+    if (!check_env(env)) {
+        my_printf("test");
         return (84);
+    }
     if (ac != 1) {
         usage();
         if (ac == 2 && my_strcmp(av[1], "-h", 0))
