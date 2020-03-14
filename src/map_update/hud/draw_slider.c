@@ -16,6 +16,8 @@ static void draw_slider_arrow(win_settings_t sets, game_obj_t *slider,
     sfVector2f pos;
     sfVector2i tpos = slider_arrow->comp[find_comp(slider_arrow, POS)]->v2i;
 
+    if (!(slider->view_box.height) || !x_offset)
+        return ;
     tpos.x += -x_offset + x_shift;
     tpos.y += slider_arrow->view_box.width / 2;
     tpos.y *= sets.size.y / slider->view_box.height;
@@ -28,7 +30,8 @@ static void draw_slider_arrow(win_settings_t sets, game_obj_t *slider,
     draw_game_object(sets, slider_arrow);
 }
 
-static void slide_slider(win_settings_t sets, game_obj_t *slider, float x_shift, float x_offset)
+static void slide_slider(win_settings_t sets, game_obj_t *slider,
+                                                float x_shift, float x_offset)
 {
     sfFloatRect hitbox = sfSprite_getGlobalBounds(slider->sprite);
     sfBool overlap = sfFloatRect_contains(&hitbox, sets.mouse_tool.pos.x,
@@ -41,12 +44,13 @@ static void slide_slider(win_settings_t sets, game_obj_t *slider, float x_shift,
     }
 }
 
-void draw_slider(win_settings_t *sets, game_obj_t *slider)
+void draw_slider(win_settings_t *sets, map_formatter_t ter,
+                                        game_obj_t *slider)
 {
     float x_offset;
     float x_shift;
 
-    if (!sets || !slider || !(slider->comp))
+    if (!sets || !slider || !(slider->comp) || !(slider->view_box.height))
         return ;
     x_offset = slider->comp[find_comp(slider, OFFSET)]->f;
     x_shift = slider->comp[find_comp(slider, SHIFT)]->f;
@@ -59,5 +63,5 @@ void draw_slider(win_settings_t *sets, game_obj_t *slider)
     slide_slider(*sets, slider, x_shift, x_offset);
     draw_game_object(*sets, slider);
     draw_slider_arrow(*sets, slider, x_shift, x_offset);
-    draw_slider_button(sets, slider, x_shift, x_offset);
+    draw_slider_button(sets, ter, slider, x_shift - x_offset);
 }

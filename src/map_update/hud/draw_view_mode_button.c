@@ -32,6 +32,7 @@ static void link_view_button_function(win_settings_t *sets, game_obj_t *edit_b)
     sfFloatRect hitbox = {0, 0, 0, 0};
     sfBool overlap = 0;
     view_mode_t mode = find_view_mode_from_button_type(edit_b->type);
+    sfSound *sound = NULL;
 
     if (!sets || !edit_b)
         return ;
@@ -39,6 +40,9 @@ static void link_view_button_function(win_settings_t *sets, game_obj_t *edit_b)
     overlap = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
                                                     sets->mouse_tool.pos.y);
     if (overlap && sets->mouse_tool.click) {
+        sound = edit_b->comp[find_comp(edit_b, SOUND)]->sound;
+        if (sound)
+            sfSound_play(sound);
         if (is_view_mode(sets->mode, mode))
             unset_view_mode(&(sets->mode), mode);
         else
@@ -67,11 +71,11 @@ static void draw_view_button_by_type(win_settings_t *sets, game_obj_t *slider,
 }
 
 void draw_view_button(win_settings_t *sets, game_obj_t *slider,
-                                        float x_shift, float x_offset)
+                                                float x_offset)
 {
     if (!sets || !slider || sets->mode.edit_mode != VIEW_MODE)
         return ;
-    draw_view_button_by_type(sets, slider, x_shift - x_offset, TEXTURE_VIEW_BUTTON);
-    draw_view_button_by_type(sets, slider, x_shift - x_offset, VERTEX_VIEW_BUTTON);
-    draw_view_button_by_type(sets, slider, x_shift - x_offset, PIN_VIEW_BUTTON);
+    draw_view_button_by_type(sets, slider, x_offset, TEXTURE_VIEW_BUTTON);
+    draw_view_button_by_type(sets, slider, x_offset, VERTEX_VIEW_BUTTON);
+    draw_view_button_by_type(sets, slider, x_offset, PIN_VIEW_BUTTON);
 }

@@ -34,10 +34,8 @@ sfBool fill_basic_game_object(game_obj_t *obj, int fd, char *buffer)
     if (!(obj->texture))
         return (sfFalse);
     obj->pos = (sfVector2f){0, 0};
-    if (!set_view_box(obj))
-        return (sfFalse);
-    set_all_component(obj, fd, buffer);
     set_hitbox(obj);
+    set_all_component(obj, fd, buffer);
     if (fd != -1)
         close(fd);
     return (sfTrue);

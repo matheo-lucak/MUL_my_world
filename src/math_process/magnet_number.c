@@ -13,7 +13,7 @@ void magnet_number(float *nb, const float offset,
     int modulo = (int)(acc * magnet);
     int sized_nb;
 
-    if (!nb)
+    if (!nb || !acc)
         return;
     sized_nb = (int)(*nb * acc);
     if (*nb >= 0) {

@@ -28,5 +28,6 @@ sfBool init_hud(hud_t *hud)
     add_game_obj_to_list(&(hud->slider), TEXTURE_VIEW_BUTTON);
     add_game_obj_to_list(&(hud->slider), VERTEX_VIEW_BUTTON);
     add_game_obj_to_list(&(hud->slider), PIN_VIEW_BUTTON);
+    add_game_obj_to_list(&(hud->slider), TEXTURE_BAR);
     return (sfTrue);
 }

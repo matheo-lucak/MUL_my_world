@@ -29,7 +29,7 @@ typedef enum elem {
 } elem_t;
 
 typedef enum prop {
-    LIFE = 1,
+    SOUND = 1,
     CLOCK,
     OFFSET,
     SHIFT,
