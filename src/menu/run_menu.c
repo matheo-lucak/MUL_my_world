@@ -45,7 +45,7 @@ sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
     reset_settings_for_menu(sets, menu_assets);
     while (!close_window) {
         sfRenderWindow_clear(sets.window, sfBlack);
-        udpate_window_settings(&sets);
+        update_window_settings(&sets);
         update_pixellist(sets, &menu_assets.pixels, menu_assets.pixel_drawer);
         anime_game_object(menu_assets.earth, 125);
         draw_game_object(sets, menu_assets.earth);

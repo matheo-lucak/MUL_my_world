@@ -53,6 +53,6 @@ sfBool init_win_settings(win_settings_t *sets)
         free_win_settings(*sets);
         return (sfFalse);
     }
-    udpate_window_settings(sets);
+    update_window_settings(sets);
     return (sfTrue);
 }

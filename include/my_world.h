@@ -64,6 +64,12 @@ typedef struct map_linked_list_s {
 } map_linked_list_t;
 
 
+typedef enum sides_e {
+    TOP,
+    LEFT,
+    RIGHT,
+    BOTTOM
+} sides_t;
 
 //The alterer of coordinates of the points in the map.
 typedef struct map_formatter_s {
@@ -73,7 +79,8 @@ typedef struct map_formatter_s {
     tile_t **tile_map_2d;
     sfShader **shaders;
     sfTexture **textures;
-    sfVertexArray *borders[4];
+    sfVertexArray *borders[8];
+    sides_t view_side;
 } map_formatter_t;
 
 
@@ -164,6 +171,8 @@ void usage(void);
 
 void draw_fps(win_settings_t sets, fps_assets_t *fps_assets);
 
+void update_view_side(map_formatter_t *ter);
+
 
 /*
 **                             ****************
@@ -228,7 +237,7 @@ void draw_slider(win_settings_t *sets, map_formatter_t ter,
 
 void draw_game_object(win_settings_t sets, game_obj_t *obj);
 
-void udpate_window_settings(win_settings_t *sets);
+void update_window_settings(win_settings_t *sets);
 sfBool game_state_checker(sfRenderWindow *window, sfEvent *event,
                             sfBool *goback_menu);
 void draw_tile_map_2d(win_settings_t *sets, map_formatter_t *ter);

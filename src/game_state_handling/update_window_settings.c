@@ -34,7 +34,7 @@ static void update_window_scale(win_settings_t *sets)
     sets->scale.y = view_size.y / sets->size.y;
 }
 
-void udpate_window_settings(win_settings_t *sets)
+void update_window_settings(win_settings_t *sets)
 {
     sfVector2u size_u;
 

@@ -17,6 +17,7 @@ void game_view_update(win_settings_t *sets, map_formatter_t *ter)
         update_map_2d(ter);
         update_tile_map_2d(ter);
     }
-    udpate_window_settings(sets);
+    update_view_side(ter);
+    update_window_settings(sets);
     draw_tile_map_2d(sets, ter);
 }

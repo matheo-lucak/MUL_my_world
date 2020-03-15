@@ -42,12 +42,36 @@ static void draw_vertex(win_settings_t *sets, map_formatter_t *ter,
     assert_tile(sets->window, &(ter->tile_map_2d[y][x]), sets->mode);
 }
 
-void draw_tile_map_2d(win_settings_t *sets,
-                        map_formatter_t *ter)
+static void order_draw_border(win_settings_t *sets, map_formatter_t *ter,
+                                const sfBool order)
+{
+    const sfBool right_selected = ter->view_side == RIGHT ? 1 : 0;
+    const sfBool left_selected = ter->view_side == LEFT ? 1 : 0;
+    const sfBool top_selected = ter->view_side == TOP ? 1 : 0;
+    const sfBool bottom_selected = ter->view_side == BOTTOM ? 1 : 0;
+
+    if (!(order ^ right_selected))
+        sfRenderWindow_drawVertexArray(sets->window, ter->borders[6], NULL);
+    if (!(order ^ left_selected))
+        sfRenderWindow_drawVertexArray(sets->window, ter->borders[7], NULL);
+    if (!(order ^ top_selected)) {
+        sfRenderWindow_drawVertexArray(sets->window, ter->borders[0], NULL);
+        sfRenderWindow_drawVertexArray(sets->window, ter->borders[1], NULL);
+        sfRenderWindow_drawVertexArray(sets->window, ter->borders[2], NULL);
+    }
+    if (!(order ^ bottom_selected)) {
+        sfRenderWindow_drawVertexArray(sets->window, ter->borders[3], NULL);
+        sfRenderWindow_drawVertexArray(sets->window, ter->borders[4], NULL);
+        sfRenderWindow_drawVertexArray(sets->window, ter->borders[5], NULL);
+    }
+}
+
+void draw_tile_map_2d(win_settings_t *sets, map_formatter_t *ter)
 {
     register int x = 0;
     register int y = 0;
 
+    order_draw_border(sets, ter, sfFalse);
     while (y < ter->map_settings.size.y) {
         for (x = 0; x < ter->map_settings.size.x; x += 1) {
             draw_vertex(sets, ter, y, x);
@@ -55,4 +79,5 @@ void draw_tile_map_2d(win_settings_t *sets,
         }
         y += 1;
     }
+    order_draw_border(sets, ter, sfTrue);
 }

@@ -70,6 +70,7 @@ SRC_MAP_UPDATE			=	src/map_update/hud/draw_hud.c					\
 							src/map_update/draw_circles.c					\
 							src/map_update/draw_tile_map_2d.c				\
 							src/map_update/map_update.c						\
+							src/map_update/update_view_side.c				\
 
 SRC_MATH_PROCESS		=	src/math_process/get_randnb.c					\
 							src/math_process/magnet_number.c				\

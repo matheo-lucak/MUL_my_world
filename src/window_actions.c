@@ -16,7 +16,7 @@ void window_actions(void)
     if (!init_win_settings(&sets) || !init_menu_assets(sets, &menu_assets))
         return;
     do {
-        udpate_window_settings(&sets);
+        update_window_settings(&sets);
         if (run_menu(sets, menu_assets))
             break;
         free_pixels(&(menu_assets.pixels));
