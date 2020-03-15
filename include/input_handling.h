@@ -29,4 +29,6 @@ sfBool control_angle_view(presets_t *map_settings);
 //Updates mouse properties
 void update_mouse_tool(win_settings_t *sets);
 
+sfBool center_cam(win_settings_t *sets, map_formatter_t *ter);
+
 #endif /* INPUT_HANDLING_H_ */
