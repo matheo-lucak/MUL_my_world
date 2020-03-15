@@ -17,7 +17,6 @@ static void write_int_in_file(FILE *fptr, const float nb)
 
     tmp = my_int_to_str((int)(nb) * 100);
     if (tmp) {
-        printf("%s \n", tmp);
         len = my_strlen(tmp);
         if (fwrite(tmp, sizeof(char), len, fptr) != len)
             my_printf("Corrupting file \n");
@@ -37,7 +36,6 @@ static sfBool write_map_data_in_file(FILE *fptr, float **map_3d,
     while (y < (size_t)map_size.y) {
         for (x = 0; x < (size_t)map_size.x; x += 1) {
             write_int_in_file(fptr, map_3d[y][x]);
-            printf("%d\n", x);
         }
         fwrite("\n", sizeof(char), 1, fptr);
         y += 1;

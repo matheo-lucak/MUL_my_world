@@ -84,7 +84,7 @@ static sfBool init_n_apply_new_maps(int fd, map_formatter_t *ter)
     }
     free_array((void **)ter->map_3d, ter->map_settings.size.y);
     free_array((void **)ter->map_2d, ter->map_settings.size.y);
-    free_tile_map_2d(ter->tile_map_2d, ter->map_settings.size);
+    free_array((void **)ter->tile_map_2d, ter->map_settings.size.y);
     ter->map_settings.size = size;
     ter->map_3d = map_3d;
     ter->map_2d = map_2d;
