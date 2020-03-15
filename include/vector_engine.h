@@ -9,9 +9,11 @@
 #define VECTOR_H_
 
 #include <SFML/System/Vector2.h>
+#include <SFML/System/Vector3.h>
 
 #define vec2f(x, y) (sfVector2f){x, y}
 #define vec2i(x, y) (sfVector2i){x, y}
+#define vec3f(x, y, z) (sfVector3f){x, y, z}
 
 //Returns the sum of vec1 and vec2.
 sfVector2f vec_add(sfVector2f vec1, sfVector2f vec2);

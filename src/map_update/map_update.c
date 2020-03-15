@@ -66,22 +66,6 @@ void update_map_2d(map_formatter_t *ter)
                                                 ter->map_settings.angles);
         y += 1;
     }
-    for (int i = 0; i < 8; i += 1)
-        sfVertexArray_clear(ter->borders[i]);
-    fill_vertex(project_iso_point((sfVector3f){0, 0, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[0], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){0, 0, ter->map_3d[0][0]}, ter->map_settings.size, ter->map_settings.angles), ter->borders[0], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){ter->map_settings.size.x - 1, 0, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[1], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){ter->map_settings.size.x - 1, 0, ter->map_3d[0][ter->map_settings.size.x - 1]}, ter->map_settings.size, ter->map_settings.angles), ter->borders[1], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){0, 0, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[2], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){ter->map_settings.size.x - 1, 0, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[2], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){ter->map_settings.size.x - 1, ter->map_settings.size.y - 1, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[3], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){ter->map_settings.size.x - 1, ter->map_settings.size.y - 1, ter->map_3d[ter->map_settings.size.y - 1][ter->map_settings.size.x - 1]}, ter->map_settings.size, ter->map_settings.angles), ter->borders[3], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){0, ter->map_settings.size.y - 1, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[4], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){0, ter->map_settings.size.y - 1, ter->map_3d[ter->map_settings.size.y - 1][0]}, ter->map_settings.size, ter->map_settings.angles), ter->borders[4], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){ter->map_settings.size.x - 1, ter->map_settings.size.y - 1, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[4], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){0, ter->map_settings.size.y - 1, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[4], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){ter->map_settings.size.x - 1, 0, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[6], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){ter->map_settings.size.x - 1, ter->map_settings.size.y - 1, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[6], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){0, 0, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[7], vec2f(0, 0));
-    fill_vertex(project_iso_point((sfVector3f){0, ter->map_settings.size.y - 1, -1}, ter->map_settings.size, ter->map_settings.angles), ter->borders[7   ], vec2f(0, 0));
+    update_border(ter->map_3d, ter->map_settings.size,
+                ter->map_settings.angles, ter->borders);
 }

@@ -173,6 +173,12 @@ void draw_fps(win_settings_t sets, fps_assets_t *fps_assets);
 
 void update_view_side(map_formatter_t *ter);
 
+void update_border(float **map, const sfVector2i size, const sfVector2i angles,
+                    sfVertexArray *borders[7]);
+
+void fill_vertex(const sfVector2f point, sfVertexArray *shape_drawer,
+                    const sfVector2f tex_anchor);
+
 
 /*
 **                             ****************
