@@ -44,6 +44,7 @@ static void draw_drawer_text(win_settings_t *sets, char text[50],
     hitbox = sfText_getLocalBounds(text_drawer);
     sfText_setOrigin(text_drawer, vec2f(hitbox.width / 2, hitbox.height / 2));
     sfText_setPosition(text_drawer, text_box->pos);
+    sfText_setScale(text_drawer, sets->scale);
     check_alph(text, text_index);
     sfText_setString(text_drawer, text);
     sfRenderWindow_drawText(sets->window, text_drawer, NULL);
@@ -52,19 +53,16 @@ static void draw_drawer_text(win_settings_t *sets, char text[50],
 static sfBool load_or_save_map(map_formatter_t *ter, char text[50],
                                 int *text_index, sfVector2i boolean)
 {
-    if (sfKeyboard_isKeyPressed(sfKeyEnter)) {
+    if (sfKeyboard_isKeyPressed(sfKeyEnter) && (boolean.x || boolean.y)) {
         while (sfKeyboard_isKeyPressed(sfKeyEnter));
         if (boolean.x) {
             save_map(*ter, text);
-            my_memset(text, 0, 50);
-            *text_index = 0;
-            return (sfTrue);
         } else if (boolean.y) {
             open_map(ter, text);
-            my_memset(text, 0, 50);
-            *text_index = 0;
-            return (sfTrue);
         }
+        my_memset(text, 0, 50);
+        *text_index = 0;
+        return (sfTrue);
     }
     return (sfFalse);
 }
@@ -100,9 +98,12 @@ void draw_text_box(win_settings_t *sets, map_formatter_t *ter,
         return ;
     boolean.x = save_button->comp[find_comp(save_button, BOOL)]->i;
     boolean.y = load_button->comp[find_comp(load_button, BOOL)]->i;
-    if (boolean.x || boolean.y)
+    if (boolean.x || boolean.y) {
+        sets->paused = sfTrue;
         if (draw_active_text_box(sets, ter, text_box, boolean)) {
+            sets->paused = sfFalse;
             boolean.x = save_button->comp[find_comp(save_button, BOOL)]->i = 0;
             boolean.y = load_button->comp[find_comp(load_button, BOOL)]->i = 0;
         }
+    }
 }

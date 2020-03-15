@@ -38,7 +38,8 @@ typedef enum prop {
     SHIFT,
     POS,
     TEXT,
-    BOOL
+    BOOL,
+    SIZE
 } prop_t;
 
 typedef struct component {
