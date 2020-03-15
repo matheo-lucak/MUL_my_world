@@ -54,7 +54,8 @@ SRC_INPUTS_HANDLING		=	src/inputs_handling/angle_rotation.c			\
 							src/inputs_handling/translate_cam.c				\
 							src/inputs_handling/translations.c				\
 
-SRC_MAP_GENERATION		=	src/map_generation/generate_map.c				\
+SRC_MAP_GENERATION		=	src/map_generation/apply_biomes.c				\
+							src/map_generation/generate_map.c				\
 							src/map_generation/get_hash.c					\
 							src/map_generation/open_map.c					\
 							src/map_generation/perlin_noise.c				\

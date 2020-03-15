@@ -26,7 +26,7 @@ sfBool set_texture(game_obj_t *obj, char *buffer)
 {
     char **parsed_buffer = NULL;
 
-    parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
+    parsed_buffer = my_str_to_word_array(buffer, " :;", 0);
     if (!parsed_buffer || !obj)
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 2) {
@@ -61,7 +61,7 @@ sfBool set_frame_nb(game_obj_t *obj, char *buffer)
 {
     char **parsed_buffer = NULL;
 
-    parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
+    parsed_buffer = my_str_to_word_array(buffer, " :;", 0);
     if (!parsed_buffer || !obj)
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 2) {
@@ -81,7 +81,7 @@ sfBool set_origin(game_obj_t *obj, char *buffer)
     char **parsed_buffer = NULL;
     sfVector2f origin = {0, 0};
 
-    parsed_buffer = my_str_to_word_array(buffer, " :;", 1);
+    parsed_buffer = my_str_to_word_array(buffer, " :;", 0);
     if (!parsed_buffer || !obj || !(obj->sprite))
         return (sfFalse);
     if (my_arrlen((void **)parsed_buffer) != 3) {

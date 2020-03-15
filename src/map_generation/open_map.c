@@ -93,7 +93,7 @@ static sfBool init_n_apply_new_maps(int fd, map_formatter_t *ter)
     }
     free_array((void **)ter->map_3d, ter->map_settings.size.y);
     free_array((void **)ter->map_2d, ter->map_settings.size.y);
-    free_array((void **)ter->tile_map_2d, ter->map_settings.size.y);
+    free_array((void **)ter->tile_map_2d, ter->map_settings.size.y - 1);
     ter->map_settings.size = size;
     ter->map_3d = map_3d;
     ter->map_2d = map_2d;
@@ -110,6 +110,7 @@ sfBool open_map(map_formatter_t *ter, char *file_name)
     fd = open(file_name, O_RDONLY);
     if (!init_n_apply_new_maps(fd, ter))
         return (sfFalse);
+    apply_biomes(ter);
     update_map_2d(ter);
     update_tile_map_2d(ter);
     return (sfTrue);

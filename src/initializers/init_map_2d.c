@@ -26,6 +26,20 @@ tile_t create_new_tile(sfTexture **textures, sfShader **shaders)
     return (new_tile);
 }
 
+sfBool init_tile_row(tile_t **map_2d, sfIntRect dim, sfTexture **textures,
+                                                        sfShader **shaders)
+{
+    map_2d[dim.top] = malloc(sizeof(tile_t) * (dim.width));
+    if (!(map_2d[dim.top]))
+        return (sfFalse);
+    for (dim.left = 0; dim.left < dim.width - 1; dim.left += 1) {
+        map_2d[dim.top][dim.left] = create_new_tile(textures, shaders);
+        if (!(map_2d[dim.top][dim.left].shape_drawer))
+            return (sfFalse);
+    }
+    return (sfTrue);
+}
+
 tile_t **init_tile_map_2d(const sfVector2i map_size, sfTexture **textures,
                                                         sfShader **shaders)
 {
@@ -35,17 +49,12 @@ tile_t **init_tile_map_2d(const sfVector2i map_size, sfTexture **textures,
     if (!map_2d)
         return (NULL);
     while (pos.y < map_size.y - 1) {
-        map_2d[pos.y] = malloc(sizeof(tile_t) * (map_size.x));
-        if (!(map_2d[pos.y]))
+        if (!init_tile_row(map_2d,
+                        (sfIntRect){pos.x, pos.y, map_size.x, map_size.y},
+                        textures, shaders))
             return (NULL);
-        for (pos.x = 0; pos.x < map_size.x - 1; pos.x += 1) {
-            map_2d[pos.y][pos.x] = create_new_tile(textures, shaders);
-            if (!(map_2d[pos.y][pos.x].shape_drawer))
-                return (NULL);
-        }
         pos.y += 1;
     }
-    map_2d[pos.y] = NULL;
     return (map_2d);
 }
 

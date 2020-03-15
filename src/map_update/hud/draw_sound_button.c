@@ -16,7 +16,7 @@ static void mute_sound_button(win_settings_t *sets, game_obj_t *sound_button)
 
     overlap = sfFloatRect_contains(&(sound_button->hitbox),
                                     sets->mouse_tool.pos.x,
-                                    sets->mouse_tool.pos.y); 
+                                    sets->mouse_tool.pos.y);
     if (sets->mouse_tool.click && overlap) {
         sound = sound_button->comp[find_comp(sound_button, SOUND)]->sound;
         if (sound && !(sets->muted))
