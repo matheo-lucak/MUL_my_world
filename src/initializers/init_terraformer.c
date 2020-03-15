@@ -93,6 +93,5 @@ sfBool init_terraformer(map_formatter_t *ter, size_t seed)
         return (sfFalse);
     apply_biomes(ter);
     update_map_2d(ter);
-    update_tile_map_2d(ter);
     return (sfTrue);
 }

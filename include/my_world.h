@@ -73,6 +73,7 @@ typedef struct map_formatter_s {
     tile_t **tile_map_2d;
     sfShader **shaders;
     sfTexture **textures;
+    sfVertexArray *borders[4];
 } map_formatter_t;
 
 
