@@ -49,7 +49,7 @@ static void draw_drawer_text(win_settings_t *sets, char text[50],
     sfRenderWindow_drawText(sets->window, text_drawer, NULL);
 }
 
-static sfBool load_or_save_map(map_formatter_t *ter, char text[50], 
+static sfBool load_or_save_map(map_formatter_t *ter, char text[50],
                                 int *text_index, sfVector2i boolean)
 {
     if (sfKeyboard_isKeyPressed(sfKeyEnter)) {
