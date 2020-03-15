@@ -16,7 +16,7 @@ static sfBool init_map_settings(map_formatter_t *ter)
         return (sfFalse);
     ter->map_settings.size = (sfVector2i) {32, 32};
     ter->map_settings.angles = (sfVector2i) {55, 70};
-    ter->map_settings.movement_speed = (sfVector2i){10, 10};
+    ter->map_settings.movement_speed = (sfVector2i){11, 11};
     ter->map_settings.rotation_speed = (sfVector2i){1, 1};
     return (sfTrue);
 }
