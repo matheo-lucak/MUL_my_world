@@ -17,4 +17,5 @@ void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud)
     draw_slider(sets, *ter, hud->slider);
     draw_save_button(sets, hud->save_button);
     draw_text_box(sets, ter, hud->save_button, hud->text_box);
+    draw_sound_button(sets, hud->sound_button);
 }

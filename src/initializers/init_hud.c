@@ -50,7 +50,8 @@ sfBool init_hud(hud_t *hud)
     if (!init_save_button(&(hud->save_button)))
         return (sfFalse);
     hud->text_box = create_game_obj(TEXT_BOX);
-    if (!(hud->text_box))
+    hud->sound_button = create_game_obj(SOUND_BUTTON);
+    if (!(hud->text_box) || !(hud->sound_button))
         return (sfFalse);
     return (sfTrue);
 }

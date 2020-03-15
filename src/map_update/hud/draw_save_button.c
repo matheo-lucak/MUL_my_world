@@ -18,7 +18,7 @@ static void save_button_interaction(win_settings_t *sets, game_obj_t *button)
                                                     sets->mouse_tool.pos.y);
     if (overlap && sets->mouse_tool.click) {
         button->comp[find_comp(button, BOOL)]->i = 1;
-        if (sound)
+        if (sound && !(sets->muted))
             sfSound_play(sound);
     }
 }

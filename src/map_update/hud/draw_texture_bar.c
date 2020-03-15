@@ -23,7 +23,7 @@ static void link_texture_bar_function(win_settings_t *sets,
                                                     sets->mouse_tool.pos.y);
     if (overlap && sets->mouse_tool.click) {
         sound = texture_b->comp[find_comp(texture_b, SOUND)]->sound;
-        if (sound)
+        if (sound && !(sets->muted))
             sfSound_play(sound);
         sets->mode.matter = tex_matter.matter;
     }

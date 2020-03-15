@@ -133,6 +133,7 @@ typedef struct win_settings_s {
     mouse_tool_t mouse_tool;
     sfMusic *main_track;
     sfBool paused;
+    sfBool muted;
 } win_settings_t;
 
 
@@ -150,6 +151,7 @@ typedef struct hud_s {
     game_obj_t *slider;
     game_obj_t *save_button;
     game_obj_t *text_box;
+    game_obj_t *sound_button;
 } hud_t;
 
 sfBool init_hud(hud_t *hud);
@@ -198,9 +200,11 @@ sfBool open_map(map_formatter_t *ter, char *file_name);
 **                                  ******************
 */
 
-void game_view_update(win_settings_t *sets, map_formatter_t *ter);
+void game_view_update(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
 
 void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
+
+void draw_sound_button(win_settings_t *sets, game_obj_t *sound_button);
 
 void draw_text_box(win_settings_t *sets, map_formatter_t *ter,
                     game_obj_t *save_button, game_obj_t *text_box);

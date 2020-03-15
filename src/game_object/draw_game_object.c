@@ -27,6 +27,13 @@ void anime_game_object(game_obj_t *obj, const int lapse)
     }
 }
 
+void set_game_object_frame(game_obj_t *obj, unsigned int frame)
+{
+    if (!obj || obj->frame_nb < frame)
+        return ;
+    obj->view_box.left = frame * obj->view_box.width;
+}
+
 void draw_game_object(win_settings_t sets, game_obj_t *obj)
 {
     set_hitbox(obj);

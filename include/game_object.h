@@ -28,6 +28,7 @@ typedef enum elem {
     SAVE_BUTTON,
     LOAD_BUTTON,
     TEXT_BOX,
+    SOUND_BUTTON,
     NONE
 } elem_t;
 
@@ -81,6 +82,8 @@ game_obj_t *find_game_object(game_obj_t *list, elem_t type);
 int find_comp(game_obj_t *obj, prop_t type);
 
 sfBool init_game_object(game_obj_t *obj);
+
+void set_game_object_frame(game_obj_t *obj, unsigned int frame);
 
 void anime_game_object(game_obj_t *obj, const int lapse);
 
