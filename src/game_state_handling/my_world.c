@@ -41,6 +41,6 @@ sfBool my_world(win_settings_t *sets)
         game_view_update(sets, &ter, &hud);
         sfRenderWindow_display(sets->window);
     }
-    free_game_structures(&ter, &(hud.fps_assets));
+    free_game_structures(&ter, &hud);
     return (goback_menu);
 }

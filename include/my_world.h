@@ -285,7 +285,7 @@ void free_win_settings(win_settings_t sets);
 void free_terraformer(map_formatter_t *ter);
 void free_map_list(map_linked_list_t **head);
 void free_tile_map_2d(tile_t **tile_map_2d, sfVector2i size);
-void free_game_structures(map_formatter_t *ter, fps_assets_t *fps_assets);
+void free_game_structures(map_formatter_t *ter,  hud_t *hud);
 void free_resources_fps(fps_assets_t *fps_assets);
 
 int get_randomnb(int min, int max);

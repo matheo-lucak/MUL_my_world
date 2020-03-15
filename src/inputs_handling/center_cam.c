@@ -47,8 +47,9 @@ sfBool center_cam(win_settings_t *sets, map_formatter_t *ter)
     center.y = (ter->map_2d[size.y][size.x].y + ter->map_2d[0][0].y) / 2;
     sfView_setCenter(sets->view, center);
     while (!is_outside_view(sets, ter->map_2d, size))
-        sfView_zoom(sets->view, 1.2);
-    while (is_outside_view(sets, ter->map_2d, size))
-        sfView_zoom(sets->view, 0.98);
+        sfView_zoom(sets->view, 1.001);
+    do {
+        sfView_zoom(sets->view, 0.999);
+    } while (is_outside_view(sets, ter->map_2d, size));
     return (sfTrue);
 }

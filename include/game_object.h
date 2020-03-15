@@ -74,6 +74,7 @@ typedef struct game_obj {
 
 game_obj_t *create_game_obj(elem_t type);
 
+sfBool free_obj_list(game_obj_t *obj);
 sfBool free_obj(game_obj_t *obj);
 sfBool free_all_comp(game_obj_t *obj);
 

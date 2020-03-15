@@ -49,3 +49,18 @@ sfBool free_obj(game_obj_t *obj)
     sfTexture_destroy(obj->texture);
     return (sfTrue);
 }
+
+sfBool free_obj_list(game_obj_t *obj)
+{
+    game_obj_t *tmp = obj;
+
+    if (!obj)
+        return (sfFalse);
+    do {
+        tmp = obj;
+        obj = obj->next;
+        if (tmp)
+            free_obj(tmp);
+    } while (obj);
+    return (sfTrue);
+}

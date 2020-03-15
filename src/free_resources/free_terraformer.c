@@ -16,7 +16,7 @@ void free_tile_map_2d(tile_t **tile_map_2d, sfVector2i size)
     if (!tile_map_2d)
         return ;
     while (y < size.y && tile_map_2d[y]) {
-        while (x < size.x) {
+        while (x < size.x && tile_map_2d[y][x].shape_drawer) {
             sfVertexArray_destroy(tile_map_2d[y][x].shape_drawer);
             x += 1;
         }

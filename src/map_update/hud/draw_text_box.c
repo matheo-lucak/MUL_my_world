@@ -12,13 +12,13 @@
 #include "vector_engine.h"
 
 
-static void check_alph(char text[50], int *text_index)
+static void check_alph(char text[21], int *text_index)
 {
     static const char alph_num[] = "abcdefghijklmnopqrstuvwxyz0123456789";
     int letter = 0;
 
     while (letter < 36) {
-        if (sfKeyboard_isKeyPressed((sfKeyCode)letter) && *text_index < 48) {
+        if (sfKeyboard_isKeyPressed((sfKeyCode)letter) && *text_index < 20) {
             text[*text_index] = alph_num[letter];
             *text_index += 1;
             while (sfKeyboard_isKeyPressed((sfKeyCode)letter));
@@ -32,13 +32,12 @@ static void check_alph(char text[50], int *text_index)
     }
 }
 
-static void draw_drawer_text(win_settings_t *sets, char text[50],
+static void draw_drawer_text(win_settings_t *sets, char text[21],
                                 int *text_index, game_obj_t *text_box)
 {
     sfText *text_drawer = text_box->comp[find_comp(text_box, TEXT)]->text;
     sfFloatRect hitbox;
 
-    text[49] = 0;
     if (!text_drawer)
         return ;
     hitbox = sfText_getLocalBounds(text_drawer);
@@ -50,7 +49,7 @@ static void draw_drawer_text(win_settings_t *sets, char text[50],
     sfRenderWindow_drawText(sets->window, text_drawer, NULL);
 }
 
-static sfBool load_or_save_map(map_formatter_t *ter, char text[50],
+static sfBool load_or_save_map(map_formatter_t *ter, char text[21],
                                 int *text_index, sfVector2i boolean)
 {
     if (sfKeyboard_isKeyPressed(sfKeyEnter) && (boolean.x || boolean.y)) {
@@ -60,7 +59,7 @@ static sfBool load_or_save_map(map_formatter_t *ter, char text[50],
         } else if (boolean.y) {
             open_map(ter, text);
         }
-        my_memset(text, 0, 50);
+        my_memset(text, 0, 21);
         *text_index = 0;
         return (sfTrue);
     }
@@ -70,7 +69,7 @@ static sfBool load_or_save_map(map_formatter_t *ter, char text[50],
 static sfBool draw_active_text_box(win_settings_t *sets, map_formatter_t *ter,
                     game_obj_t *text_box, sfVector2i boolean)
 {
-    static char text[50];
+    static char text[21];
     static int text_index = 0;
     sfVector2f center = {0, 0};
     float x_scale = 0;
