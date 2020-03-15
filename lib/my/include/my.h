@@ -207,6 +207,8 @@ char *my_strcpy(char *dest, char const *src);
 char **my_str_to_word_array(char *sentence, const char splitter[],
                             const unsigned int freer);
 
+int my_skip_a_file_line(const int fd);
+
 //Returns a radian float considering a degree.
 float my_radians(const int degrees);
 

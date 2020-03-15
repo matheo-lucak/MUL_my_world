@@ -33,6 +33,6 @@ void free_terraformer(map_formatter_t *ter)
         return;
     free_textures_array(ter->textures);
     free_shaders_array(ter->shaders);
-    free_array((void **)ter->map_3d, ter->map_settings.size.y);
-    free_array((void **)ter->map_2d, ter->map_settings.size.y);
+    free_array((void **)ter->map_3d, ter->map_settings.size.y - 1);
+    free_array((void **)ter->map_2d, ter->map_settings.size.y - 1);
 }

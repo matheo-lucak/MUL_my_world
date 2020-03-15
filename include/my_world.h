@@ -229,6 +229,9 @@ void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
 
 void draw_florian_the_toucan(win_settings_t *sets, game_obj_t *florian);
 
+sfBool florian_the_toucan_wants_to_speak(win_settings_t *sets,
+                                            game_obj_t *florian, int do_close);
+
 void draw_edit_button(win_settings_t *sets, game_obj_t *slider,
                                             const float x_offset);
 

@@ -19,21 +19,22 @@ static sfBool does_florian_wants_to_speak(game_obj_t *florian)
 
     if (!clock)
         return (sfFalse);
-    if (sfTime_asSeconds(sfClock_getElapsedTime(clock)) > 1.5) {
+    if (sfTime_asSeconds(sfClock_getElapsedTime(clock)) > 2) {
         sfClock_restart(clock);
         return (sfTrue);
     }
     return (sfFalse);
 }
 
-static void florian_speak(win_settings_t *sets, game_obj_t *florian, char *buffer)
+static sfBool florian_speak(win_settings_t *sets, game_obj_t *florian,
+                                                        char *buffer)
 {
     sfText *text = florian->comp[find_comp(florian, TEXT)]->text;
     sfVector2f pos = florian->comp[find_comp(florian, POS)]->v2f;
     sfFloatRect hitbox;
 
     if (!text)
-        return ;
+        return (sfFalse);
     sfText_setScale(text, sets->scale);
     sfText_setColor(text, sfBlack);
     pos.x = florian->pos.x - (florian->view_box.width - pos.x) * sets->scale.x;
@@ -42,18 +43,31 @@ static void florian_speak(win_settings_t *sets, game_obj_t *florian, char *buffe
     sfText_setString(text, buffer);
     hitbox = sfText_getGlobalBounds(text);
     if (hitbox.width > 500 * sets->scale.x) {
-        sfText_scale(text, vec2f(500 * sets->scale.x / hitbox.width,
-                                500 * sets->scale.x / hitbox.width));
+        sfText_scale(text, vec2f(550 * sets->scale.x / hitbox.width,
+                                550 * sets->scale.x / hitbox.width));
     }
     sfRenderWindow_drawText(sets->window, text, NULL);
+    return (sfTrue);
 }
 
-static sfBool florian_the_toucan_wants_to_speak(win_settings_t *sets,
+static sfBool close_florians_beak(int *fd)
+{
+    if (!fd)
+        return (sfFalse);
+    while (my_skip_a_file_line(*fd));
+    close(*fd);
+    *fd = -2;
+    return (sfTrue);
+}
+
+sfBool florian_the_toucan_wants_to_speak(win_settings_t *sets,
                                             game_obj_t *florian, int do_close)
 {
     static int fd = -2;
     static char *buffer = NULL;
 
+    if (fd > 0 && do_close)
+        return (close_florians_beak(&fd));
     if (fd == -2)
         fd = open(".legend", O_RDONLY);
     if (does_florian_wants_to_speak(florian)) {
@@ -62,11 +76,10 @@ static sfBool florian_the_toucan_wants_to_speak(win_settings_t *sets,
             buffer = NULL;
         }
         buffer = get_next_line(fd);
+        if (!buffer)
+            return (sfFalse);
     }
-    florian_speak(sets, florian, buffer);
-    if (fd > 0 && do_close)
-        close(fd);
-    return (sfTrue);
+    return (florian_speak(sets, florian, buffer));
 }
 
 void draw_florian_the_toucan(win_settings_t *sets, game_obj_t *florian)
@@ -85,6 +98,7 @@ void draw_florian_the_toucan(win_settings_t *sets, game_obj_t *florian)
     if (!florian_the_toucan_wants_to_speak(sets, florian, 0) ||
         (sfFloatRect_contains(&(florian->hitbox),
         sets->mouse_tool.pos.x, sets->mouse_tool.pos.y)
-        && sets->mouse_tool.click))
+        && sets->mouse_tool.click)) {
         florian->comp[find_comp(florian, BOOL)]->i = 0;
+    }
 }

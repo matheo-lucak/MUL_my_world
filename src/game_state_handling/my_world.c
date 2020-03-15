@@ -42,5 +42,6 @@ sfBool my_world(win_settings_t *sets)
         sfRenderWindow_display(sets->window);
     }
     free_game_structures(&ter, &hud);
+    florian_the_toucan_wants_to_speak(NULL, NULL, 1);
     return (goback_menu);
 }
