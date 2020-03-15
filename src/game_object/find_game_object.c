@@ -11,7 +11,7 @@ game_obj_t *find_game_object(game_obj_t *list, elem_t type)
 {
     game_obj_t *tmp = list;
 
-   while (tmp && tmp->type != type)
+    while (tmp && tmp->type != type)
         tmp = tmp->next;
     return (tmp);
 }

@@ -9,14 +9,16 @@
 #include "game_object.h"
 #include "vector_engine.h"
 
-static view_mode_t find_view_mode_from_button_type(elem_t type)
+static view_mode_t find_view_mode_from_button_type(const elem_t type)
 {
     static const view_mode_t mode_pattern[] = {VIEW_TEXTURE,
-                                                    VIEW_LINE,
-                                                    VIEW_PIN, 0};
+                                                VIEW_LINE,
+                                                VIEW_PIN,
+                                                0};
     static const elem_t type_pattern[] = {TEXTURE_VIEW_BUTTON,
                                             VERTEX_VIEW_BUTTON,
-                                            PIN_VIEW_BUTTON, 0};
+                                            PIN_VIEW_BUTTON,
+                                            0};
     int index = 0;
 
     while (type_pattern[index]) {
@@ -34,8 +36,8 @@ static void link_view_button_function(win_settings_t *sets, game_obj_t *edit_b)
     view_mode_t mode = find_view_mode_from_button_type(edit_b->type);
     sfSound *sound = NULL;
 
-    if (!sets || !edit_b)
-        return ;
+    if (!sets || !edit_b || sets->paused)
+        return;
     hitbox = sfSprite_getGlobalBounds(edit_b->sprite);
     overlap = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
                                                     sets->mouse_tool.pos.y);
@@ -51,7 +53,7 @@ static void link_view_button_function(win_settings_t *sets, game_obj_t *edit_b)
 }
 
 static void draw_view_button_by_type(win_settings_t *sets, game_obj_t *slider,
-                                        float x_offset, elem_t type) 
+                                    const float x_offset, const elem_t type)
 {
     game_obj_t *edit_b = find_game_object(slider, type);
     sfVector2i tpos;
@@ -67,11 +69,12 @@ static void draw_view_button_by_type(win_settings_t *sets, game_obj_t *slider,
     set_pos(edit_b, pos.x, pos.y);
     sfSprite_setScale(edit_b->sprite, sets->scale);
     link_view_button_function(sets, edit_b);
+    sfSprite_setColor(edit_b->sprite, (sets->paused ? darker : full_opacity));
     draw_game_object(*sets, edit_b);
 }
 
 void draw_view_button(win_settings_t *sets, game_obj_t *slider,
-                                                float x_offset)
+                        const float x_offset)
 {
     if (!sets || !slider || sets->mode.edit_mode != VIEW_MODE)
         return ;

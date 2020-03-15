@@ -17,6 +17,9 @@
 
 //An enum of each possible material a square can be.
 
+#define full_opacity (sfColor){255, 255, 255, 255}
+#define darker (sfColor){100, 100, 100, 255}
+
 typedef enum tile_matter_e {
     GRASS,
     STONE,
@@ -129,6 +132,7 @@ typedef struct win_settings_s {
     game_mode_t mode;
     mouse_tool_t mouse_tool;
     sfMusic *main_track;
+    sfBool paused;
 } win_settings_t;
 
 
@@ -141,8 +145,7 @@ typedef struct fps_assets_s {
 
 
 
-typedef struct hud_s
-{
+typedef struct hud_s {
     fps_assets_t fps_assets;
     game_obj_t *slider;
     game_obj_t *texture_bar;
@@ -170,7 +173,7 @@ sfShader **init_shaders(sfTexture **textures);
 sfTexture **init_textures(void);
 sfVector2f **init_map_2d(const sfVector2i map_size);
 tile_t **init_tile_map_2d(const sfVector2i map_size, sfTexture **textures,
-                                    sfShader **shaders);
+                            sfShader **shaders);
 sfBool init_win_settings(win_settings_t *sets);
 sfBool init_terraformer(map_formatter_t *ter, size_t seed);
 sfBool init_game_structures(map_formatter_t *ter, hud_t *hud);
@@ -202,13 +205,13 @@ void draw_texture_bar(win_settings_t *sets, map_formatter_t ter,
                                 game_obj_t *slider, float x_offset);
 
 void draw_view_button(win_settings_t *sets, game_obj_t *slider,
-                                                float x_offset);
+                        const float x_offset);
 
 void draw_slider_button(win_settings_t *sets, map_formatter_t ter,
-                                game_obj_t *slider, float x_offset);
+                        game_obj_t *slider, const float x_offset);
 
 void draw_slider(win_settings_t *sets, map_formatter_t ter,
-                                        game_obj_t *slider);
+                    game_obj_t *slider);
 
 //Updates window settings such as
 //

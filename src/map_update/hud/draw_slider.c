@@ -31,7 +31,7 @@ static void draw_slider_arrow(win_settings_t sets, game_obj_t *slider,
 }
 
 static void slide_slider(win_settings_t sets, game_obj_t *slider,
-                                                float x_shift, float x_offset)
+                        float x_shift, float x_offset)
 {
     sfFloatRect hitbox = sfSprite_getGlobalBounds(slider->sprite);
     sfBool overlap = sfFloatRect_contains(&hitbox, sets.mouse_tool.pos.x,
@@ -44,8 +44,18 @@ static void slide_slider(win_settings_t sets, game_obj_t *slider,
     }
 }
 
+static void update_slider_color(game_obj_t **head, const sfBool paused)
+{
+    game_obj_t *tmp = NULL;
+
+    if (!head || !(*head))
+        return;
+    for (tmp = *head; tmp; tmp = tmp->next)
+        sfSprite_setColor(tmp->sprite, (paused ? darker : full_opacity));
+}
+
 void draw_slider(win_settings_t *sets, map_formatter_t ter,
-                                        game_obj_t *slider)
+                    game_obj_t *slider)
 {
     float x_offset;
     float x_shift;
@@ -60,7 +70,9 @@ void draw_slider(win_settings_t *sets, map_formatter_t ter,
     set_pos(slider, sets->anchor.topleft.x +
                     sets->scale.x * (x_shift - x_offset),
                     sets->anchor.topleft.y);
-    slide_slider(*sets, slider, x_shift, x_offset);
+    if (!sets->paused)
+        slide_slider(*sets, slider, x_shift, x_offset);
+    update_slider_color(&slider, sets->paused);
     draw_game_object(*sets, slider);
     draw_slider_arrow(*sets, slider, x_shift, x_offset);
     draw_slider_button(sets, ter, slider, x_shift - x_offset);

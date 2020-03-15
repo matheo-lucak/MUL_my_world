@@ -9,14 +9,15 @@
 #include "game_object.h"
 #include "vector_engine.h"
 
-static edit_mode_flag_t find_game_mode_from_button_type(elem_t type)
+static edit_mode_flag_t find_game_mode_from_button_type(const elem_t type)
 {
     static const edit_mode_flag_t mode_pattern[] = {VIEW_MODE,
                                                     TEXTURE_MODE,
                                                     PIXEL_MODE, 0};
     static const elem_t type_pattern[] = {VIEW_MODE_BUTTON,
-                                            TEXTURE_MODE_BUTTON,
-                                            EDIT_MODE_BUTTON, 0};
+                                        TEXTURE_MODE_BUTTON,
+                                        EDIT_MODE_BUTTON,
+                                        0};
     int index = 0;
 
     while (type_pattern[index]) {
@@ -34,7 +35,7 @@ static void link_button_function(win_settings_t *sets, game_obj_t *edit_b)
     sfSound *sound = NULL;
     edit_mode_flag_t mode = 0;
 
-    if (!sets || !edit_b)
+    if (!sets || !edit_b || sets->paused)
         return ;
     hitbox = sfSprite_getGlobalBounds(edit_b->sprite);
     overlap = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
@@ -51,7 +52,8 @@ static void link_button_function(win_settings_t *sets, game_obj_t *edit_b)
 
 static void draw_slider_button_by_type(win_settings_t *sets,
                                         game_obj_t *slider,
-                                        float x_offset, elem_t type) 
+                                        const float x_offset,
+                                        const elem_t type)
 {
     game_obj_t *edit_b = find_game_object(slider, type);
     sfVector2i tpos;
@@ -71,14 +73,14 @@ static void draw_slider_button_by_type(win_settings_t *sets,
 }
 
 void draw_slider_button(win_settings_t *sets, map_formatter_t ter,
-                                game_obj_t *slider, float x_offset)
+                        game_obj_t *slider, const float x_offset)
 {
     draw_slider_button_by_type(sets, slider, x_offset,
-                                                    EDIT_MODE_BUTTON);
+                                            EDIT_MODE_BUTTON);
     draw_slider_button_by_type(sets, slider, x_offset,
-                                                    TEXTURE_MODE_BUTTON);
+                                            TEXTURE_MODE_BUTTON);
     draw_slider_button_by_type(sets, slider, x_offset,
-                                                    VIEW_MODE_BUTTON);
+                                            VIEW_MODE_BUTTON);
     draw_view_button(sets, slider, x_offset);
     draw_texture_bar(sets, ter, slider, x_offset);
 }

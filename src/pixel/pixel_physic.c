@@ -11,12 +11,6 @@
 #include "game_object.h"
 #include "my_graphical.h"
 
-static void apply_force(pixellist_t *pixel, sfVector2f force)
-{
-    force = vec_mult(force, 1 / 1);
-    pixel->acc = vec_add(force, pixel->acc);
-}
-
 static void pixel_bounce_window(win_settings_t sets, pixellist_t *pixel)
 {
     if (!pixel)
@@ -24,7 +18,7 @@ static void pixel_bounce_window(win_settings_t sets, pixellist_t *pixel)
     if ((pixel->pos.x < 0 && pixel->vel.x < 0)
         || (pixel->pos.x > sets.video_mode.width && pixel->vel.x > 0))
         pixel->vel.x *= -1;
-    if ((pixel->pos.y < 0 && pixel->vel.y < 0) 
+    if ((pixel->pos.y < 0 && pixel->vel.y < 0)
         || (pixel->pos.y > sets.video_mode.height && pixel->vel.y > 0)) {
         pixel->vel.y *= -1;
     }

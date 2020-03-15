@@ -12,7 +12,7 @@ sfBool game_state_checker(sfRenderWindow *window, sfEvent *event,
 {
     if (!sfRenderWindow_isOpen(window))
         return (sfFalse);
-    if (sfKeyboard_isKeyPressed(sfKeyEscape)) {
+    if (sfKeyboard_isKeyPressed(sfKeyReturn)) {
         *goback_menu = sfTrue;
         return (sfFalse);
     }
