@@ -9,12 +9,16 @@
 
 void rotate_up(presets_t *map_settings, sfBool *changed)
 {
+    if (map_settings->angles.y == 90)
+        return;
     map_settings->angles.y += map_settings->rotation_speed.y;
     *changed = sfTrue;
 }
 
 void rotate_down(presets_t *map_settings, sfBool *changed)
 {
+    if (map_settings->angles.y == 45)
+        return;
     map_settings->angles.y -= map_settings->rotation_speed.y;
     *changed = sfTrue;
 }

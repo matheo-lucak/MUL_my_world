@@ -43,7 +43,8 @@ sfBool run_menu(win_settings_t sets, menu_assets_t menu_assets)
     sfBool close_window = sfFalse;
 
     reset_settings_for_menu(sets, menu_assets);
-    while (!close_window) {
+    while (sfKeyboard_isKeyPressed(sfKeyEnter));
+    while (!sfKeyboard_isKeyPressed(sfKeyEnter) && !close_window) {
         sfRenderWindow_clear(sets.window, sfBlack);
         update_window_settings(&sets);
         update_pixellist(sets, &menu_assets.pixels, menu_assets.pixel_drawer);
