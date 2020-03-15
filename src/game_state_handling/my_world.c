@@ -24,7 +24,7 @@ sfBool my_world(win_settings_t *sets)
     while (game_state_checker(sets->window, &sets->event, &goback_menu)) {
         sfRenderWindow_clear(sets->window, sfBlack);
         game_view_update(sets, &ter);
-        draw_hud(sets, ter, &hud);
+        draw_hud(sets, &ter, &hud);
         sfRenderWindow_display(sets->window);
     }
     free_game_structures(&ter, &(hud.fps_assets));

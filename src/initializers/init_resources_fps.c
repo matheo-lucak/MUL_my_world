@@ -22,7 +22,7 @@ sfBool init_resources_fps(fps_assets_t *fps_assets)
     fps_assets->fps_drawer = sfText_create();
     if (!fps_assets->fps_drawer)
         return (exit_init_resources_fps(fps_assets));
-    fps_assets->fps_font = sfFont_createFromFile("assets/font/Minecraft.ttf");
+    fps_assets->fps_font = sfFont_createFromFile("assets/font/minecraft.ttf");
     if (!fps_assets->fps_font)
         return (exit_init_resources_fps(fps_assets));
     sfText_setFont(fps_assets->fps_drawer, fps_assets->fps_font);

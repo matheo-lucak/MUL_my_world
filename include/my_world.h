@@ -145,7 +145,8 @@ typedef struct hud_s
 {
     fps_assets_t fps_assets;
     game_obj_t *slider;
-    game_obj_t *texture_bar;
+    game_obj_t *save_button;
+    game_obj_t *text_box;
 } hud_t;
 
 sfBool init_hud(hud_t *hud);
@@ -196,7 +197,10 @@ float **open_map(char *file_name);
 
 void game_view_update(win_settings_t *sets, map_formatter_t *ter);
 
-void draw_hud(win_settings_t *sets, map_formatter_t ter, hud_t *hud);
+void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
+
+void draw_save_button(win_settings_t *sets, map_formatter_t *ter,
+                                            game_obj_t *save_button);
 
 void draw_texture_bar(win_settings_t *sets, map_formatter_t ter,
                                 game_obj_t *slider, float x_offset);

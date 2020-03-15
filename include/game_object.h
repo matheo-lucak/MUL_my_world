@@ -25,6 +25,9 @@ typedef enum elem {
     EDIT_MODE_BUTTON,
     TEXTURE_MODE_BUTTON,
     VIEW_MODE_BUTTON,
+    SAVE_BUTTON,
+    LOAD_BUTTON,
+    TEXT_BOX,
     NONE
 } elem_t;
 
@@ -33,7 +36,9 @@ typedef enum prop {
     CLOCK,
     OFFSET,
     SHIFT,
-    POS
+    POS,
+    TEXT,
+    BOOL
 } prop_t;
 
 typedef struct component {

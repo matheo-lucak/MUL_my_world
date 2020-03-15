@@ -8,26 +8,49 @@
 #include "my_world.h"
 #include "game_object.h"
 
+static sfBool init_slider(game_obj_t **slider)
+{
+    if (!slider)
+        return (sfFalse);
+    *slider = create_game_obj(SLIDER);
+    if (!(*slider))
+        return (sfFalse);
+    if (!add_game_obj_to_list(slider, EDIT_MODE_BUTTON)
+        || !add_game_obj_to_list(slider, TEXTURE_MODE_BUTTON)
+        || !add_game_obj_to_list(slider, VIEW_MODE_BUTTON)
+        || !add_game_obj_to_list(slider, SLIDER_ARROW)
+        || !add_game_obj_to_list(slider, TEXTURE_VIEW_BUTTON)
+        || !add_game_obj_to_list(slider, VERTEX_VIEW_BUTTON)
+        || !add_game_obj_to_list(slider, PIN_VIEW_BUTTON)
+        || !add_game_obj_to_list(slider, TEXTURE_BAR))
+        return (sfFalse);
+    return (sfTrue);
+}
+
+static sfBool init_save_button(game_obj_t **save_button)
+{
+    if (!save_button)
+        return (sfFalse);
+    *save_button = create_game_obj(SAVE_BUTTON);
+    if (!(*save_button))
+        return (sfFalse);
+    if (!add_game_obj_to_list(save_button, LOAD_BUTTON))
+        return (sfFalse);
+    return (sfTrue);
+}
+
 sfBool init_hud(hud_t *hud)
 {
     if (!hud)
         return (sfFalse);
     if (!init_resources_fps(&(hud->fps_assets)))
         return (sfFalse);
-    hud->slider = create_game_obj(SLIDER);
-    hud->texture_bar = create_game_obj(TEXTURE_BAR);
-    if (!(hud->slider) || !(hud->texture_bar)) {
-        free_obj(hud->slider);
-        free_obj(hud->texture_bar);
+    if (!init_slider(&(hud->slider)))
         return (sfFalse);
-    }
-    add_game_obj_to_list(&(hud->slider), EDIT_MODE_BUTTON);
-    add_game_obj_to_list(&(hud->slider), TEXTURE_MODE_BUTTON);
-    add_game_obj_to_list(&(hud->slider), VIEW_MODE_BUTTON);
-    add_game_obj_to_list(&(hud->slider), SLIDER_ARROW);
-    add_game_obj_to_list(&(hud->slider), TEXTURE_VIEW_BUTTON);
-    add_game_obj_to_list(&(hud->slider), VERTEX_VIEW_BUTTON);
-    add_game_obj_to_list(&(hud->slider), PIN_VIEW_BUTTON);
-    add_game_obj_to_list(&(hud->slider), TEXTURE_BAR);
+    if (!init_save_button(&(hud->save_button)))
+        return (sfFalse);
+    hud->text_box = create_game_obj(TEXT_BOX);
+    if (!(hud->text_box))
+        return (sfFalse);
     return (sfTrue);
 }
