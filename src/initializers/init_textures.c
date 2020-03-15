@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** init_shaders.c
+** Initializes textures.
 */
 
 #include <sys/stat.h>

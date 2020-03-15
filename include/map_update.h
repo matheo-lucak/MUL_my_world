@@ -22,4 +22,6 @@ void update_map_2d(map_formatter_t *ter);
 //Updates tile map 2D by updating vertex array coords, texture, shader.
 void update_tile_map_2d(map_formatter_t *ter);
 
+void apply_biomes(map_formatter_t *ter);
+
 #endif /* MAP_UPDATE_H_ */

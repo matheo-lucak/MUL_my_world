@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** draw_game_object
+** Draws a game_obj.
 */
 
 #include "my_world.h"
@@ -25,6 +25,13 @@ void anime_game_object(game_obj_t *obj, const int lapse)
         sfClock_restart(clock);
         obj->view_box.left = 0;
     }
+}
+
+void set_game_object_frame(game_obj_t *obj, unsigned int frame)
+{
+    if (!obj || obj->frame_nb < frame)
+        return ;
+    obj->view_box.left = frame * obj->view_box.width;
 }
 
 void draw_game_object(win_settings_t sets, game_obj_t *obj)

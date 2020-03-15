@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** update_view_side.c
+** Updates the view side considering the angle view.
 */
 
 #include "my_world.h"

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** free_resources_fps.c
+** Frees fps resources.
 */
 
 #include <stdlib.h>

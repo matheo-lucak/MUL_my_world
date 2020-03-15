@@ -51,19 +51,21 @@ SRC_INITIALIZERS		=	src/initializers/init_game_structures.c			\
 SRC_INPUTS_HANDLING		=	src/inputs_handling/angle_rotation.c			\
 							src/inputs_handling/control_view.c				\
 							src/inputs_handling/mouse_input.c				\
-							src/inputs_handling/translate_cam.c				\
 							src/inputs_handling/translations.c				\
 
-SRC_MAP_GENERATION		=	src/map_generation/generate_map.c				\
+SRC_MAP_GENERATION		=	src/map_generation/apply_biomes.c				\
+							src/map_generation/generate_map.c				\
 							src/map_generation/get_hash.c					\
 							src/map_generation/open_map.c					\
 							src/map_generation/perlin_noise.c				\
 							src/map_generation/save_map.c					\
 
-SRC_MAP_UPDATE			=	src/map_update/hud/draw_hud.c					\
+SRC_MAP_UPDATE			=	src/map_update/hud/draw_edit_button.c			\
+							src/map_update/hud/draw_hud.c					\
 							src/map_update/hud/draw_mode_button.c			\
 							src/map_update/hud/draw_save_button.c			\
 							src/map_update/hud/draw_slider.c				\
+							src/map_update/hud/draw_sound_button.c			\
 							src/map_update/hud/draw_text_box.c				\
 							src/map_update/hud/draw_texture_bar.c			\
 							src/map_update/hud/draw_view_mode_button.c		\

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** Checks whether the game should continue
+** Checks whether the game should continue or not.
 */
 
 #include "my_world.h"

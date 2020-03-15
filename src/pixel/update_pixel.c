@@ -9,13 +9,13 @@
 #include "pixel.h"
 #include "vector_engine.h"
 
-static void is_new_pixel(win_settings_t sets, pixellist_t **head)
+static void is_new_pixel(const mouse_tool_t mouse, pixellist_t **head)
 {
     if (sfMouse_isButtonPressed(sfMouseRight)) {
         pixellist_add_x_pixels(head,
-                            (sfFloatRect){sets.mouse_tool.pos.x - 1,
-                            sets.mouse_tool.pos.y - 1,
-                            sets.mouse_tool.pos.x, sets.mouse_tool.pos.y}, 1);
+                            (sfFloatRect){mouse.pos.x - 1, mouse.pos.y - 1,
+                            mouse.pos.x, mouse.pos.y},
+                            1);
     }
 }
 
@@ -26,7 +26,7 @@ void update_pixellist(win_settings_t sets, pixellist_t **head,
 
     if (!rect || !head)
         return;
-    is_new_pixel(sets, head);
+    is_new_pixel(sets.mouse_tool, head);
     if (!(*head))
         return;
     tmp = (*head);
@@ -36,5 +36,5 @@ void update_pixellist(win_settings_t sets, pixellist_t **head,
         update_pixel_color(sets, tmp, rect);
         sfRenderWindow_drawRectangleShape(sets.window, rect, NULL);
         tmp = tmp->next;
-    } while ((*head) != tmp && tmp);
+    } while (tmp != *head && tmp);
 }

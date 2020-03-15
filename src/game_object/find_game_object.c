@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** find_game_object
+** Finds a game_obj.
 */
 
 #include "game_object.h"

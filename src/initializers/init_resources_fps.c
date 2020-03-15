@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** init_resources_fps.c
+** Initializes the fps resources.
 */
 
 #include "my.h"

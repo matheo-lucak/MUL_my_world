@@ -8,7 +8,7 @@
 #include "input_handling.h"
 #include "map_update.h"
 
-void game_view_update(win_settings_t *sets, map_formatter_t *ter)
+void game_view_update(win_settings_t *sets, map_formatter_t *ter, hud_t *hud)
 {
     if (!sets->paused)
         control_camera_view(*sets, ter->map_settings);
@@ -20,4 +20,5 @@ void game_view_update(win_settings_t *sets, map_formatter_t *ter)
     update_view_side(ter);
     update_window_settings(sets);
     draw_tile_map_2d(sets, ter);
+    draw_hud(sets, ter, hud);
 }

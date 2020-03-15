@@ -39,13 +39,14 @@ static void link_button_function(win_settings_t *sets, game_obj_t *edit_b)
         return ;
     hitbox = sfSprite_getGlobalBounds(edit_b->sprite);
     overlap = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
-                                                    sets->mouse_tool.pos.y);
-    if (sets->mouse_tool.hold && overlap) {
+                                            sets->mouse_tool.pos.y);
+    if (sets->mouse_tool.click && overlap) {
         mode = find_game_mode_from_button_type(edit_b->type);
-        sound = edit_b->comp[find_comp(edit_b, SOUND)]->sound;
-        if (sound && mode != sets->mode.edit_mode) {
-            sfSound_play(sound);
+        if (mode != sets->mode.edit_mode)
             change_edit_mode(&(sets->mode), mode);
+        sound = edit_b->comp[find_comp(edit_b, SOUND)]->sound;
+        if (sound && !(sets->muted)) {
+            sfSound_play(sound);
         }
     }
 }
@@ -83,4 +84,5 @@ void draw_slider_button(win_settings_t *sets, map_formatter_t ter,
                                             VIEW_MODE_BUTTON);
     draw_view_button(sets, slider, x_offset);
     draw_texture_bar(sets, ter, slider, x_offset);
+    draw_edit_button(sets, slider, x_offset);
 }

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** run_menu.c
+** Runs the menu interface.
 */
 
 #include <math.h>

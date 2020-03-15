@@ -1,17 +1,16 @@
 /*
 ** EPITECH PROJECT, 2020
-** $
+** MUL_my_world_2019
 ** File description:
-** pixel_color
+** Sets the color of a pixel in a pixellist.
 */
 
-#include <stdio.h>
 #include "my_world.h"
 #include "pixel.h"
 #include "vector_engine.h"
 
 void update_pixel_color(win_settings_t sets, pixellist_t *pixel,
-                                                sfRectangleShape *rect)
+                        sfRectangleShape *rect)
 {
     sfColor color = sfBlue;
     int distance = 0;

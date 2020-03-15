@@ -13,7 +13,8 @@ static sfVector2f compute_translation(const sfVector2i mv_speed,
                                     const size_t index)
 {
     static sfVector2f (*transl[])(sfVector2i, sfVector2f) = {transl_up,
-                                                    transl_down, transl_left,
+                                                    transl_down,
+                                                    transl_left,
                                                     transl_right};
 
     if (index > 3)
@@ -34,7 +35,8 @@ static void control_camera_translate(win_settings_t sets,
     coeff.y /= 2000;
     while (index < 4) {
         if (sfKeyboard_isKeyPressed(translate_inputs[index])) {
-            sfView_move(sets.view, compute_translation(mv_speed, coeff, index));
+            sfView_move(sets.view,
+                        compute_translation(mv_speed, coeff, index));
             *changed = sfTrue;
         }
         index += 1;

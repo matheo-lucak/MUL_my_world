@@ -43,7 +43,7 @@ static void link_view_button_function(win_settings_t *sets, game_obj_t *edit_b)
                                                     sets->mouse_tool.pos.y);
     if (overlap && sets->mouse_tool.click) {
         sound = edit_b->comp[find_comp(edit_b, SOUND)]->sound;
-        if (sound)
+        if (sound && !(sets->muted))
             sfSound_play(sound);
         if (is_view_mode(sets->mode, mode))
             unset_view_mode(&(sets->mode), mode);

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** init_hud
+** Initializes the HUD.
 */
 
 #include "my_world.h"
@@ -22,7 +22,9 @@ static sfBool init_slider(game_obj_t **slider)
         || !add_game_obj_to_list(slider, TEXTURE_VIEW_BUTTON)
         || !add_game_obj_to_list(slider, VERTEX_VIEW_BUTTON)
         || !add_game_obj_to_list(slider, PIN_VIEW_BUTTON)
-        || !add_game_obj_to_list(slider, TEXTURE_BAR))
+        || !add_game_obj_to_list(slider, TEXTURE_BAR)
+        || !add_game_obj_to_list(slider, PIXEL_BUTTON)
+        || !add_game_obj_to_list(slider, SPATULA_BUTTON))
         return (sfFalse);
     return (sfTrue);
 }
@@ -50,7 +52,8 @@ sfBool init_hud(hud_t *hud)
     if (!init_save_button(&(hud->save_button)))
         return (sfFalse);
     hud->text_box = create_game_obj(TEXT_BOX);
-    if (!(hud->text_box))
+    hud->sound_button = create_game_obj(SOUND_BUTTON);
+    if (!(hud->text_box) || !(hud->sound_button))
         return (sfFalse);
     return (sfTrue);
 }

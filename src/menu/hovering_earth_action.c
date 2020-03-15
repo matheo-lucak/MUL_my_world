@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** hovering_earth_action.c
+** Handles the hovering actions between the mouse and the earth.
 */
 
 #include "my_world.h"

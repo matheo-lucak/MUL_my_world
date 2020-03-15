@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** init_win_settings.c
+** Initializes window settings.
 */
 
 #include "my.h"

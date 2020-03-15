@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** save_map
+** Saves the current map.
 */
 
 #include <stdlib.h>
@@ -13,10 +13,13 @@
 static void write_int_in_file(FILE *fptr, const float nb)
 {
     char *tmp = NULL;
+    size_t len = 0;
 
     tmp = my_int_to_str((int)(nb) * 100);
     if (tmp) {
-        fwrite(tmp, sizeof(char), my_strlen(tmp), fptr);
+        len = my_strlen(tmp);
+        if (fwrite(tmp, sizeof(char), len, fptr) != len)
+            my_printf("Corrupting file \n");
         fwrite(";", sizeof(char), 1, fptr);
         free(tmp);
     }
@@ -28,11 +31,12 @@ static sfBool write_map_data_in_file(FILE *fptr, float **map_3d,
     register size_t x = 0;
     register size_t y = 0;
 
-    if (!fptr)
+    if (!fptr || !map_3d)
         return (sfFalse);
-    while (y < (size_t)map_size.y && map_3d && map_3d[y]) {
-        for (x = 0; x < (size_t)map_size.x; x += 1)
+    while (y < (size_t)map_size.y) {
+        for (x = 0; x < (size_t)map_size.x; x += 1) {
             write_int_in_file(fptr, map_3d[y][x]);
+        }
         fwrite("\n", sizeof(char), 1, fptr);
         y += 1;
     }

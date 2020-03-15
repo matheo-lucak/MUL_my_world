@@ -7,10 +7,10 @@
 
 int my_int_size(int nb)
 {
-    int i = 0;
+    int i = 1;
 
     if (nb < 0)
-        nb *= 1;
+        nb *= -1;
     if (nb == 0)
         return (1);
     while (nb >= 9) {

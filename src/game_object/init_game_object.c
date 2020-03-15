@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** init_game_object
+** Inits a game_obj.
 */
 
 #include <fcntl.h>
@@ -41,11 +41,28 @@ sfBool fill_basic_game_object(game_obj_t *obj, int fd, char *buffer)
     return (sfTrue);
 }
 
+sfBool read_config_file(int fd, game_obj_t *obj)
+{
+    char *buffer = NULL;
+    int param_index = -1;
+
+    do {
+        if (buffer) {
+            free(buffer);
+            buffer = NULL;
+        }
+        buffer = get_next_line(fd);
+        param_index = find_param(buffer);
+        if (buffer && param_index != -1 &&
+            !get_param_from_file[param_index](obj, buffer))
+            return (sfFalse);
+    } while (buffer && my_hay_needle(buffer, "component : ") == -1);
+    return (fill_basic_game_object(obj, fd, buffer));
+}
+
 sfBool init_game_object(game_obj_t *obj)
 {
     static char **config_path = NULL;
-    char *buffer = NULL;
-    int param_index = -1;
     int fd = 0;
 
     if (!config_path)
@@ -55,12 +72,5 @@ sfBool init_game_object(game_obj_t *obj)
             return (sfFalse);
         fd = open(config_path[obj->type], O_RDONLY);
     }
-    do {
-        buffer = get_next_line(fd);
-        param_index = find_param(buffer);
-        if (buffer && param_index != -1 &&
-            !get_param_from_file[param_index](obj, buffer))
-            return (sfFalse);
-    } while (buffer && my_hay_needle(buffer, "component : ") == -1);
-    return (fill_basic_game_object(obj, fd, buffer));
+    return (read_config_file(fd, obj));
 }

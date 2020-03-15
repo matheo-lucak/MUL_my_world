@@ -109,6 +109,11 @@ typedef enum edit_mode_flag_e {
 } edit_mode_flag_t;
 
 
+typedef enum pixel_mode_flag_e {
+    PIXEL_DRAW = 1,
+    SPATULA_DRAW = 2,
+} pixe_mode_flag_t;
+
 
 typedef enum view_mode_e {
     VIEW_TEXTURE = 1,
@@ -123,6 +128,7 @@ typedef struct game_mode_s {
     unsigned edit_mode : 3;
     unsigned edit_repeat : 1;
     unsigned view_mode : 3;
+    unsigned draw_mode : 2;
     tile_matter_t matter;
 } game_mode_t;
 
@@ -141,6 +147,7 @@ typedef struct win_settings_s {
     mouse_tool_t mouse_tool;
     sfMusic *main_track;
     sfBool paused;
+    sfBool muted;
 } win_settings_t;
 
 
@@ -158,6 +165,7 @@ typedef struct hud_s {
     game_obj_t *slider;
     game_obj_t *save_button;
     game_obj_t *text_box;
+    game_obj_t *sound_button;
 } hud_t;
 
 sfBool init_hud(hud_t *hud);
@@ -205,7 +213,7 @@ sfBool save_map(map_formatter_t ter, char *file_name);
 
 //Returns a float ** representing 3D map
 //Returns NULL in case of error
-float **open_map(char *file_name);
+sfBool open_map(map_formatter_t *ter, char *file_name);
 
 
 /*
@@ -214,9 +222,14 @@ float **open_map(char *file_name);
 **                                  ******************
 */
 
-void game_view_update(win_settings_t *sets, map_formatter_t *ter);
+void game_view_update(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
 
 void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
+
+void draw_edit_button(win_settings_t *sets, game_obj_t *slider,
+                                            const float x_offset);
+
+void draw_sound_button(win_settings_t *sets, game_obj_t *sound_button);
 
 void draw_text_box(win_settings_t *sets, map_formatter_t *ter,
                     game_obj_t *save_button, game_obj_t *text_box);
@@ -287,6 +300,7 @@ void free_shaders_array(sfShader **shaders);
 void free_win_settings(win_settings_t sets);
 void free_terraformer(map_formatter_t *ter);
 void free_map_list(map_linked_list_t **head);
+void free_tile_map_2d(tile_t **tile_map_2d, sfVector2i size);
 void free_game_structures(map_formatter_t *ter, fps_assets_t *fps_assets);
 void free_resources_fps(fps_assets_t *fps_assets);
 

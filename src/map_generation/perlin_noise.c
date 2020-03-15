@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2020
-** perlin_noise
+** MUL_my_world_2019
 ** File description:
-** perlin noise generation
+** Perlin noise generation
 */
 
 #include <stdlib.h>
@@ -43,12 +43,12 @@ static float noise_2d(const float x, const float y, const size_t seed)
     int y_int = y;
     float x_frac = x - x_int;
     float y_frac = y - y_int;
-    int s = noise2(x_int, y_int, seed, 0);
-    int t = noise2(x_int + 1, y_int, seed, 0);
-    int u = noise2(x_int, y_int + 1, seed, 0);
-    int v = noise2(x_int + 1, y_int + 1, seed, 0);
-    float low = smooth_inter(s, t, x_frac);
-    float high = smooth_inter(u, v, x_frac);
+    float low = smooth_inter(noise2(x_int, y_int, seed, 0),
+                            noise2(x_int + 1, y_int, seed, 0),
+                            x_frac);
+    float high = smooth_inter(noise2(x_int, y_int + 1, seed, 0),
+                            noise2(x_int + 1, y_int + 1, seed, 0),
+                            x_frac);
 
     return (smooth_inter(low, high, y_frac));
 }

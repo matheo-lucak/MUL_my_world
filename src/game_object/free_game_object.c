@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** free_game_object
+** Free's a game_obj
 */
 
 #include <stdlib.h>
@@ -25,14 +25,14 @@ sfBool free_comp(component_t *comp)
 
 sfBool free_all_comp(game_obj_t *obj)
 {
-    int i = 0;
+    register size_t index = 0;
 
     if (!obj || !(obj->comp))
         return (sfFalse);
-    while (obj->comp[i]) {
-        free_comp(obj->comp[i]);
-        free(obj->comp[i]);
-        i++;
+    while (obj->comp[index]) {
+        free_comp(obj->comp[index]);
+        free(obj->comp[index]);
+        index += 1;
     }
     free(obj->comp);
     return (sfTrue);

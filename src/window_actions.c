@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** menu.c
+** Running interractions between the menu and the my_world.
 */
 
 #include "game_menu.h"

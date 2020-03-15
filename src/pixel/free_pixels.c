@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** Frees a pixel list
+** Frees a pixellist.
 */
 
 #include <stdlib.h>

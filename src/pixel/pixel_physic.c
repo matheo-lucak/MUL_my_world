@@ -55,6 +55,6 @@ void update_pixel_physic(win_settings_t sets, pixellist_t *pixel)
     }
     pixel_bounce_window(sets, pixel);
     pixel->vel = vec_add(pixel->vel, pixel->acc);
-    pixel->vel = vec_lim(pixel->vel, (sfVector2f){3, 3}, (sfVector2f){-3, -3});
+    pixel->vel = vec_lim(pixel->vel, vec2f(3, 3), vec2f(-3, -3));
     pixel->pos = vec_add(pixel->pos, pixel->vel);
 }

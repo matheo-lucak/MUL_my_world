@@ -30,9 +30,12 @@ void update_tile(tile_t *tile, map_formatter_t *ter, const sfVector2i pos)
     if (ter->shaders && ter->shaders[tile->matter_state])
         tile->rstate.shader = ter->shaders[tile->matter_state];
     fill_vertex(ter->map_2d[pos.y][pos.x], tile->shape_drawer, vec2f(0, 0));
-    fill_vertex(ter->map_2d[pos.y][pos.x + 1], tile->shape_drawer, vec2f(0, 1));
-    fill_vertex(ter->map_2d[pos.y + 1][pos.x + 1], tile->shape_drawer, vec2f(1, 1));
-    fill_vertex(ter->map_2d[pos.y + 1][pos.x], tile->shape_drawer, vec2f(1, 0));
+    fill_vertex(ter->map_2d[pos.y][pos.x + 1],
+                tile->shape_drawer, vec2f(0, 1));
+    fill_vertex(ter->map_2d[pos.y + 1][pos.x + 1],
+                tile->shape_drawer, vec2f(1, 1));
+    fill_vertex(ter->map_2d[pos.y + 1][pos.x],
+                tile->shape_drawer, vec2f(1, 0));
     fill_vertex(ter->map_2d[pos.y][pos.x], tile->shape_drawer, vec2f(0, 0));
     sfVertexArray_setPrimitiveType(tile->shape_drawer, sfQuads);
 }
