@@ -189,7 +189,7 @@ sfBool save_map(map_formatter_t ter, char *file_name);
 
 //Returns a float ** representing 3D map
 //Returns NULL in case of error
-float **open_map(char *file_name);
+sfBool open_map(map_formatter_t *ter, char *file_name);
 
 
 /*
@@ -271,6 +271,7 @@ void free_shaders_array(sfShader **shaders);
 void free_win_settings(win_settings_t sets);
 void free_terraformer(map_formatter_t *ter);
 void free_map_list(map_linked_list_t **head);
+void free_tile_map_2d(tile_t **tile_map_2d, sfVector2i size);
 void free_game_structures(map_formatter_t *ter, fps_assets_t *fps_assets);
 void free_resources_fps(fps_assets_t *fps_assets);
 
