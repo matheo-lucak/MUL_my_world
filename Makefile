@@ -49,6 +49,7 @@ SRC_INITIALIZERS		=	src/initializers/init_game_structures.c			\
 							src/initializers/init_win_settings.c			\
 
 SRC_INPUTS_HANDLING		=	src/inputs_handling/angle_rotation.c			\
+							src/inputs_handling/center_cam.c				\
 							src/inputs_handling/control_view.c				\
 							src/inputs_handling/mouse_input.c				\
 							src/inputs_handling/translations.c				\

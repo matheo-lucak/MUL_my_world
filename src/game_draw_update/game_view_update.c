@@ -21,4 +21,5 @@ void game_view_update(win_settings_t *sets, map_formatter_t *ter, hud_t *hud)
     update_window_settings(sets);
     draw_tile_map_2d(sets, ter);
     draw_hud(sets, ter, hud);
+    center_cam(sets, ter);
 }
