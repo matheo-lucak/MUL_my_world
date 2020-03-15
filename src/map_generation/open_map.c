@@ -22,7 +22,7 @@ static sfBool set_map_size(int fd, sfVector2i *map_size, int *seed)
     parsed_line = my_str_to_word_array(get_next_line(fd), " ;", 1);
     if (!parsed_line)
         return (sfFalse);
-    arr_len = my_arrlen((void **)parsed_line); 
+    arr_len = my_arrlen((void **)parsed_line);
     if (arr_len < 2 || arr_len > 3)
         return (sfFalse);
     map_size->x = my_getnbr(parsed_line[0]);
