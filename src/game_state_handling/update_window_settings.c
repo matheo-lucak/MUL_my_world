@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** update_window
+** Updates the window settings.
 */
 
 #include "my.h"
@@ -10,7 +10,7 @@
 #include "my_world.h"
 #include "vector_engine.h"
 
-static void update_window_anchor(win_settings_t *sets)
+    static void update_window_anchor(win_settings_t *sets)
 {
     sets->anchor.topleft = sfRenderWindow_mapPixelToCoords(sets->window,
                                             vec2i(0, 0),
@@ -47,14 +47,14 @@ static void update_window_music(win_settings_t *sets)
         sfMusic_play(sets->main_track);
 }
 
-void udpate_window_settings(win_settings_t *sets)
+void update_window_settings(win_settings_t *sets)
 {
     sfVector2u size_u;
 
     if (!sets)
         return ;
     size_u = sfRenderWindow_getSize(sets->window);
-    sets->size = (sfVector2f) {size_u.x, size_u.y};
+    sets->size = (sfVector2f){size_u.x, size_u.y};
     sets->mode.edit_repeat = 1;
     update_window_scale(sets);
     update_window_anchor(sets);

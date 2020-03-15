@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** init_game_structures.c
+** Initializes the game structures.
 */
 
 #include "my_world.h"

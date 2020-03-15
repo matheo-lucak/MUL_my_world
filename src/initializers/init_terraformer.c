@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** init_terraformer.c
+** Initializes the map_formatter structure.
 */
 
 #include <stdlib.h>
@@ -44,6 +44,20 @@ static sfBool init_maps(map_formatter_t *ter, size_t seed)
     return (sfTrue);
 }
 
+static sfBool init_borders(map_formatter_t *ter)
+{
+    register size_t index = 0;
+
+    while (index < 8) {
+        ter->borders[index] = sfVertexArray_create();
+        if (!ter->borders[index])
+            return (sfFalse);
+        sfVertexArray_setPrimitiveType(ter->borders[index], sfLines);
+        index += 1;
+    }
+    return (sfTrue);
+}
+
 sfBool init_terraformer(map_formatter_t *ter, size_t seed)
 {
     ter->textures = init_textures();
@@ -58,8 +72,11 @@ sfBool init_terraformer(map_formatter_t *ter, size_t seed)
         return (sfFalse);
     if (!init_maps(ter, seed))
         return (sfFalse);
+    if (!init_borders(ter))
+        return (sfFalse);
     apply_biomes(ter);
     update_map_2d(ter);
+    update_view_side(ter);
     update_tile_map_2d(ter);
     return (sfTrue);
 }

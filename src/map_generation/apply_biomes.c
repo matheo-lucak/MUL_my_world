@@ -35,9 +35,8 @@ void apply_biomes(map_formatter_t *ter)
     int y = 0;
 
     while (y < ter->map_settings.size.y - 1) {
-        for (x = 0; x < ter->map_settings.size.x - 1; x += 1) {
+        for (x = 0; x < ter->map_settings.size.x - 1; x += 1)
             apply_altitude(ter, x, y);
-        }
         y += 1;
     }
 }

@@ -21,12 +21,16 @@ void rotate_down(presets_t *map_settings, sfBool *changed)
 
 void rotate_left(presets_t *map_settings, sfBool *changed)
 {
+    if (map_settings->angles.x == 0)
+        return;
     map_settings->angles.x -= map_settings->rotation_speed.x;
     *changed = sfTrue;
 }
 
 void rotate_right(presets_t *map_settings, sfBool *changed)
 {
+    if (map_settings->angles.x == 90)
+        return;
     map_settings->angles.x += map_settings->rotation_speed.x;
     *changed = sfTrue;
 }

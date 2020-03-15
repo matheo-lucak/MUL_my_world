@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** draw_game_object
+** Draws a game_obj.
 */
 
 #include "my_world.h"

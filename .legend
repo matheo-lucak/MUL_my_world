@@ -2,59 +2,59 @@ This is .legend, you will find out here how to generate a map file and create ne
 
 First of all, maps:
 
-There is 2 type of maps:
+There are 2 types of maps:
 
-    All saved maps : Contains map width and map height
-                     Then contains all of the points coordinates, X and Y are represented by the place in the file and Z are the visible values (scaled by 100)
-                     All digits are separated with ';', including for map size
+    Fully-saved maps :  Contains map width and map height
+                        Then contains all of the points coordinates, X and Y are represented by the place in the file and Z are the visible values (scaled by 100)
+                        All digits are separated with ';', including for map size
 
-                     example :
+                        For instance:
 
-                     2;4
-                     100;200
-                     100;300
-                     200;300
-                     300;300
+                        2;4
+                        100;200
+                        100;300
+                        200;300
+                        300;300
 
-    Short saved maps: Contains map width and map height
-                      Then contains on the same line the generation seed witch should be > 0 && < 255
+    Shortly-saved maps: Contains map width and map height
+                        Then contains on the same line the generation seed which should be > 0 && < 255
 
-                      example:
+                        For instance:
 
-                      32 ; 32 ; 156
+                        32 ; 32 ; 156
 
 That's all for the maps
 
-Let's take a look at game_object
+Let's take a look at game_objects:
 
-Each game_object should have his path wrote in the corresponding order of the game_object's value in the game_object.h's enum elem_t;
-The number of game_object HAS to be indicated in the first line of the path file
+Each game_object should have his path wrote in the corresponding order of the game_object's value in the game_object.h's enum elem_t.
+The number of game_objects MUST be indicated in the first line of the path file.
 The path file is : assets/config/object_paths
 
-I advise you to store new game_object's config file in the following path :assets/config/objects
+You must store new game_objects config file in the following path: assets/config/objects
 
-A game_object's config file is built in the following way :
+A game_object config file is built as followed :
 
-First indicate the texture path with this command :
+First, indicate the texture path as such:
     texture : "PATH"
 
-Secondly indicate the frame number of
+In second, indicate the frame number
     /!\ Sprite sheets have to be align only in X axis /!\
     frame_nb : "FRAME_NB"
 
-Those two first steps are ESSENTIAL to build a game_object
+Those two first steps are ESSENTIALS to create a game_object
 
-But we can add more things such as origin which center the sprite with the given local coordinates
+However, we can add modules such as origin which centers the sprite with the given local coordinates
     origin : "X_CENTER" ; "Y_CENTER"
 
 After having setup your game_object, you can store variables in it;
-There is 9 possible storing type which are :
-    clock, image, text, sound, v2i, v2f, irect, int, float
+There are 9 possible storage types which are :
+    clock, image, text, sound, v2i, v2f, irect, int, float.
 
-    But first, precise how much variable your game_object will store this way :
+    But first, mention how many variables your game_object will store with the following procedure:
         component : "COMPONENT_NB"
-    Each storing type is declared its own way:
-    The first number correspond to the enum name of the new variable (/!\ Using 0 for enum name will be considerated has an error)
+    Each storage type is declared following its properties:
+    The first number corresponds to the 'enum' name of the new variable (/!\ Using 0 for enum name will be considerated has an error)
         2 ; clock ;
         3 ; image ; "PATH"
         1 ; sound ; "PATH"; "VOLUME"

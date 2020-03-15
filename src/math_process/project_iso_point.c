@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** project_iso_point
+** Projects a 3d point to a 2d one.
 */
 
 #include <math.h>

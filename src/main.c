@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** main.c
+** Main function of my_world.
 */
 
 #include "my.h"
@@ -25,13 +25,11 @@ static sfBool check_env(const char * const env[])
 
 int main(const int ac, const char * const av[], const char * const env[])
 {
-    if (!check_env(env)) {
-        my_printf("test");
+    if (!check_env(env))
         return (84);
-    }
     if (ac != 1) {
         usage();
-        if (ac == 2 && my_strcmp(av[1], "-h", 0))
+        if (ac == 2 && !my_strcmp(av[1], "-h", 0))
             return (0);
         return (84);
     }

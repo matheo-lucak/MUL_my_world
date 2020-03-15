@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** free_win_settings.c
+** Frees win_settings_t structure.
 */
 
 #include <stdlib.h>

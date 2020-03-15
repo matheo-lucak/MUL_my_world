@@ -30,12 +30,13 @@ void update_tile(tile_t *tile, map_formatter_t *ter, const sfVector2i pos)
     if (ter->shaders && ter->shaders[tile->matter_state])
         tile->rstate.shader = ter->shaders[tile->matter_state];
     fill_vertex(ter->map_2d[pos.y][pos.x], tile->shape_drawer, vec2f(0, 0));
-    fill_vertex(ter->map_2d[pos.y][pos.x + 1], tile->shape_drawer,
-                                vec2f(0, 1));
-    fill_vertex(ter->map_2d[pos.y + 1][pos.x + 1], tile->shape_drawer,
-                                vec2f(1, 1));
-    fill_vertex(ter->map_2d[pos.y + 1][pos.x], tile->shape_drawer,
-                                vec2f(1, 0));
+    fill_vertex(ter->map_2d[pos.y][pos.x + 1],
+                tile->shape_drawer, vec2f(0, 1));
+    fill_vertex(ter->map_2d[pos.y + 1][pos.x + 1],
+                tile->shape_drawer, vec2f(1, 1));
+    fill_vertex(ter->map_2d[pos.y + 1][pos.x],
+                tile->shape_drawer, vec2f(1, 0));
+    fill_vertex(ter->map_2d[pos.y][pos.x], tile->shape_drawer, vec2f(0, 0));
     sfVertexArray_setPrimitiveType(tile->shape_drawer, sfQuads);
 }
 
@@ -57,19 +58,17 @@ void update_map_2d(map_formatter_t *ter)
 {
     register int x = 0;
     register int y = 0;
-    sfVector3f pos_3d;
-    sfVector2i map_size;
-    sfVector2i angles;
 
     if (!ter)
         return;
-    map_size = ter->map_settings.size;
-    angles = ter->map_settings.angles;
     while (y < ter->map_settings.size.y) {
-        for (x = 0; x < ter->map_settings.size.x; x += 1) {
-            pos_3d = (sfVector3f){x, y, ter->map_3d[y][x]};
-            ter->map_2d[y][x] = project_iso_point(pos_3d, map_size, angles);
-        }
+        for (x = 0; x < ter->map_settings.size.x; x += 1)
+            ter->map_2d[y][x] = project_iso_point((sfVector3f){x, y,
+                                                    ter->map_3d[y][x]},
+                                                ter->map_settings.size,
+                                                ter->map_settings.angles);
         y += 1;
     }
+    update_border(ter->map_3d, ter->map_settings.size,
+                ter->map_settings.angles, ter->borders);
 }

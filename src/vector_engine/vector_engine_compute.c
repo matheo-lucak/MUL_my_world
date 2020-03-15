@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2020
-** Vector_engine
+** MUL_my_world_2019
 ** File description:
-** 1
+** Vector engine for vector computation.
 */
 
 #include <math.h>

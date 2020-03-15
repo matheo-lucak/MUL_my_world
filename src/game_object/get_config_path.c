@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** get_config_path
+** Gets the config path.
 */
 
 #include <fcntl.h>

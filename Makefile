@@ -52,7 +52,6 @@ SRC_INPUTS_HANDLING		=	src/inputs_handling/angle_rotation.c			\
 							src/inputs_handling/center_cam.c				\
 							src/inputs_handling/control_view.c				\
 							src/inputs_handling/mouse_input.c				\
-							src/inputs_handling/translate_cam.c				\
 							src/inputs_handling/translations.c				\
 
 SRC_MAP_GENERATION		=	src/map_generation/apply_biomes.c				\
@@ -74,6 +73,8 @@ SRC_MAP_UPDATE			=	src/map_update/hud/draw_edit_button.c			\
 							src/map_update/draw_circles.c					\
 							src/map_update/draw_tile_map_2d.c				\
 							src/map_update/map_update.c						\
+							src/map_update/update_view_side.c				\
+							src/map_update/update_border.c					\
 
 SRC_MATH_PROCESS		=	src/math_process/get_randnb.c					\
 							src/math_process/magnet_number.c				\

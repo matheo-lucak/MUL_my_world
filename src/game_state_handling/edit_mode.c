@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** edit_mode
+** Changes the edit_mode.
 */
 
 #include "my_world.h"

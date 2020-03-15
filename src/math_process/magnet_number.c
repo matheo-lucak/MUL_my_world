@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** magnet_point
+** Handles the magnet effect when adjusting a point on the map.
 */
 
 #include "my_world.h"

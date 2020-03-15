@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** init_vertices_in_array.c
+** Initializes the map_2d.
 */
 
 #include <stdlib.h>

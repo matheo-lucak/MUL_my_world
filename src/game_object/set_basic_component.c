@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** set_basic_component
+** Sets basic comps of a game_obj.
 */
 
 #include "my.h"

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** init_game_object
+** Inits a game_obj.
 */
 
 #include <fcntl.h>

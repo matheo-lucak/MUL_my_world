@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_world_2019
 ** File description:
-** free_terraformer.c
+** Frees a map_formatter_t structure.
 */
 
 #include <stdlib.h>

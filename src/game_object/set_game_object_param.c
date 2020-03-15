@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** set_game_object_param
+** Sets the parameters of a game_obj
 */
 
 #include "game_object.h"

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2020
 ** MUL_my_world_2019
 ** File description:
-** init_menu_assets
+** Initializes the menu_assets_t structure.
 */
 
 #include "my.h"
