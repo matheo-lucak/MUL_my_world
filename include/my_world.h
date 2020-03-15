@@ -101,6 +101,11 @@ typedef enum edit_mode_flag_e {
 } edit_mode_flag_t;
 
 
+typedef enum pixel_mode_flag_e {
+    PIXEL_DRAW = 1,
+    SPATULA_DRAW = 2,
+} pixe_mode_flag_t;
+
 
 typedef enum view_mode_e {
     VIEW_TEXTURE = 1,
@@ -115,6 +120,7 @@ typedef struct game_mode_s {
     unsigned edit_mode : 3;
     unsigned edit_repeat : 1;
     unsigned view_mode : 3;
+    unsigned draw_mode : 2;
     tile_matter_t matter;
 } game_mode_t;
 
@@ -203,6 +209,9 @@ sfBool open_map(map_formatter_t *ter, char *file_name);
 void game_view_update(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
 
 void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
+
+void draw_edit_button(win_settings_t *sets, game_obj_t *slider,
+                                            const float x_offset);
 
 void draw_sound_button(win_settings_t *sets, game_obj_t *sound_button);
 

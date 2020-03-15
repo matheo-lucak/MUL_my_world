@@ -22,7 +22,9 @@ static sfBool init_slider(game_obj_t **slider)
         || !add_game_obj_to_list(slider, TEXTURE_VIEW_BUTTON)
         || !add_game_obj_to_list(slider, VERTEX_VIEW_BUTTON)
         || !add_game_obj_to_list(slider, PIN_VIEW_BUTTON)
-        || !add_game_obj_to_list(slider, TEXTURE_BAR))
+        || !add_game_obj_to_list(slider, TEXTURE_BAR)
+        || !add_game_obj_to_list(slider, PIXEL_BUTTON)
+        || !add_game_obj_to_list(slider, SPATULA_BUTTON))
         return (sfFalse);
     return (sfTrue);
 }

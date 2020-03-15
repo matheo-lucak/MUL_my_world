@@ -84,4 +84,5 @@ void draw_slider_button(win_settings_t *sets, map_formatter_t ter,
                                             VIEW_MODE_BUTTON);
     draw_view_button(sets, slider, x_offset);
     draw_texture_bar(sets, ter, slider, x_offset);
+    draw_edit_button(sets, slider, x_offset);
 }

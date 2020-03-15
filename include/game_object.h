@@ -29,6 +29,8 @@ typedef enum elem {
     LOAD_BUTTON,
     TEXT_BOX,
     SOUND_BUTTON,
+    PIXEL_BUTTON,
+    SPATULA_BUTTON,
     NONE
 } elem_t;
 

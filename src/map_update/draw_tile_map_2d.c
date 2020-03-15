@@ -8,6 +8,7 @@
 #include "my.h"
 #include "my_world.h"
 #include "my_graphical.h"
+#include "vector_engine.h"
 
 static void assert_tile(sfRenderWindow *win, tile_t *tile,
                             const game_mode_t mode)
@@ -23,6 +24,27 @@ static void assert_tile(sfRenderWindow *win, tile_t *tile,
     sfVertexArray_setPrimitiveType(tile->shape_drawer, sfQuads);
 }
 
+static void flatten_tile(win_settings_t *sets, map_formatter_t *ter,
+                        const int y, const int x)
+{
+    static float height = 0;
+    static sfBool tile_selected = sfFalse;
+
+    if (!(sets->mouse_tool.hold)) {
+        tile_selected = sfFalse;
+    }
+    if (sets->mouse_tool.click) {
+        tile_selected = sfTrue;
+        height = ter->map_3d[y][x];
+    }
+    if (tile_selected) {
+        ter->map_3d[y][x] = height; 
+        ter->map_3d[y][x + 1] = height; 
+        ter->map_3d[y + 1][x] = height; 
+        ter->map_3d[y + 1][x + 1] = height; 
+    }
+}
+
 static void draw_vertex(win_settings_t *sets, map_formatter_t *ter,
                         const int y, const int x)
 {
@@ -34,10 +56,13 @@ static void draw_vertex(win_settings_t *sets, map_formatter_t *ter,
     hitbox = sfVertexArray_getBounds(ter->tile_map_2d[y][x].shape_drawer);
     selection = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
                                         sets->mouse_tool.pos.y);
-    if (selection && sets->mouse_tool.hold
-        && sets->mode.edit_mode == TEXTURE_MODE) {
-        ter->tile_map_2d[y][x].matter_state = sets->mode.matter;
-        sets->mode.edit_repeat = 0;
+    if (selection && sets->mouse_tool.hold) {
+        if (sets->mode.edit_mode == TEXTURE_MODE) {
+            ter->tile_map_2d[y][x].matter_state = sets->mode.matter;
+            sets->mode.edit_repeat = 0;
+        } else if (sets->mode.edit_mode == PIXEL_MODE
+            && sets->mode.draw_mode == SPATULA_DRAW)
+            flatten_tile(sets, ter, y, x);
     }
     assert_tile(sets->window, &(ter->tile_map_2d[y][x]), sets->mode);
 }
