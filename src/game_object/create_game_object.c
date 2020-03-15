@@ -10,7 +10,7 @@
 
 int find_comp(game_obj_t *obj, const prop_t type)
 {
-    register size_t index = 0;
+    register int index = 0;
 
     if (!obj || !(obj->comp))
         return (0);
