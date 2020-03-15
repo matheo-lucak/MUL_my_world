@@ -64,6 +64,7 @@ SRC_MAP_UPDATE			=	src/map_update/hud/draw_hud.c					\
 							src/map_update/hud/draw_mode_button.c			\
 							src/map_update/hud/draw_save_button.c			\
 							src/map_update/hud/draw_slider.c				\
+							src/map_update/hud/draw_text_box.c				\
 							src/map_update/hud/draw_texture_bar.c			\
 							src/map_update/hud/draw_view_mode_button.c		\
 							src/map_update/draw_circles.c					\

@@ -203,8 +203,10 @@ void game_view_update(win_settings_t *sets, map_formatter_t *ter);
 
 void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
 
-void draw_save_button(win_settings_t *sets, map_formatter_t *ter,
-                                            game_obj_t *save_button);
+void draw_text_box(win_settings_t *sets, map_formatter_t *ter,
+                    game_obj_t *save_button, game_obj_t *text_box);
+
+void draw_save_button(win_settings_t *sets, game_obj_t *save_button);
 
 void draw_texture_bar(win_settings_t *sets, map_formatter_t ter,
                                 game_obj_t *slider, float x_offset);

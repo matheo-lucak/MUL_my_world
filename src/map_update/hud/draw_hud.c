@@ -15,5 +15,6 @@ void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud)
         return ;
     draw_fps(*sets, &(hud->fps_assets));
     draw_slider(sets, *ter, hud->slider);
-    draw_save_button(sets, ter, hud->save_button);
+    draw_save_button(sets, hud->save_button);
+    draw_text_box(sets, ter, hud->save_button, hud->text_box);
 }
