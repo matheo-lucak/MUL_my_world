@@ -9,8 +9,7 @@
 #include "game_object.h"
 #include "vector_engine.h"
 
-static void save_button_interaction(win_settings_t *sets, map_formatter_t *ter,
-                                                    game_obj_t *button)
+static void save_button_interaction(win_settings_t *sets, game_obj_t *button)
 {
     sfSound *sound = button->comp[find_comp(button, SOUND)]->sound;
     sfBool overlap = sfFalse;
@@ -24,8 +23,7 @@ static void save_button_interaction(win_settings_t *sets, map_formatter_t *ter,
     }
 }
 
-static void draw_button_by_type(win_settings_t *sets, map_formatter_t *ter,
-                                                    game_obj_t *button)
+static void draw_button_by_type(win_settings_t *sets, game_obj_t *button)
 {
     int shift = 1;
 
@@ -36,17 +34,16 @@ static void draw_button_by_type(win_settings_t *sets, map_formatter_t *ter,
                     sets->anchor.bottomright.y -
                     button->view_box.height * sets->scale.y);
     sfSprite_setScale(button->sprite, sets->scale);
-    save_button_interaction(sets, ter, button);
+    save_button_interaction(sets, button);
     draw_game_object(*sets, button);
 }
 
-void draw_save_button(win_settings_t *sets, map_formatter_t *ter,
-                                            game_obj_t *save_button)
+void draw_save_button(win_settings_t *sets, game_obj_t *save_button)
 {
     game_obj_t *load_button = find_game_object(save_button, LOAD_BUTTON);
 
-    if (!sets || !ter || !save_button || !load_button)
+    if (!sets || !save_button || !load_button)
         return ;
-    draw_button_by_type(sets, ter, save_button);
-    draw_button_by_type(sets, ter, load_button);
+    draw_button_by_type(sets, save_button);
+    draw_button_by_type(sets, load_button);
 }
