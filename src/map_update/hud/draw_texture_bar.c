@@ -16,8 +16,8 @@ static void link_texture_bar_function(win_settings_t *sets,
     sfBool overlap = 0;
     sfSound *sound = NULL;
 
-    if (!sets || !texture_b)
-        return ;
+    if (!sets || !texture_b || sets->paused)
+        return;
     hitbox = sfSprite_getGlobalBounds(texture_b->sprite);
     overlap = sfFloatRect_contains(&hitbox, sets->mouse_tool.pos.x,
                                                     sets->mouse_tool.pos.y);
@@ -30,7 +30,7 @@ static void link_texture_bar_function(win_settings_t *sets,
 }
 
 static void draw_texture_frame(win_settings_t *sets, game_obj_t *texture_b,
-                                                texture_matter_t tex_matter)
+                                texture_matter_t tex_matter)
 {
     static sfSprite *sprite = NULL;
     sfFloatRect bounds;
@@ -41,12 +41,13 @@ static void draw_texture_frame(win_settings_t *sets, game_obj_t *texture_b,
     sfSprite_setTexture(sprite, tex_matter.texture, sfFalse);
     bounds = sfSprite_getLocalBounds(sprite);
     if (!(bounds.width) || !(bounds.height))
-        return ;
+        return;
     sprite_scale.x = texture_b->view_box.width / bounds.width;
     sprite_scale.y = texture_b->view_box.height / bounds.height;
     sfSprite_setPosition(sprite, texture_b->pos);
     sfSprite_setScale(sprite, sets->scale);
     sfSprite_scale(sprite, sprite_scale);
+    sfSprite_setColor(sprite, sets->paused ? darker : full_opacity);
     sfRenderWindow_drawSprite(sets->window, sprite, NULL);
 }
 
@@ -58,7 +59,7 @@ static void draw_texture_bar_tile(win_settings_t *sets, game_obj_t *slider,
     sfVector2f pos;
 
     if (!texture_b || !sets || !(slider->view_box.height))
-        return ;
+        return;
     texture_b->view_box.left = tex_matter.matter != sets->mode.matter ?
                                         texture_b->view_box.width : 0;
     tpos = texture_b->comp[find_comp(texture_b, POS)]->v2i;
