@@ -38,10 +38,10 @@ static void flatten_tile(win_settings_t *sets, map_formatter_t *ter,
         height = ter->map_3d[y][x];
     }
     if (tile_selected) {
-        ter->map_3d[y][x] = height; 
-        ter->map_3d[y][x + 1] = height; 
-        ter->map_3d[y + 1][x] = height; 
-        ter->map_3d[y + 1][x + 1] = height; 
+        ter->map_3d[y][x] = height;
+        ter->map_3d[y][x + 1] = height;
+        ter->map_3d[y + 1][x] = height;
+        ter->map_3d[y + 1][x + 1] = height;
     }
 }
 
