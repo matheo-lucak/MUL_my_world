@@ -166,6 +166,7 @@ typedef struct hud_s {
     game_obj_t *save_button;
     game_obj_t *text_box;
     game_obj_t *sound_button;
+    game_obj_t *florian;
 } hud_t;
 
 sfBool init_hud(hud_t *hud);
@@ -225,6 +226,8 @@ sfBool open_map(map_formatter_t *ter, char *file_name);
 void game_view_update(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
 
 void draw_hud(win_settings_t *sets, map_formatter_t *ter, hud_t *hud);
+
+void draw_florian_the_toucan(win_settings_t *sets, game_obj_t *florian);
 
 void draw_edit_button(win_settings_t *sets, game_obj_t *slider,
                                             const float x_offset);
